@@ -1,0 +1,40 @@
+{
+    "meta": {
+        "title": "The *Metadata* Title",
+        "source": "html4/fancy-titles.rst",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": "The <em>Document</em> Title",
+        "title_stripped": "The Document Title",
+        "subtitle": "The Document <strong>Sub</strong>-Title",
+        "subtitle_stripped": "The Document Sub-Title",
+        "document_ids": ["the-document-title"],
+        "subtitle_ids": ["the-document-sub-title"],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": {
+            "address": [],
+            "author": [],
+            "authors": [],
+            "contact": [],
+            "copyright": [],
+            "date": [],
+            "organization": [],
+            "revision": [],
+            "status": [],
+            "version": []
+        },
+        "dedication": null,
+        "abstract": null,
+        "body": "\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n<div class=\"section\" id=\"a-section-title\">\n<h1 class=\"with-subtitle\">A <em>Section</em> Title</h1>\n<h1 class=\"section-subtitle\" id=\"a-section-sub-title\"><span class=\"section-subtitle\">A Section <strong>Sub</strong>-Title</span></h1>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n</div>"
+    },
+    "system_messages": []
+}
