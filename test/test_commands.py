@@ -45,4 +45,3 @@ def test_rst2json_html4(input_path, output_path, conf_path):
     )
     output = json.loads(stdout)
     assert output == expected
-    ### TODO: Validate against a JSON Schema?
