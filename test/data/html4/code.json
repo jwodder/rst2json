@@ -20,18 +20,7 @@
         "authors": [],
         "header": null,
         "footer": null,
-        "docinfo": {
-            "address": [],
-            "author": [],
-            "authors": [],
-            "contact": [],
-            "copyright": [],
-            "date": [],
-            "organization": [],
-            "revision": [],
-            "status": [],
-            "version": []
-        },
+        "docinfo": [],
         "dedication": null,
         "abstract": null,
         "body": "\n\n<pre class=\"code python literal-block\">\n<span class=\"keyword\">def</span> <span class=\"name function\">fibonacci</span><span class=\"punctuation\">(</span><span class=\"name\">n</span><span class=\"punctuation\">):</span>\n    <span class=\"name\">a</span> <span class=\"operator\">=</span> <span class=\"literal number integer\">0</span>\n    <span class=\"name\">b</span> <span class=\"operator\">=</span> <span class=\"literal number integer\">1</span>\n    <span class=\"keyword\">for</span> <span class=\"name\">_</span> <span class=\"operator word\">in</span> <span class=\"name builtin\">range</span><span class=\"punctuation\">(</span><span class=\"name\">n</span><span class=\"punctuation\">):</span>\n        <span class=\"name\">a</span><span class=\"punctuation\">,</span> <span class=\"name\">b</span> <span class=\"operator\">=</span> <span class=\"name\">b</span><span class=\"punctuation\">,</span> <span class=\"name\">a</span><span class=\"operator\">+</span><span class=\"name\">b</span>\n    <span class=\"keyword\">return</span> <span class=\"name\">a</span>\n</pre>"
