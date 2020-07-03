@@ -25,72 +25,84 @@
                 "type": "author",
                 "name": "Author",
                 "value": "David Goodger",
+                "value_stripped": "David Goodger",
                 "classes": []
             },
             {
                 "type": "address",
                 "name": "Address",
                 "value": "123 Example Street\nExample, EX  Canada\nA1B 2C3",
+                "value_stripped": "123 Example Street\nExample, EX  Canada\nA1B 2C3",
                 "classes": []
             },
             {
                 "type": "contact",
                 "name": "Contact",
                 "value": "<a class=\"first last reference external\" href=\"mailto:docutils-develop&#64;lists.sourceforge.net\">docutils-develop&#64;lists.sourceforge.net</a>", 
+                "value_stripped": "docutils-develop&#64;lists.sourceforge.net", 
                 "classes": []
             },
             {
                 "type": "authors",
                 "name": "Authors",
                 "value": ["Me", "Myself", "I"],
+                "value_stripped": "Me  Myself  I",
                 "classes": []
             },
             {
                 "type": "organization",
                 "name": "Organization",
                 "value": "humankind",
+                "value_stripped": "humankind",
                 "classes": []
             },
             {
                 "type": "date",
                 "name": "Date",
                 "value": "2012-01-03",
+                "value_stripped": "2012-01-03",
                 "classes": []
             },
             {
                 "type": "status",
                 "name": "Status",
                 "value": "This is a &quot;work in progress&quot;",
+                "value_stripped": "This is a &quot;work in progress&quot;",
                 "classes": []
             },
             {
                 "type": "revision",
                 "name": "Revision",
                 "value": "7302",
+                "value_stripped": "7302",
                 "classes": []
             },
             {
                 "type": "version",
                 "name": "Version",
                 "value": "1",
+                "value_stripped": "1",
                 "classes": []
             },
             {
                 "type": "copyright",
                 "name": "Copyright",
                 "value": "This document has been placed in the public domain. You\nmay do with it as you wish. You may copy, modify,\nredistribute, reattribute, sell, buy, rent, lease,\ndestroy, or improve it, quote it at length, excerpt,\nincorporate, collate, fold, staple, or mutilate it, or do\nanything else to it that your or anyone else's heart\ndesires.",
+                "value_stripped": "This document has been placed in the public domain. You\nmay do with it as you wish. You may copy, modify,\nredistribute, reattribute, sell, buy, rent, lease,\ndestroy, or improve it, quote it at length, excerpt,\nincorporate, collate, fold, staple, or mutilate it, or do\nanything else to it that your or anyone else's heart\ndesires.",
                 "classes": []
             },
             {
                 "type": "field",
                 "name": "field name",
                 "value": "This is a generic bibliographic field.",
+                "value_stripped": "This is a generic bibliographic field.",
                 "classes": ["field-name"]
             },
             {
                 "type": "field",
                 "name": "field name 2",
                 "value": "<p class=\"first\">Generic bibliographic fields may contain multiple body elements.</p>\n<p class=\"last\">Like this.</p>",
+                "value_stripped": "Generic bibliographic fields may contain multiple body elements.\n\nLike this.",
                 "classes": ["field-name-2"]
             }
         ],
