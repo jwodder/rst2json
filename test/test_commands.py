@@ -44,6 +44,8 @@ def test_rst2json_html4(input_path, output_path, conf_path):
         args,
         cwd=DATA_DIR,
         universal_newlines=True,
+        # Disable standard/implicit config files:
+        env={**os.environ, "DOCUTILSCONFIG": ""},
     )
     output = json.loads(stdout)
     assert output == expected
