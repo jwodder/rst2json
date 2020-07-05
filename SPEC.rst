@@ -73,7 +73,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
          lowercase (e.g., ``"author"``).  For unregistered fields, this is the
          string ``"field"``.
 
-      ``name`` : string
+      ``name`` : rendered string
          For registered fields, this is the name of the field in the document's
          language (e.g., ``"Author"``).  For unregistered fields, this is the
          name of the field as it appears in the input.

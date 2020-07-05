@@ -1,0 +1,65 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html4/fancy-docinfo.rst",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [
+            "<strong class=\"first\">The</strong> Joe Q. Coder, Lord &amp; Master of the Byte",
+            "<strong>The</strong> Jane Z. Programmer, Overlord of Time &amp; Space Constraints",
+            "<strong>The</strong> John X. Hacker, Conductor of Input &amp; Output"
+        ],
+        "header": null,
+        "footer": null,
+        "docinfo": [
+            {
+                "type": "author",
+                "name": "Author",
+                "value": "<strong class=\"first\">The</strong> Joe Q. Coder, Lord &amp; Master of the Byte",
+                "value_stripped": "The Joe Q. Coder, Lord &amp; Master of the Byte",
+                "classes": []
+            },
+            {
+                "type": "authors",
+                "name": "Authors",
+                "value": [
+                    "<strong>The</strong> Jane Z. Programmer, Overlord of Time &amp; Space Constraints",
+                    "<strong>The</strong> John X. Hacker, Conductor of Input &amp; Output"
+                ],
+                "value_stripped": "The Jane Z. Programmer, Overlord of Time &amp; Space Constraints  The John X. Hacker, Conductor of Input &amp; Output",
+                "classes": []
+            },
+            {
+                "type": "address",
+                "name": "Address",
+                "value": "8 <em>Italic</em> Street\nBlarney &amp; Newcastle Upon Phlegm, AQ",
+                "value_stripped": "8 Italic Street\nBlarney &amp; Newcastle Upon Phlegm, AQ",
+                "classes": []
+            },
+            {
+                "type": "field",
+                "name": "Bits &amp; Bobs <em>à la mode</em>",
+                "value": "Made <strong>without</strong> dairy &amp; gluten",
+                "value_stripped": "Made without dairy &amp; gluten",
+                "classes": ["bits-bobs"]
+            }
+        ],
+        "dedication": null,
+        "abstract": null,
+        "body": "\n\n"
+    },
+    "system_messages": []
+}
