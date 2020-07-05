@@ -2,6 +2,7 @@
     "meta": {
         "title": "reStructuredText Demonstration",
         "source": "html4/demo.rst",
+        "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --"

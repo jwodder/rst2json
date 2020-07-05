@@ -115,8 +115,8 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       The rendered contents of the rest of the document.
 
 ``meta`` : object
-   A dictionary of data about the input document and the ``rst2json`` process
-   with the following fields:
+   A dictionary of data about the input document and the ``rst2json`` process,
+   containing the following fields:
 
    ``title`` : stripped string or ``null``
       The document's metadata title.  By default, this is equal to
@@ -136,6 +136,10 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       The name of/path to the input file, or ``null`` if no name can be
       determined
 
+   ``language`` : string
+      The language code for the document language, as set via the
+      |language_code|_ configuration option
+
    ``docutils_version`` : string
       The version of Docutils used to produce the output
 
@@ -143,7 +147,8 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       The version of ``rst2json`` used to produce the output
 
    ``generator`` : string
-      A string of the form ``"rst2json {version}: {url}"``
+      A string of the form ``"rst2json {version} ({url}), Docutils {version}
+      ({url})"``
 
 ``html`` : object
    A dictionary of strings to insert in the head of the final HTML document.
@@ -256,3 +261,6 @@ The output from ``rst2json`` is a JSON object containing the following fields:
 
 .. |embed_stylesheet| replace:: ``embed_stylesheet``
 .. _embed_stylesheet: https://docutils.sourceforge.io/docs/user/config.html#embed-stylesheet
+
+.. |language_code| replace:: ``language_code``
+.. _language_code: https://docutils.sourceforge.io/docs/user/config.html#language-code

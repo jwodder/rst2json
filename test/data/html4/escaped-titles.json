@@ -2,6 +2,7 @@
     "meta": {
         "title": "And &amp; Et",
         "source": "html4/escaped-titles.rst",
+        "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --"
