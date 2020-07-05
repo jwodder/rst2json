@@ -157,7 +157,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    This object only appears in the output when the target format is HTML4 or
    HTML5.  The fields of the dictionary are as follows:
 
-   ``math_requires`` : HTML markup
+   ``math_requires`` : string (HTML markup)
       If the input document contains any ``math::`` directives or ``:math:``
       roles, this is a string containing the appropriate markup to add to the
       HTML document head in order to support them; if there are no such
@@ -172,7 +172,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``mathml`` or ``latex``, the ``math_requires`` field is the empty string,
       as nothing needs to be added to the HTML document.
 
-   ``meta_tags`` : HTML markup
+   ``meta_tags`` : string (HTML markup)
       A string containing any & all ``<meta>`` tags added to the document with
       the ``meta::`` directive.  If no ``meta::`` directives were given, this
       is the empty string.
@@ -182,13 +182,13 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    document.  This object only appears in the output when the target format is
    LaTeX or XeLaTeX.  The fields of the dictionary are as follows:
 
-   ``requirements`` : LaTeX markup
+   ``requirements`` : string (LaTeX markup)
       Required packages and setup, mostly consisting of ``\includepackage``
       commands needed for the markup in ``content.body``.  In a templated
       (Xe)LaTeX document, this should be placed near the beginning of the
       preamble.
 
-   ``fallbacks`` : LaTeX markup
+   ``fallbacks`` : string (LaTeX markup)
       Fallback definitions (declared with ``\providecommand*``) for the various
       custom commands that Docutils uses in the body.  These definitions can be
       overridden by defining commands of the same name in the preamble before
@@ -196,7 +196,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       should be placed after ``latex.requirements`` and after any custom
       preamble commands.
 
-   ``pdfsetup`` : LaTeX markup
+   ``pdfsetup`` : string (LaTeX markup)
       Inclusion & setup of the ``hyperref`` package.  In a templated (Xe)LaTeX
       document, this should be placed at the end of the preamble.
 
