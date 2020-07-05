@@ -34,11 +34,16 @@ def test_rst2json_html4(input_path, output_path, conf_path):
     with output_path.open() as fp:
         expected = json.load(fp)
     apply_versioned_meta_strings(expected)
-    # --auto-id-prefix needs to be explicitly set because its default value
-    # will change in a future version of Docutils
-    args = ['rst2json-html4', f'--warnings={os.devnull}', '--auto-id-prefix=id']
+    args = [
+        'rst2json',
+        '--format=html4',
+        f'--warnings={os.devnull}',
+        # --auto-id-prefix needs to be explicitly set because its default value
+        # will change in a future version of Docutils
+        '--auto-id-prefix=id',
+    ]
     if conf_path is not None:
-        args.append(f'--config={conf_path}')
+        args.append(f'--config={conf_path.relative_to(DATA_DIR)}')
     args.append(str(input_path.relative_to(DATA_DIR)))
     stdout = subprocess.check_output(
         args,
