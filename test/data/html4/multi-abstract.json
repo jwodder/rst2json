@@ -1,0 +1,48 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html4/multi-abstract.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [
+            {
+                "type": "field",
+                "name": "Abstract",
+                "value": "<p class=\"first last\">This is not the abstract.  It will be left as a docinfo field with a system\nmessage.</p>",
+                "value_stripped": "This is not the abstract.  It will be left as a docinfo field with a system message.",
+                "classes": ["abstract"]
+            }
+        ],
+        "dedication": null,
+        "abstract": null,
+        "body": "<div class=\"abstract topic\">\n<p class=\"topic-title\">Abstract</p>\n<p>This is <strong>the</strong> document abstract.</p>\n</div>"
+    },
+    "system_messages": [
+        {
+            "level": 2,
+            "type": "WARNING",
+            "source": "multi-abstract.rst",
+            "line": 2,
+            "body": "There can only be one &quot;Abstract&quot; field.",
+            "ids": [],
+            "backrefs": []
+        }
+    ]
+}

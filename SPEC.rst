@@ -7,6 +7,8 @@ characters with special meaning to the format have been escaped but all other
 markup has been removed.  For example, if ``content.title`` is ``"<i>War &amp;
 Peace</i>"``, then ``content.title_stripped`` would be ``"War &amp; Peace"``.
 
+.. TODO: Mention how whitespace is transformed in stripped strings
+
 The output from ``rst2json`` is a JSON object containing the following fields:
 
 ``content`` : object
