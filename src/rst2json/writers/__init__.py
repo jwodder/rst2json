@@ -6,7 +6,7 @@ format_aliases = {
     "xetex": "xelatex",
 }
 
-def get_json_writer(format_name):
+def get_json_writer_class(format_name):
     """ Return the (JSON) Writer class for the given format """
     format_name = format_name.lower()
     if format_name in format_aliases:

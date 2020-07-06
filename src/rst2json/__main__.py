@@ -1,7 +1,7 @@
 import click
 from   docutils.core import default_description, publish_cmdline
 from   .             import __url__, __version__
-from   .writers      import get_json_writer
+from   .writers      import get_json_writer_class
 
 description = (
     'Generates JSON documents from standalone reStructuredText sources.'
@@ -32,7 +32,7 @@ def main(format, args):
     except Exception:
         pass
     publish_cmdline(
-        writer      = get_json_writer(format),
+        writer      = get_json_writer_class(format)(),
         description = description,
         argv        = list(args),  # Docutils requires argv be a list
     )

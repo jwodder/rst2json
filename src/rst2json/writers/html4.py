@@ -37,7 +37,7 @@ class Writer(html4css1.Writer):
             sort_keys    = True,
             indent       = 4,
             ensure_ascii = ensure_ascii,
-        )
+        ) + "\n"
 
     def get_attribute(self, attr):
         value = getattr(self, attr)
@@ -54,7 +54,7 @@ class Writer(html4css1.Writer):
             "meta": {
                 "title": self.get_attribute("meta_title"),
                 "source": self.document["source"],
-                "language": self.settings.language_code,
+                "language": self.document.settings.language_code,
                 **versioned_meta_strings,
             },
             "html": {
