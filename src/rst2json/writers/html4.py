@@ -1,7 +1,8 @@
 import json
-from   docutils         import nodes, writers
-from   docutils.writers import html4css1
-from   rst2json.core    import versioned_meta_strings
+from   docutils            import nodes, writers
+from   docutils.writers    import html4css1
+from   rst2json.core       import versioned_meta_strings
+from   rst2json.transforms import MoveEmbeddedSystemMessages
 
 class Writer(html4css1.Writer):
     content_attributes = (
@@ -28,6 +29,9 @@ class Writer(html4css1.Writer):
     def __init__(self):
         self.parts = {}
         self.translator_class = HTMLTranslator
+
+    def get_transforms(self):
+        return super().get_transforms() + [MoveEmbeddedSystemMessages]
 
     def apply_template(self):
         self.assemble_json_data()

@@ -25,7 +25,7 @@
             {
                 "type": "field",
                 "name": "Abstract",
-                "value": "<p class=\"first\">This is not the abstract.  It will be left as a docinfo field with a system\nmessage.</p>",
+                "value": "This is not the abstract.  It will be left as a docinfo field with a system\nmessage.",
                 "value_stripped": "This is not the abstract.  It will be left as a docinfo field with a system message.",
                 "classes": ["abstract"]
             }
