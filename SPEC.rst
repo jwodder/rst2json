@@ -7,7 +7,13 @@ characters with special meaning to the format have been escaped but all other
 markup has been removed.  For example, if ``content.title`` is ``"<i>War &amp;
 Peace</i>"``, then ``content.title_stripped`` would be ``"War &amp; Peace"``.
 
+A *raw string* is a string that may contain special characters, which are not
+escaped.  Unqualified (neither rendered nor stripped nor raw) strings are
+strings that are not expected to ever contain any special characters.
+
 .. TODO: Mention how whitespace is transformed in stripped strings
+
+.. TODO: All strings have trailing newlines stripped?
 
 The output from ``rst2json`` is a JSON object containing the following fields:
 
@@ -134,7 +140,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       of ``"*War &amp; Peace*"``, with the asterisks left as-is and the
       ampersand escaped.
 
-   ``source`` : string or ``null``
+   ``source`` : raw string or ``null``
       The name of/path to the input file, or ``null`` if no name can be
       determined
 
@@ -148,7 +154,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    ``rst2json_version`` : string
       The version of ``rst2json`` used to produce the output
 
-   ``generator`` : string
+   ``generator`` : raw string
       A string of the form ``"rst2json {version} ({url}), Docutils {version}
       ({url})"``
 
@@ -157,7 +163,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    This object only appears in the output when the target format is HTML4 or
    HTML5.  The fields of the dictionary are as follows:
 
-   ``math_requires`` : string (HTML markup)
+   ``math_requires`` : rendered string
       If the input document contains any ``math::`` directives or ``:math:``
       roles, this is a string containing the appropriate markup to add to the
       HTML document head in order to support them; if there are no such
@@ -172,7 +178,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``mathml`` or ``latex``, the ``math_requires`` field is the empty string,
       as nothing needs to be added to the HTML document.
 
-   ``meta_tags`` : string (HTML markup)
+   ``meta_tags`` : rendered string
       A string containing any & all ``<meta>`` tags added to the document with
       the ``meta::`` directive.  If no ``meta::`` directives were given, this
       is the empty string.
@@ -182,13 +188,13 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    document.  This object only appears in the output when the target format is
    LaTeX or XeLaTeX.  The fields of the dictionary are as follows:
 
-   ``requirements`` : string (LaTeX markup)
+   ``requirements`` : rendered string
       Required packages and setup, mostly consisting of ``\includepackage``
       commands needed for the markup in ``content.body``.  In a templated
       (Xe)LaTeX document, this should be placed near the beginning of the
       preamble.
 
-   ``fallbacks`` : string (LaTeX markup)
+   ``fallbacks`` : rendered string
       Fallback definitions (declared with ``\providecommand*``) for the various
       custom commands that Docutils uses in the body.  These definitions can be
       overridden by defining commands of the same name in the preamble before
@@ -196,7 +202,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       should be placed after ``latex.requirements`` and after any custom
       preamble commands.
 
-   ``pdfsetup`` : string (LaTeX markup)
+   ``pdfsetup`` : rendered string
       Inclusion & setup of the ``hyperref`` package.  In a templated (Xe)LaTeX
       document, this should be placed at the end of the preamble.
 
@@ -225,7 +231,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``SEVERE``   4
       ===========  =========
 
-   ``source`` : string or ``null``
+   ``source`` : raw string or ``null``
       The name of the input file in which the message was generated, or
       ``null`` if it cannot be determined
 
