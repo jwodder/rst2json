@@ -1,5 +1,5 @@
 """
-Convert reStructuredText to broken-out JSON
+Split rendered reStructuredText into JSON
 
 Visit <https://github.com/jwodder/rst2json> for more information.
 """
