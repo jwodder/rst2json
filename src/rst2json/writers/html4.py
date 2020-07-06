@@ -52,7 +52,7 @@ class Writer(html4css1.Writer):
     def assemble_json_data(self):
         source = self.document["source"]
         if source is not None:
-            source = self.encode(source)
+            source = self.visitor.encode(source)
         data = {
             "content": {
                 attr: self.get_attribute(attr)
@@ -70,7 +70,8 @@ class Writer(html4css1.Writer):
             },
             "system_messages": self.get_attribute("system_messages"),
         }
-        data["meta"]["generator"] = self.encode(data["meta"]["generator"])
+        data["meta"]["generator"] \
+            = self.visitor.encode(data["meta"]["generator"])
         self.json_data = data
 
     def assemble_parts(self):
