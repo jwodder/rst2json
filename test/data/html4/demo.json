@@ -33,7 +33,7 @@
                 "type": "address",
                 "name": "Address",
                 "value": "123 Example Street\nExample, EX  Canada\nA1B 2C3",
-                "value_stripped": "123 Example Street\nExample, EX  Canada\nA1B 2C3",
+                "value_stripped": "123 Example Street Example, EX  Canada A1B 2C3",
                 "classes": []
             },
             {
@@ -103,7 +103,7 @@
                 "type": "field",
                 "name": "field name 2",
                 "value": "<p class=\"first\">Generic bibliographic fields may contain multiple body elements.</p>\n<p class=\"last\">Like this.</p>",
-                "value_stripped": "Generic bibliographic fields may contain multiple body elements.\n\nLike this.",
+                "value_stripped": "Generic bibliographic fields may contain multiple body elements.  Like this.",
                 "classes": ["field-name-2"]
             }
         ],

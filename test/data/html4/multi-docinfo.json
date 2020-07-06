@@ -40,7 +40,7 @@
                 "type": "authors",
                 "name": "Authors",
                 "value": ["Joe Q. Programmer", "Jane Z. Coder"],
-                "value_stripped": "Joe Q. Programmer  Jane Z. Coder"
+                "value_stripped": "Joe Q. Programmer  Jane Z. Coder",
                 "classes": []
             },
             {
@@ -60,7 +60,7 @@
         ],
         "dedication": null,
         "abstract": null,
-        "body": "\n\n"
+        "body": ""
     },
     "system_messages": []
 }

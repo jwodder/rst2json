@@ -13,7 +13,7 @@ strings that are not expected to ever contain any special characters.
 
 .. TODO: Mention how whitespace is transformed in stripped strings
 
-.. TODO: All strings have trailing newlines stripped?
+.. TODO: All rendered strings have leading & trailing newlines stripped
 
 The output from ``rst2json`` is a JSON object containing the following fields:
 

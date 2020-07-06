@@ -31,14 +31,14 @@
             }
         ],
         "dedication": null,
-        "abstract": null,
-        "body": "<div class=\"abstract topic\">\n<p class=\"topic-title\">Abstract</p>\n<p>This is <strong>the</strong> document abstract.</p>\n</div>"
+        "abstract": "<p>This is <strong>the</strong> document abstract.</p>",
+        "body": ""
     },
     "system_messages": [
         {
             "level": 2,
             "type": "WARNING",
-            "source": "multi-abstract.rst",
+            "source": "html4/multi-abstract.rst",
             "line": 2,
             "body": "There can only be one &quot;Abstract&quot; field.",
             "ids": [],

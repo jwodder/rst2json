@@ -1,5 +1,4 @@
 import json
-from   operator          import itemgetter
 import os
 from   pathlib           import Path
 from   traceback         import format_exception
@@ -36,7 +35,7 @@ def show_result(r):
 @pytest.mark.parametrize(
     'input_path,json_path,conf_path',
     scan_test_data_dir(DATA_DIR / 'html4'),
-    ids=itemgetter(0),
+    ids=lambda p: p and p.name,
 )
 def test_rst2json_html4(monkeypatch, input_path, json_path, conf_path):
     with json_path.open() as fp:

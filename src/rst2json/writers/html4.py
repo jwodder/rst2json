@@ -101,6 +101,8 @@ class HTMLTranslator(html4css1.HTMLTranslator):
 
     def visit_document(self, node):
         self.meta_title = node.get('title', None)
+        if self.meta_title is not None:
+            self.meta_title = self.encode(self.meta_title)
         self.document_ids = node.get('ids', [])
 
     def visit_meta(self, node):
@@ -112,6 +114,10 @@ class HTMLTranslator(html4css1.HTMLTranslator):
             self.title = []
             self.push_output_collector(self.title)
             self.title_stripped = self.attval(node.astext())
+        elif isinstance(node.parent, nodes.topic) and any(
+            kls in node.parent["classes"] for kls in ('abstract', 'dedication')
+        ):
+            raise nodes.SkipNode
         else:
             super().visit_title(node)
 
@@ -154,13 +160,13 @@ class HTMLTranslator(html4css1.HTMLTranslator):
         if 'abstract' in node['classes']:
             self.abstract = []
             self.push_output_collector(self.abstract)
-            if isinstance(node.next_node(), nodes.title):
-                node.pop(0)
+            #if isinstance(node.next_node(), nodes.title):
+            #    node.pop(0)
         elif 'dedication' in node['classes']:
             self.dedication = []
             self.push_output_collector(self.dedication)
-            if isinstance(node.next_node(), nodes.title):
-                node.pop(0)
+            #if isinstance(node.next_node(), nodes.title):
+            #    node.pop(0)
         else:
             super().visit_topic(node)
 
@@ -223,10 +229,12 @@ class HTMLTranslator(html4css1.HTMLTranslator):
 
     def depart_author(self, node):
         if isinstance(node.parent, nodes.authors):
-            author = self.pop_output_collector()
-            self.body.append(joinstrs(author))
+            author = joinstrs(self.pop_output_collector())
+            self.body.append(author)
+            self.authors.append(author)
         else:
             self.depart_docinfo_item()
+            self.authors.append(self.docinfo[-1]["value"])
 
     def visit_docinfo(self, node):
         self.in_docinfo = True
@@ -265,6 +273,10 @@ class HTMLTranslator(html4css1.HTMLTranslator):
             self.push_output_collector([])
             self.current_docinfo_field["value_stripped"] \
                 = self.attval(node.astext())
+            self.set_class_on_child(node, 'first', 0)
+            # If we are in the docinfo, do not add vertical space after last
+            # element.
+            self.set_class_on_child(node, 'last', -1)
         else:
             super().visit_field_body(node)
 
@@ -277,6 +289,19 @@ class HTMLTranslator(html4css1.HTMLTranslator):
         else:
             super().depart_field_body(node)
 
+    def visit_section(self, node):
+        if 'system-messages' in node["classes"]:
+            if isinstance(node.next_node(), nodes.title):
+                node.pop(0)
+        else:
+            super().visit_section(node)
+
+    def depart_section(self, node):
+        if 'system-messages' in node["classes"]:
+            pass
+        else:
+            super().depart_section(node)
+
 
 def joinstrs(lst):
-    return ''.join(lst).rstrip('\n')
+    return ''.join(lst).strip('\n')

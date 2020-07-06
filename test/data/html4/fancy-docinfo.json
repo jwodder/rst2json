@@ -47,7 +47,7 @@
                 "type": "address",
                 "name": "Address",
                 "value": "8 <em>Italic</em> Street\nBlarney &amp; Newcastle Upon Phlegm, AQ",
-                "value_stripped": "8 Italic Street\nBlarney &amp; Newcastle Upon Phlegm, AQ",
+                "value_stripped": "8 Italic Street Blarney &amp; Newcastle Upon Phlegm, AQ",
                 "classes": []
             },
             {
@@ -60,7 +60,7 @@
         ],
         "dedication": null,
         "abstract": null,
-        "body": "\n\n"
+        "body": ""
     },
     "system_messages": []
 }
