@@ -1,19 +1,23 @@
 JSON Output Structure
 =====================
 
-In the below descriptions, a *rendered string* is a string containing markup in
-the target format (HTML or LaTeX).  A *stripped string* is a string in which
-characters with special meaning to the format have been escaped but all other
-markup has been removed.  For example, if ``content.title`` is ``"<i>War &amp;
-Peace</i>"``, then ``content.title_stripped`` would be ``"War &amp; Peace"``.
+The below description divides strings into the following types:
 
-A *raw string* is a string that may contain special characters, which are not
-escaped.  Unqualified (neither rendered nor stripped nor raw) strings are
-strings that are not expected to ever contain any special characters.
+- A *rendered string* is a string containing markup in the target format (HTML
+  or LaTeX).  Rendered strings are stripped of leading & trailing newlines.
 
-.. TODO: Mention how whitespace is transformed in stripped strings
+- A *stripped string* is a string in which characters with special meaning to
+  the format are escaped but all other markup has been removed; in addition,
+  in stripped strings with corresponding rendered strings, newlines and tabs
+  are replaced with space characters.
 
-.. TODO: All rendered strings have leading & trailing newlines stripped
+  For example, under HTML, if ``content.title`` is ``"<i>War &amp;
+  Peace</i>"``, then ``content.title_stripped`` would be ``"War &amp; Peace"``.
+
+- Unqualified (neither rendered nor stripped) strings are expected to never
+  contain any special characters.
+
+----
 
 The output from ``rst2json`` is a JSON object containing the following fields:
 
@@ -140,7 +144,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       of ``"*War &amp; Peace*"``, with the asterisks left as-is and the
       ampersand escaped.
 
-   ``source`` : raw string or ``null``
+   ``source`` : stripped string or ``null``
       The name of/path to the input file, or ``null`` if no name can be
       determined
 
@@ -154,7 +158,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    ``rst2json_version`` : string
       The version of ``rst2json`` used to produce the output
 
-   ``generator`` : raw string
+   ``generator`` : stripped string
       A string of the form ``"rst2json {version} ({url}), Docutils {version}
       ({url})"``
 
@@ -231,7 +235,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``SEVERE``   4
       ===========  =========
 
-   ``source`` : raw string or ``null``
+   ``source`` : stripped string or ``null``
       The name of the input file in which the message was generated, or
       ``null`` if it cannot be determined
 

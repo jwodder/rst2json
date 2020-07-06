@@ -50,6 +50,9 @@ class Writer(html4css1.Writer):
         return value
 
     def assemble_json_data(self):
+        source = self.document["source"]
+        if source is not None:
+            source = self.encode(source)
         data = {
             "content": {
                 attr: self.get_attribute(attr)
@@ -57,7 +60,7 @@ class Writer(html4css1.Writer):
             },
             "meta": {
                 "title": self.get_attribute("meta_title"),
-                "source": self.document["source"],
+                "source": source,
                 "language": self.document.settings.language_code,
                 **versioned_meta_strings,
             },
@@ -67,6 +70,7 @@ class Writer(html4css1.Writer):
             },
             "system_messages": self.get_attribute("system_messages"),
         }
+        data["meta"]["generator"] = self.encode(data["meta"]["generator"])
         self.json_data = data
 
     def assemble_parts(self):
@@ -187,10 +191,13 @@ class HTMLTranslator(html4css1.HTMLTranslator):
 
     def depart_system_message(self, node):
         body = self.pop_output_collector()
+        source = node.get("source")
+        if source is not None:
+            source = self.encode(source)
         self.system_messages.append({
             "level": node["level"],
             "type": node["type"],
-            "source": node["source"],
+            "source": source,
             "line": node.get("line", None),
             "body": joinstrs(body),
             "ids": node.get("ids", []),
