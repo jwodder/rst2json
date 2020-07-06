@@ -29,7 +29,7 @@ def main(format, args):
     try:
         import locale
         locale.setlocale(locale.LC_ALL, '')
-    except Exception:
+    except Exception:  # pragma: no cover
         pass
     publish_cmdline(
         writer      = get_json_writer_class(format)(),
@@ -38,4 +38,4 @@ def main(format, args):
     )
 
 if __name__ == '__main__':
-    main()
+    main()  # pragma: no cover
