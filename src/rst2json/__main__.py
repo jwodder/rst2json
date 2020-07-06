@@ -1,5 +1,5 @@
 import click
-from   docutils.core import publish_cmdline, default_description
+from   docutils.core import default_description, publish_cmdline
 from   .             import __url__, __version__
 from   .writers      import get_json_writer
 
@@ -29,7 +29,7 @@ def main(format, args):
     try:
         import locale
         locale.setlocale(locale.LC_ALL, '')
-    except:
+    except Exception:
         pass
     publish_cmdline(
         writer      = get_json_writer(format),
