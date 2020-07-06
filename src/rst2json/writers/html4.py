@@ -24,8 +24,6 @@ class Writer(html4css1.Writer):
         "math_header", "meta_tags",
     }
 
-    ### TODO: Filter ignored fields out of settings_spec?
-
     def __init__(self):
         self.parts = {}
         self.translator_class = HTMLTranslator
