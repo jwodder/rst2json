@@ -2,7 +2,7 @@ from importlib import import_module
 
 format_aliases = {
     "html": "html4",  # will change to html5 when Docutils changes
-    "latex2e": "latex2e",
+    "latex2e": "latex",
     "xetex": "xelatex",
 }
 

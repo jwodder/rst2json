@@ -1,3 +1,115 @@
+.. image:: http://www.repostatus.org/badges/latest/wip.svg
+    :target: http://www.repostatus.org/#wip
+    :alt: Project Status: WIP — Initial development is in progress, but there
+          has not yet been a stable, usable release suitable for the public.
+
+.. image:: https://travis-ci.com/jwodder/rst2json.svg?branch=master
+    :target: https://travis-ci.com/jwodder/rst2json
+
+.. image:: https://codecov.io/gh/jwodder/rst2json/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/jwodder/rst2json
+
+.. image:: https://img.shields.io/github/license/jwodder/rst2json.svg
+    :target: https://opensource.org/licenses/MIT
+    :alt: MIT License
+
+`GitHub <https://github.com/jwodder/rst2json>`_
+| `Issues <https://github.com/jwodder/rst2json/issues>`_
+
+.. contents::
+    :backlinks: top
+
+``rst2json`` renders a reStructuredText_ document as HTML or (Xe)LaTeX, but —
+unlike Docutils_' builtin converters, which produce a complete output document
+— it outputs a JSON object in which the document "frontmatter" (title,
+subtitle, bibliographic fields, etc.) has been broken out from the body and
+split into multiple fields.  By combining the output with a templating system
+like Jinja_, the user can perform more powerful & more customizable templating
+than is possible with Docutils' built-in template support.
+
+Sample templates that make use of the library's output can be found in
+|exampledir|_.
+
+.. _reStructuredText: https://docutils.sourceforge.io/rst.html
+.. _Docutils: https://docutils.sourceforge.io/
+.. _Jinja: https://palletsprojects.com/p/jinja/
+
+.. |exampledir| replace:: the repository's ``examples/`` directory
+.. _exampledir: https://github.com/jwodder/rst2json/tree/master/examples
+
+
+Installation
+============
+``rst2json`` requires Python 3.6 or higher.  Just use `pip
+<https://pip.pypa.io>`_ for Python 3 (You have pip, right?) to install
+``rst2json`` and its dependencies::
+
+    python3 -m pip install git+https://github.com/jwodder/rst2json.git
+
+
+Command-Line Usage
+==================
+
+``rst2json`` provides a single command, also named ``rst2json``, that converts
+an input reStructuredText document to markup organized into a JSON object::
+
+    rst2json [--format <FMT>] [<docutils options>] [<infile> [<outfile>]]
+
+The target markup format is specified with the ``-f`` or ``--format`` option.
+Valid values (case insensitive) are:
+
+``html`` (default)
+   Alias for ``html4``.  When Docutils eventually changes ``rst2html.py`` to
+   produce HTML 5 output instead of HTML 4, this alias will likewise update to
+   point to ``html5``.
+
+``html4``
+   HTML 4 / XHTML 1.0 output, based on the Docutils writer used for
+   ``rst2html4.py``.  A CSS stylesheet (such as the ``html4css1.css``
+   stylesheet distributed with Docutils) must be added to the final document in
+   order for everything to render properly.
+
+``html5`` (not yet implemented)
+   HTML 5 output, based on the Docutils writer used for ``rst2html4.py``.  A
+   CSS stylesheet (such as the ``minimal.css`` and ``plain.css`` stylesheets
+   distributed with Docutils) must be added to the final document in order for
+   everything to render properly.
+
+``latex`` (not yet implemented)
+   LaTeX output, based on the Docutils writer used for ``rst2latex.py``
+
+``latex2e``
+   Alias for ``latex``
+
+``xetex``
+   Alias for ``xelatex``
+
+``xelatex`` (not yet implemented)
+   XeLaTeX output, based on the Docutils writer used for ``rst2xetex.py``
+
+In addition to the ``--format`` option, ``rst2json`` accepts all options that
+Docutils' ``rst2html4.py``, ``rst2html5.py``, ``rst2latex.py``, and
+``rst2xetex.py`` commands accept, and it can also be configured via a `Docutils
+configuration file <https://docutils.sourceforge.io/docs/user/config.html>`_
+the same way as the respective Docutils commands.
+
+``rst2json`` ignores the following Docutils configuration options, as they have
+no effect on its operation:
+
+- ``documentclass``
+- ``documentoptions``
+- ``latex_preamble``
+- ``stylesheet_path``
+- ``stylesheet``
+- ``template``
+- ``use_latex_abstract``
+- ``use_latex_docinfo``
+
+In addition, the ``embed_stylesheet`` and ``stylesheet_dirs`` options only have
+an effect when emitting HTML with ``math_output`` set to ``html`` with a
+stylesheet argument.
+
+
 JSON Output Structure
 =====================
 
@@ -114,12 +226,12 @@ The output from ``rst2json`` is a JSON object containing the following fields:
          structure that contains the rendered field.
 
    ``abstract`` : rendered string or ``null``
-      The rendered contents of the document's ``:abstract:`` field, or ``null``
+      The rendered contents of the document's ``:Abstract:`` field, or ``null``
       if there was no such field.  The abstract title and enclosing block are
       not included.
 
    ``dedication`` : rendered string or ``null``
-      The rendered contents of the document's ``:dedication:`` field, or
+      The rendered contents of the document's ``:Dedication:`` field, or
       ``null`` if there was no such field.  The dedication title and enclosing
       block are not included.
 
