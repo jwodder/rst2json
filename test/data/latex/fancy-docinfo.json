@@ -1,0 +1,68 @@
+{
+    "meta": {
+        "title": null,
+        "source": "latex/fancy-docinfo.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
+        "fallbacks": "",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdfauthor={The Joe Q. Coder, Lord \\& Master of the Byte;The Jane Z. Programmer, Overlord of Time \\& Space Constraints;The John X. Hacker, Conductor of Input \\& Output}\n}"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [
+            "\\textbf{The} Joe Q. Coder, Lord \\& Master of the Byte",
+            "\\textbf{The} Jane Z. Programmer, Overlord of Time \\& Space Constraints",
+            "\\textbf{The} John X. Hacker, Conductor of Input \\& Output"
+        ],
+        "header": null,
+        "footer": null,
+        "docinfo": [
+            {
+                "type": "author",
+                "name": "Author",
+                "value": "\\textbf{The} Joe Q. Coder, Lord \\& Master of the Byte",
+                "value_stripped": "The Joe Q. Coder, Lord \\& Master of the Byte",
+                "classes": []
+            },
+            {
+                "type": "authors",
+                "name": "Authors",
+                "value": [
+                    "\\textbf{The} Jane Z. Programmer, Overlord of Time \\& Space Constraints",
+                    "\\textbf{The} John X. Hacker, Conductor of Input \\& Output"
+                ],
+                "value_stripped": "The Jane Z. Programmer, Overlord of Time \\& Space Constraints  The John X. Hacker, Conductor of Input \\& Output",
+                "classes": []
+            },
+            {
+                "type": "address",
+                "name": "Address",
+                "value": "8 \\emph{Italic} Street\\\\\nBlarney \\& Newcastle Upon Phlegm, AQ",
+                "value_stripped": "8 Italic Street Blarney \\& Newcastle Upon Phlegm, AQ",
+                "classes": []
+            },
+            {
+                "type": "field",
+                "name": "Bits \\& Bobs \\emph{à la mode}",
+                "value": "Made \\textbf{without} dairy \\& gluten",
+                "value_stripped": "Made without dairy \\& gluten",
+                "classes": ["bits-bobs"]
+            }
+        ],
+        "dedication": null,
+        "abstract": null,
+        "body": ""
+    },
+    "system_messages": []
+}

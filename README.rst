@@ -304,6 +304,15 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    document.  This object only appears in the output when the target format is
    LaTeX or XeLaTeX.  The fields of the dictionary are as follows:
 
+   ``language`` : string
+      The name of the document language (set via the |language_code|_
+      configuration option) in a form recognized by Babel.  If Docutils does
+      not recognize the language, this will be the empty string.  Note that,
+      when the language is not English, ``latex.requirements`` will already
+      contain the appropriate ``\usepackage[LANGUAGE]{babel}`` command; the
+      purpose of this field is to be able to set the language in the document
+      options.
+
    ``requirements`` : rendered string
       Required packages and setup, mostly consisting of ``\includepackage``
       commands needed for the markup in ``content.body``.  In a templated
