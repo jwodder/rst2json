@@ -29,6 +29,8 @@ def apply_versioned_meta_strings(data):
 def show_result(r):
     if r.exception is not None:
         return ''.join(format_exception(*r.exc_info))
+    elif r.stderr is not None:
+        return r.stdout + '\n---\n' + r.stderr
     else:
         return r.output
 
@@ -47,6 +49,7 @@ def test_rst2json_html4(monkeypatch, input_path, json_path, conf_path):
         # --auto-id-prefix needs to be explicitly set because its default value
         # will change in a future version of Docutils
         '--auto-id-prefix=id',
+        '--traceback',
     ]
     if conf_path is not None:
         args.append(f'--config={conf_path.relative_to(DATA_DIR)}')
@@ -74,6 +77,7 @@ def test_rst2json_latex(monkeypatch, input_path, json_path, conf_path):
         # --auto-id-prefix needs to be explicitly set because its default value
         # will change in a future version of Docutils
         '--auto-id-prefix=id',
+        '--traceback',
     ]
     if conf_path is not None:
         args.append(f'--config={conf_path.relative_to(DATA_DIR)}')

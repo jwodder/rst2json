@@ -23,7 +23,8 @@ class Writer(latex2e.Writer):
         "doctitle", "subtitle",
         "header", "footer",
         "abstract", "dedication", "body",
-        "requirements", "fallbacks", "pdfsetup",
+        # In parent's head_parts:
+        #"requirements", "fallbacks", "pdfsetup",
     }
 
     def __init__(self):
@@ -34,10 +35,10 @@ class Writer(latex2e.Writer):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
 
     def translate(self):
-        visitor = self.translator_class(self.document)
-        self.document.walkabout(visitor)
+        self.visitor = self.translator_class(self.document)
+        self.document.walkabout(self.visitor)
         for part in self.visitor_attributes:
-            setattr(self, part, getattr(visitor, part))
+            setattr(self, part, getattr(self.visitor, part))
         self.output = self.apply_template()
 
     def apply_template(self):
@@ -52,8 +53,11 @@ class Writer(latex2e.Writer):
 
     def get_attribute(self, attr):
         value = getattr(self, attr)
-        if attr in self.joined_attributes and value is not None:
-            value = joinstrs(value)
+        if value is not None:
+            if attr in self.head_parts:
+                value = '\n'.join(value).strip('\n')
+            elif attr in self.joined_attributes:
+                value = joinstrs(value)
         return value
 
     def assemble_json_data(self):
@@ -203,7 +207,7 @@ class LaTeXTranslator(latex2e.LaTeXTranslator):
             "classes": node.get("classes", []),
         }
 
-    def depart_docinfo_item(self):
+    def depart_docinfo_item(self, node):
         value = self.out
         self.pop_output_collector()
         if self.current_docinfo_field["type"] != "authors":
@@ -216,10 +220,11 @@ class LaTeXTranslator(latex2e.LaTeXTranslator):
         self.insert_newline = True
 
     def depart_address(self, node):
-        self.depart_docinfo_item()
+        self.depart_docinfo_item(node)
         self.insert_newline = False
 
     def visit_author(self, node):
+        self.pdfauthor.append(self.attval(node.astext()))
         if isinstance(node.parent, nodes.authors):
             self.push_output_collector([])
         else:
@@ -232,14 +237,14 @@ class LaTeXTranslator(latex2e.LaTeXTranslator):
             self.out.append(author)
             self.authors.append(author)
         else:
-            self.depart_docinfo_item()
+            self.depart_docinfo_item(node)
             self.authors.append(self.docinfo[-1]["value"])
 
     def visit_authors(self, node):
         self.visit_docinfo_item(node, 'authors')
 
     def depart_authors(self, node):
-        self.depart_docinfo_item()
+        self.depart_docinfo_item(node)
 
     def visit_docinfo(self, node):
         self.in_docinfo = True
