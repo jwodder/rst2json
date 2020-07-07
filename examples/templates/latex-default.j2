@@ -1,0 +1,202 @@
+% This is a Jinja2 template that can be applied to the output from `rst2json
+% --format=latex` to produce a LaTeX document that is as close to the output
+% from `rst2latex.py` as is reasonably possible.
+
+\documentclass[a4paper{% if latex.language not in ['english', ''] %},{{latex.language}}{% endif %}]{article}
+\usepackage{cmap} % fix search and cut-and-paste in Acrobat
+{{latex.requirements}}
+{% if content.docinfo and '{tabularx}' not in latex.requirements %}
+\usepackage{tabularx}
+{% endif %}
+{% if system_messages and '{color}' not in latex.requirements %}
+\usepackage{color}
+{% endif %}
+{% if content.footer is not none %}
+\newcommand{\DUfooter}{
+{{content.footer}}
+}
+{% endif %}
+{% if content.header is not none %}
+\newcommand{\DUheader}{
+{{content.header}}
+}
+{% endif %}
+
+%%% Custom LaTeX preamble
+% PDF Standard Fonts
+\usepackage{mathptmx} % Times
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+
+%%% User specified packages and stylesheets
+
+%%% Fallback definitions for Docutils-specific commands
+
+{{latex.fallbacks}}
+{% if content.subtitle %}
+
+% subtitle (in document title)
+\providecommand*{\DUdocumentsubtitle}[1]{{ '{{' }}\large #1}}
+{% endif %}
+{% if content.docinfo %}
+{% if '{\\DUprovidelength}' not in latex.fallbacks %}
+
+% providelength (provide a length variable and set default, if it is new)
+\providecommand*{\DUprovidelength}[2]{
+{% raw %}
+  \ifthenelse{\isundefined{#1}}{\newlength{#1}\setlength{#1}{#2}}{}
+{% endraw %}
+}
+{% endif %}
+
+% docinfo (width of docinfo table)
+\DUprovidelength{\DUdocinfowidth}{0.9\linewidth}
+{% endif %}
+{% if content.dedication %}
+{% if '{DUclass}' not in latex.fallbacks %}
+
+% class handling for environments (block-level elements)
+% \begin{DUclass}{spam} tries \DUCLASSspam and
+% \end{DUclass}{spam} tries \endDUCLASSspam
+\ifx\DUclass\undefined % poor man's "provideenvironment"
+ \newenvironment{DUclass}[1]%
+  {\def\DocutilsClassFunctionName{DUCLASS#1}% arg cannot be used in end-part of environment.
+     \csname \DocutilsClassFunctionName \endcsname}%
+  {\csname end\DocutilsClassFunctionName \endcsname}%
+\fi
+{% endif %}
+
+% dedication topic
+\providecommand*{\DUCLASSdedication}{{ '{' }}%
+  \renewenvironment{quote}{\begin{center}}{\end{center}}%
+}
+{% endif %}
+{% if (content.abstract or system_messages) and '{\\DUtitle}' not in latex.fallbacks %}
+
+% title for topics, admonitions, unsupported section levels, and sidebar
+{% raw %}
+\providecommand*{\DUtitle}[2][class-arg]{%
+  % call \DUtitle#1{#2} if it exists:
+  \ifcsname DUtitle#1\endcsname%
+    \csname DUtitle#1\endcsname{#2}%
+  \else
+    \smallskip\noindent\textbf{#2}\smallskip%
+  \fi
+}
+{% endraw %}
+{% endif %}
+{% if content.abstract %}
+
+% abstract title
+{% raw %}
+\providecommand*{\DUtitleabstract}[1]{\centerline{\textbf{#1}}}
+{% endraw %}
+{% endif %}
+{% if system_messages and '{\\DUadmonition}' not in latex.fallbacks %}
+
+% admonition (specially marked topic)
+{% raw %}
+\providecommand{\DUadmonition}[2][class-arg]{%
+  % try \DUadmonition#1{#2}:
+  \ifcsname DUadmonition#1\endcsname%
+    \csname DUadmonition#1\endcsname{#2}%
+  \else
+    \begin{center}
+      \fbox{\parbox{0.9\linewidth}{#2}}
+    \end{center}
+  \fi
+}
+{% endraw %}
+{% endif %}
+
+{{latex.pdfsetup}}
+
+%%% Body
+\begin{document}
+{% if content.title %}
+\title{{ '{' }}{{content.title}}%
+  {% for id in content.document_ids %}
+  \label{{ '{' }}{{id}}}%
+  {% endfor %}
+  {% if content.subtitle %}
+  \\%
+  \DUdocumentsubtitle{{ '{' }}{{content.subtitle}}}%
+  {% for id in content.subtitle_ids %}
+  \label{{ '{' }}{{id}}}%
+  {% endfor %}
+  {% endif %}
+  }
+\author{}
+\date{}
+\maketitle
+{% endif %}
+{% if content.docinfo %}
+
+% Docinfo
+\begin{center}
+\begin{tabularx}{\DUdocinfowidth}{lX}
+{% for item in content.docinfo %}
+{% if item.type == 'authors' %}
+{% for author in item.value %}
+\textbf{Author}: &
+	{{author}} \\
+{% endfor %}
+{% else %}
+\textbf{{ '{' }}{{item.name}}}: &
+	{% if item.type == 'address' %}{\raggedright
+{{item.value}} } \\
+{% else %}{{item.value}} \\
+{% endif %}
+{% endif %}
+{% endfor %}
+\end{tabularx}
+\end{center}
+{% endif %}
+{% if content.dedication %}
+
+\begin{DUclass}{dedication}
+\begin{quote}
+\DUtitle[dedication]{Dedication}
+
+{{content.dedication}}
+\end{quote}
+\end{DUclass}
+{% endif %}
+{% if content.abstract %}
+
+\begin{DUclass}{abstract}
+\begin{quote}
+\DUtitle[abstract]{Abstract}
+
+{{content.abstract}}
+\end{quote}
+\end{DUclass}
+{% endif %}
+
+{{content.body}}
+
+{% if system_messages %}
+\section[Docutils System Messages]{\color{red}Docutils System Messages%
+}
+{% for msg in system_messages %}
+\DUadmonition[system-message]{
+\DUtitle[system-message]{system-message}
+{% set sep = joiner('%\n') %}
+{% for id in msg.ids %}{{sep()}}\raisebox{1em}{\hypertarget{{ '{' }}{{id}}}{}}{% endfor %}
+
+{\color{red}{{msg.type}}/{{msg.level}}} in \texttt{{ '{' }}{{msg.source}}}{% if msg.line %}, line~{{msg.line}}{% endif %}
+
+
+{% if msg.backrefs|length == 1 %}
+\hyperlink{{ '{' }}{{msg.backrefs[0]}}}{
+{{msg.body}}
+}}
+{% else %}
+{{msg.body}}
+
+backrefs: {% set sep = joiner(' ') %}{% for i in msg.backrefs %}{{sep()}}\hyperlink{{ '{' }}{{i}}}{{ '{' }}{{loop.index}}}{% endfor %}
+{% endif %}
+
+{% endfor %}
+{% endif %}
+\end{document}
