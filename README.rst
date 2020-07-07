@@ -75,7 +75,7 @@ Valid values (case insensitive) are:
    distributed with Docutils) must be added to the final document in order for
    everything to render properly.
 
-``latex`` (not yet implemented)
+``latex``
    LaTeX output, based on the Docutils writer used for ``rst2latex.py``
 
 ``latex2e``
