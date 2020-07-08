@@ -1,6 +1,7 @@
-import click
+import sys
 from   docutils.core import default_description, publish_cmdline
 from   .             import __url__, __version__
+from   .knownopts    import KnownOptionParser, UsageError
 from   .writers      import get_json_writer_class
 
 description = (
@@ -11,30 +12,29 @@ description = (
     + default_description
 )
 
-@click.command(
-    context_settings={
-        "allow_interspersed_args": False,
-        "help_option_names": [],
-        "ignore_unknown_options": True,
-    }
-)
-@click.version_option(
-    __version__,
-    '-V', '--version',
-    message = '%(prog)s %(version)s',
-)
-@click.option('-f', '--format', default='html')
-@click.argument('args', nargs=-1, type=click.UNPROCESSED)
-def main(format, args):
+parser = KnownOptionParser()
+parser.add_option('-f', '--format')
+parser.add_flag('-V', '--version')
+
+def main(argv=None):
     try:
         import locale
         locale.setlocale(locale.LC_ALL, '')
     except Exception:  # pragma: no cover
         pass
+    if argv is None:
+        argv = sys.argv[1:]
+    try:
+        opts, argv = parser.parse(argv)
+    except UsageError as e:
+        sys.exit(f'{sys.argv[0]}: {e}')
+    if opts.get("version"):
+        print('rst2json', __version__)
+        return
     publish_cmdline(
-        writer      = get_json_writer_class(format)(),
+        writer      = get_json_writer_class(opts.get("format", "html"))(),
         description = description,
-        argv        = list(args),  # Docutils requires argv be a list
+        argv        = argv,
     )
 
 if __name__ == '__main__':

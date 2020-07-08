@@ -2,7 +2,6 @@ import json
 import os
 from   pathlib           import Path
 from   traceback         import format_exception
-from   click.testing     import CliRunner
 from   rst2json.__main__ import main
 from   rst2json.core     import versioned_meta_strings
 
@@ -26,8 +25,6 @@ def show_result(r):
         return r.output
 
 def pytest_generate_tests(metafunc):
-    argnames = list(metafunc.fixturenames)
-    argnames.remove('monkeypatch')
     argvalues = []
     ids = []
     for fmt in FORMATS:
@@ -40,9 +37,13 @@ def pytest_generate_tests(metafunc):
                     conf_path = None
                 argvalues.append((fmt, input_path, json_path, conf_path))
                 ids.append(str(input_path.relative_to(DATA_DIR)))
-    metafunc.parametrize(argnames, argvalues, ids=ids)
+    metafunc.parametrize(
+        'fmt,input_path,json_path,conf_path',
+        argvalues,
+        ids=ids,
+    )
 
-def test_rst2json(monkeypatch, fmt, input_path, json_path, conf_path):
+def test_rst2json(capsys, monkeypatch, fmt, input_path, json_path, conf_path):
     with json_path.open() as fp:
         expected = json.load(fp)
     apply_versioned_meta_strings(expected)
@@ -59,8 +60,8 @@ def test_rst2json(monkeypatch, fmt, input_path, json_path, conf_path):
     args.append(str(input_path.relative_to(DATA_DIR)))
     monkeypatch.chdir(DATA_DIR)
     # Override DOCUTILSCONFIG to disable standard/implicit config files
-    r = CliRunner(mix_stderr=False)\
-        .invoke(main, args, env={"DOCUTILSCONFIG": ""})
-    assert r.exit_code == 0, show_result(r)
-    output = json.loads(r.stdout)
+    monkeypatch.setenv("DOCUTILSCONFIG", "")
+    main(args)
+    stdout, _ = capsys.readouterr()
+    output = json.loads(stdout)
     assert output == expected
