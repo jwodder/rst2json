@@ -3,6 +3,7 @@ from   docutils            import nodes, writers
 from   docutils.writers    import latex2e
 from   rst2json.core       import versioned_meta_strings
 from   rst2json.transforms import MoveEmbeddedSystemMessages
+from   rst2json.util       import joinstrs
 
 class Writer(latex2e.Writer):
     content_attributes = (
@@ -299,7 +300,3 @@ class LaTeXTranslator(latex2e.LaTeXTranslator):
             pass
         else:
             super().depart_section(node)
-
-
-def joinstrs(lst):
-    return ''.join(lst).strip('\n')

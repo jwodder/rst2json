@@ -3,6 +3,7 @@ from   docutils            import nodes, writers
 from   docutils.writers    import html4css1
 from   rst2json.core       import versioned_meta_strings
 from   rst2json.transforms import MoveEmbeddedSystemMessages
+from   rst2json.util       import joinstrs
 
 class Writer(html4css1.Writer):
     content_attributes = (
@@ -311,7 +312,3 @@ class HTMLTranslator(html4css1.HTMLTranslator):
             pass
         else:
             super().depart_section(node)
-
-
-def joinstrs(lst):
-    return ''.join(lst).strip('\n')
