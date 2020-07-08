@@ -1,0 +1,40 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html4/badparse.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<p>This is <a href=\"#id1\"><span class=\"problematic\" id=\"id2\">*</span></a>test text.</p>"
+    },
+    "system_messages": [
+        {
+            "level": 2,
+            "type": "WARNING",
+            "source": "html4/badparse.rst",
+            "line": 1,
+            "body": "Inline emphasis start-string without end-string.",
+            "ids": ["id1"],
+            "backrefs": ["id2"]
+        }
+    ]
+}
