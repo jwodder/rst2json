@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "title": null,
+        "source": "xelatex/raws.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
+        "fallbacks": "% admonition (specially marked topic)\n\\providecommand{\\DUadmonition}[2][class-arg]{%\n  % try \\DUadmonition#1{#2}:\n  \\ifcsname DUadmonition#1\\endcsname%\n    \\csname DUadmonition#1\\endcsname{#2}%\n  \\else\n    \\begin{center}\n      \\fbox{\\parbox{0.9\\linewidth}{#2}}\n    \\end{center}\n  \\fi\n}\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[2][class-arg]{%\n  % call \\DUtitle#1{#2} if it exists:\n  \\ifcsname DUtitle#1\\endcsname%\n    \\csname DUtitle#1\\endcsname{#2}%\n  \\else\n    \\smallskip\\noindent\\textbf{#2}\\smallskip%\n  \\fi\n}",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "This is written in reStructuredText.\n\nThis is written in \\LaTeX.\n\n\\DUadmonition[note]{\n\\DUtitle[note]{Note}\n\n\\texttt{html} and \\texttt{latex} are the only \\texttt{.. raw::} formats that the built-in\nHTML and LaTeX/XeTeX writers support, respectively.\n}"
+    },
+    "system_messages": []
+}

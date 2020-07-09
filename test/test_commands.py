@@ -7,7 +7,7 @@ from   rst2json.core     import versioned_meta_strings
 
 DATA_DIR = Path(__file__).with_name('data')
 
-FORMATS = ['html4', 'latex']
+FORMATS = ['html4', 'latex', 'xelatex']
 
 def apply_versioned_meta_strings(data):
     assert 'meta' in data, "'meta' field missing from data"

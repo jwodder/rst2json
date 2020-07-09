@@ -1,0 +1,172 @@
+{
+    "meta": {
+        "title": "reStructuredText Demonstration",
+        "source": "xelatex/demo.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{alltt}\n\\usepackage{color}\n\\usepackage{float} % float configuration\n\\floatplacement{figure}{H} % place figures here definitely\n\\usepackage{graphicx}\n\\usepackage{multirow}\n\\setcounter{secnumdepth}{0}\n\\usepackage{longtable,ltcaption,array}\n\\setlength{\\extrarowheight}{2pt}\n\\newlength{\\DUtablewidth} % internal use in tables",
+        "fallbacks": "% class handling for environments (block-level elements)\n% \\begin{DUclass}{spam} tries \\DUCLASSspam and\n% \\end{DUclass}{spam} tries \\endDUCLASSspam\n\\ifx\\DUclass\\undefined % poor man's \"provideenvironment\"\n \\newenvironment{DUclass}[1]%\n  {\\def\\DocutilsClassFunctionName{DUCLASS#1}% arg cannot be used in end-part of environment.\n     \\csname \\DocutilsClassFunctionName \\endcsname}%\n  {\\csname end\\DocutilsClassFunctionName \\endcsname}%\n\\fi\n\n% providelength (provide a length variable and set default, if it is new)\n\\providecommand*{\\DUprovidelength}[2]{\n  \\ifthenelse{\\isundefined{#1}}{\\newlength{#1}\\setlength{#1}{#2}}{}\n}\n\n% admonition (specially marked topic)\n\\providecommand{\\DUadmonition}[2][class-arg]{%\n  % try \\DUadmonition#1{#2}:\n  \\ifcsname DUadmonition#1\\endcsname%\n    \\csname DUadmonition#1\\endcsname{#2}%\n  \\else\n    \\begin{center}\n      \\fbox{\\parbox{0.9\\linewidth}{#2}}\n    \\end{center}\n  \\fi\n}\n\\newcounter{enumv}\n\n% error admonition title\n\\providecommand*{\\DUtitleerror}[1]{\\DUtitle{\\color{red}#1}}\n\n% fieldlist environment\n\\ifthenelse{\\isundefined{\\DUfieldlist}}{\n  \\newenvironment{DUfieldlist}%\n    {\\quote\\description}\n    {\\enddescription\\endquote}\n}{}\n% numeric or symbol footnotes with hyperlinks\n\\providecommand*{\\DUfootnotemark}[3]{%\n  \\raisebox{1em}{\\hypertarget{#1}{}}%\n  \\hyperlink{#2}{\\textsuperscript{#3}}%\n}\n\\providecommand{\\DUfootnotetext}[4]{%\n  \\begingroup%\n  \\renewcommand{\\thefootnote}{%\n    \\protect\\raisebox{1em}{\\protect\\hypertarget{#1}{}}%\n    \\protect\\hyperlink{#2}{#3}}%\n  \\footnotetext{#4}%\n  \\endgroup%\n}\n\n% legend environment\n\\ifthenelse{\\isundefined{\\DUlegend}}{\n  \\newenvironment{DUlegend}{\\small}{}\n}{}\n\n% lineblock environment\n\\DUprovidelength{\\DUlineblockindent}{2.5em}\n\\ifthenelse{\\isundefined{\\DUlineblock}}{\n  \\newenvironment{DUlineblock}[1]{%\n    \\list{}{\\setlength{\\partopsep}{\\parskip}\n            \\addtolength{\\partopsep}{\\baselineskip}\n            \\setlength{\\topsep}{0pt}\n            \\setlength{\\itemsep}{0.15\\baselineskip}\n            \\setlength{\\parsep}{0pt}\n            \\setlength{\\leftmargin}{#1}}\n    \\raggedright\n  }\n  {\\endlist}\n}{}\n\n% optionlist environment\n\\providecommand*{\\DUoptionlistlabel}[1]{\\bf #1 \\hfill}\n\\DUprovidelength{\\DUoptionlistindent}{3cm}\n\\ifthenelse{\\isundefined{\\DUoptionlist}}{\n  \\newenvironment{DUoptionlist}{%\n    \\list{}{\\setlength{\\labelwidth}{\\DUoptionlistindent}\n            \\setlength{\\rightmargin}{1cm}\n            \\setlength{\\leftmargin}{\\rightmargin}\n            \\addtolength{\\leftmargin}{\\labelwidth}\n            \\addtolength{\\leftmargin}{\\labelsep}\n            \\renewcommand{\\makelabel}{\\DUoptionlistlabel}}\n  }\n  {\\endlist}\n}{}\n\n% rubric (informal heading)\n\\providecommand*{\\DUrubric}[1]{\\subsubsection*{\\emph{#1}}}\n\n% sidebar (text outside the main text flow)\n\\providecommand{\\DUsidebar}[1]{%\n  \\begin{center}\n    \\colorbox[gray]{0.80}{\\parbox{0.9\\linewidth}{#1}}\n  \\end{center}\n}\n\n% subtitle (for sidebar)\n\\providecommand*{\\DUsubtitle}[1]{\\par\\emph{#1}\\smallskip}\n\n% text mode subscript\n\\ifx\\textsubscript\\undefined\n  \\usepackage{fixltx2e} % since 2015 loaded by default\n\\fi\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[2][class-arg]{%\n  % call \\DUtitle#1{#2} if it exists:\n  \\ifcsname DUtitle#1\\endcsname%\n    \\csname DUtitle#1\\endcsname{#2}%\n  \\else\n    \\smallskip\\noindent\\textbf{#2}\\smallskip%\n  \\fi\n}\n\n% titlereference role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}\n\n% transition (break, fancybreak, anonymous section)\n\\providecommand*{\\DUtransition}{%\n  \\hspace*{\\fill}\\hrulefill\\hspace*{\\fill}\n  \\vskip 0.5\\baselineskip\n}",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdftitle={reStructuredText Demonstration},\n  pdfauthor={David Goodger;Me;Myself;I}\n}"
+    },
+    "content": {
+        "title": "reStructuredText Demonstration",
+        "title_stripped": "reStructuredText Demonstration",
+        "subtitle": "Examples of Syntax Constructs",
+        "subtitle_stripped": "Examples of Syntax Constructs",
+        "document_ids": ["restructuredtext-demonstration"],
+        "subtitle_ids": ["examples-of-syntax-constructs"],
+        "authors": ["David Goodger", "Me", "Myself", "I"],
+        "header": null,
+        "footer": null,
+        "docinfo": [
+            {
+                "type": "author",
+                "name": "Author",
+                "value": "David Goodger",
+                "value_stripped": "David Goodger",
+                "classes": []
+            },
+            {
+                "type": "address",
+                "name": "Address",
+                "value": "123 Example Street\\\\\nExample, EX  Canada\\\\\nA1B 2C3",
+                "value_stripped": "123 Example Street Example, EX  Canada A1B 2C3",
+                "classes": []
+            },
+            {
+                "type": "contact",
+                "name": "Contact",
+                "value": "\\href{mailto:docutils-develop@lists.sourceforge.net}{docutils-develop@lists.sourceforge.net}",
+                "value_stripped": "docutils-develop@lists.sourceforge.net", 
+                "classes": []
+            },
+            {
+                "type": "authors",
+                "name": "Authors",
+                "value": ["Me", "Myself", "I"],
+                "value_stripped": "Me  Myself  I",
+                "classes": []
+            },
+            {
+                "type": "organization",
+                "name": "Organization",
+                "value": "humankind",
+                "value_stripped": "humankind",
+                "classes": []
+            },
+            {
+                "type": "date",
+                "name": "Date",
+                "value": "2012-01-03",
+                "value_stripped": "2012-01-03",
+                "classes": []
+            },
+            {
+                "type": "status",
+                "name": "Status",
+                "value": "This is a \\textquotedbl{}work in progress\\textquotedbl{}",
+                "value_stripped": "This is a \\textquotedbl{}work in progress\\textquotedbl{}",
+                "classes": []
+            },
+            {
+                "type": "revision",
+                "name": "Revision",
+                "value": "7302",
+                "value_stripped": "7302",
+                "classes": []
+            },
+            {
+                "type": "version",
+                "name": "Version",
+                "value": "1",
+                "value_stripped": "1",
+                "classes": []
+            },
+            {
+                "type": "copyright",
+                "name": "Copyright",
+                "value": "This document has been placed in the public domain. You\nmay do with it as you wish. You may copy, modify,\nredistribute, reattribute, sell, buy, rent, lease,\ndestroy, or improve it, quote it at length, excerpt,\nincorporate, collate, fold, staple, or mutilate it, or do\nanything else to it that your or anyone else's heart\ndesires.",
+                "value_stripped": "This document has been placed in the public domain. You may do with it as you wish. You may copy, modify, redistribute, reattribute, sell, buy, rent, lease, destroy, or improve it, quote it at length, excerpt, incorporate, collate, fold, staple, or mutilate it, or do anything else to it that your or anyone else's heart desires.",
+                "classes": []
+            },
+            {
+                "type": "field",
+                "name": "field name",
+                "value": "This is a generic bibliographic field.",
+                "value_stripped": "This is a generic bibliographic field.",
+                "classes": ["field-name"]
+            },
+            {
+                "type": "field",
+                "name": "field name 2",
+                "value": "Generic bibliographic fields may contain multiple body elements.\n\nLike this.",
+                "value_stripped": "Generic bibliographic fields may contain multiple body elements.  Like this.",
+                "classes": ["field-name-2"]
+            }
+        ],
+        "dedication": "For Docutils users \\& co-developers.",
+        "abstract": "This document is a demonstration of the reStructuredText markup\nlanguage, containing examples of all basic reStructuredText\nconstructs and many advanced constructs.",
+        "body": "% This is a comment. Note how any initial comments are moved by\n% transforms to after the document title, subtitle, and docinfo.\n\n% Above is the document title, and below is the subtitle.\n% They are transformed from section titles after parsing.\n\n% bibliographic fields (which also require a transform):\n\n\\phantomsection\\label{table-of-contents}\n\\pdfbookmark[1]{Table of Contents}{table-of-contents}\n\\renewcommand{\\contentsname}{Table of Contents}\n\\tableofcontents\n\n\n\\section{1   Structural Elements%\n  \\label{structural-elements}%\n}\n\n\n\\subsection{1.1   Section Title%\n  \\label{section-title}%\n}\n\nThat's it, the text just above this line.\n\n\n\\subsection{1.2   Transitions%\n  \\label{transitions}%\n}\n\nHere's a transition:\n\n%___________________________________________________________________________\n\\DUtransition\n\nIt divides the section.\n\n\n\\section{2   Body Elements%\n  \\label{body-elements}%\n}\n\n\n\\subsection{2.1   Paragraphs%\n  \\label{paragraphs}%\n}\n\nA paragraph.\n\n\n\\subsubsection{2.1.1   Inline Markup%\n  \\label{inline-markup}%\n}\n\nParagraphs contain text and may contain inline markup: \\emph{emphasis},\n\\textbf{strong emphasis}, \\texttt{inline literals}, standalone hyperlinks\n(\\url{http://www.python.org}), external hyperlinks (\\href{http://www.python.org/}{Python}\\DUfootnotemark{id24}{id23}{5}), internal\ncross-references (\\hyperref[example]{example}), external hyperlinks with embedded URIs\n(\\href{http://www.python.org}{Python web site}), footnote references\n(manually numbered\\DUfootnotemark{id1}{id6}{1}, anonymous auto-numbered\\DUfootnotemark{id2}{id9}{3}, labeled\nauto-numbered\\DUfootnotemark{id3}{label}{2}, or symbolic\\DUfootnotemark{id4}{id10}{*}), citation references\n(\\hyperlink{cit2002}{[CIT2002]}), substitution references (\\includegraphics{images/biohazard.png}), and %\n\\phantomsection\\label{inline-hyperlink-targets}inline\nhyperlink targets (see \\hyperref[targets]{Targets} below for a reference back to here).\nCharacter-level inline markup is also possible (although exceedingly\nugly!) in \\emph{re}\\texttt{Structured}\\emph{Text}.  Problems are indicated by\n%\n\\raisebox{1em}{\\hypertarget{id20}{}}\\hyperlink{id19}{\\textbf{\\color{red}|problematic|}} text (generated by processing errors; this one is\nintentional).\n\nThe default role for interpreted text is \\DUroletitlereference{Title Reference}.  Here are\nsome explicit interpreted text roles: a PEP reference (\\href{http://www.python.org/dev/peps/pep-0287}{PEP 287}); an\nRFC reference (\\href{http://tools.ietf.org/html/rfc2822.html}{RFC 2822}); a \\textsubscript{subscript}; a \\textsuperscript{superscript};\nand explicit roles for \\emph{standard} \\textbf{inline}\n\\texttt{markup}.\n\n% DO NOT RE-WRAP THE FOLLOWING PARAGRAPH!\n\nLet's test wrapping and whitespace significance in inline literals:\n\\texttt{This is an example of -{}-inline-literal -{}-text, -{}-including some-{}-\nstrangely-{}-hyphenated-words. ~Adjust-the-width-of-your-browser-window\nto see how the text is wrapped. ~-{}- -{}-{}-{}- -{}-{}-{}-{}-{}-{}-{}- ~Now note ~ ~the\nspacing ~ ~between the ~ ~words of ~ ~this sentence ~ ~(words\nshould ~ ~be grouped ~ ~in pairs).}\n\nIf the \\texttt{-{}-pep-references} option was supplied, there should be a\nlive link to PEP 258 here.\n\n\n\\subsection{2.2   Bullet Lists%\n  \\label{bullet-lists}%\n}\n\n\\begin{itemize}\n\\item A bullet list\n\n\\begin{itemize}\n\\item Nested bullet list.\n\n\\item Nested item 2.\n\\end{itemize}\n\n\\item Item 2.\n\nParagraph 2 of item 2.\n\n\\begin{itemize}\n\\item Nested bullet list.\n\n\\item Nested item 2.\n\n\\begin{itemize}\n\\item Third level.\n\n\\item Item 2.\n\\end{itemize}\n\n\\item Nested item 3.\n\\end{itemize}\n\\end{itemize}\n\n\n\\subsection{2.3   Enumerated Lists%\n  \\label{enumerated-lists}%\n}\n\n\\begin{enumerate}\n\\item Arabic numerals.\n\n\\begin{enumerate}\n\\renewcommand{\\labelenumii}{\\alph{enumii})}\n\\item lower alpha)\n\n\\begin{enumerate}\n\\renewcommand{\\labelenumiii}{(\\roman{enumiii})}\n\\item (lower roman)\n\n\\begin{enumerate}\n\\item upper alpha.\n\n\\begin{list}{\\Roman{enumv})}{\\usecounter{enumv}}\n\\item upper roman)\n\\end{list}\n\\end{enumerate}\n\\end{enumerate}\n\\end{enumerate}\n\n\\item Lists that don't start at 1:\n\n\\begin{enumerate}\n\\renewcommand{\\labelenumii}{\\arabic{enumii}.}\n\\setcounter{enumii}{2}\n\\item Three\n\n\\item Four\n\\end{enumerate}\n\n\\begin{enumerate}\n\\renewcommand{\\labelenumii}{\\Alph{enumii}.}\n\\setcounter{enumii}{2}\n\\item C\n\n\\item D\n\\end{enumerate}\n\n\\begin{enumerate}\n\\renewcommand{\\labelenumii}{\\roman{enumii}.}\n\\setcounter{enumii}{2}\n\\item iii\n\n\\item iv\n\\end{enumerate}\n\n\\item List items may also be auto-enumerated.\n\\end{enumerate}\n\n\n\\subsection{2.4   Definition Lists%\n  \\label{definition-lists}%\n}\n\n\\begin{description}\n\\item[{Term}] \\leavevmode \nDefinition\n\n\\item[{Term}] \\leavevmode (\\textbf{classifier})\nDefinition paragraph 1.\n\nDefinition paragraph 2.\n\n\\item[{Term}] \\leavevmode \nDefinition\n\n\\end{description}\n\n\n\\subsection{2.5   Field Lists%\n  \\label{field-lists}%\n}\n\n\\begin{DUfieldlist}\n\\item[{what:}]\nField lists map field names to field bodies, like database\nrecords.  They are often part of an extension syntax.  They are\nan unambiguous variant of RFC 2822 fields.\n\n\\item[{how arg1 arg2:}]\nThe field marker is a colon, the field name, and a colon.\n\nThe field body may contain one or more body elements, indented\nrelative to the field marker.\n\\end{DUfieldlist}\n\n\n\\subsection{2.6   Option Lists%\n  \\label{option-lists}%\n}\n\nFor listing command-line options:\n\n\\begin{DUoptionlist}\n\\item[-a]  command-line option \\textquotedbl{}a\\textquotedbl{}\n\n\\item[-b file]  options can have arguments\nand long descriptions\n\n\\item[-{}-long]  options can be long also\n\n\\item[-{}-input=file]  long options can also have\narguments\n\n\\item[-{}-very-long-option]  The description can also start on the next line.\n\nThe description may contain multiple body elements,\nregardless of where it starts.\n\n\\item[-x, -y, -z]  Multiple options are an \\textquotedbl{}option group\\textquotedbl{}.\n\n\\item[-v, -{}-verbose]  Commonly-seen: short \\& long options.\n\n\\item[-1 file, -{}-one=file, -{}-two file]  Multiple options with arguments.\n\n\\item[/V]  DOS/VMS-style options too\n\\end{DUoptionlist}\n\nThere must be at least two spaces between the option and the\ndescription.\n\n\n\\subsection{2.7   Literal Blocks%\n  \\label{literal-blocks}%\n}\n\nLiteral blocks are indicated with a double-colon (\\textquotedbl{}::\\textquotedbl{}) at the end of\nthe preceding paragraph (over there \\texttt{-{}->}).  They can be indented:\n\n\\begin{quote}\n\\begin{alltt}\nif literal_block:\n    text = 'is left as-is'\n    spaces_and_linebreaks = 'are preserved'\n    markup_processing = None\n\\end{alltt}\n\\end{quote}\n\nOr they can be quoted without indentation:\n\n\\begin{quote}\n\\begin{alltt}\n>> Great idea!\n>\n> Why didn't I think of that?\n\\end{alltt}\n\\end{quote}\n\n\n\\subsection{2.8   Line Blocks%\n  \\label{line-blocks}%\n}\n\n\\begin{DUlineblock}{0em}\n\\item[] This is a line block.  It ends with a blank line.\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] Each new line begins with a vertical bar (\\textquotedbl{}|\\textquotedbl{}).\n\\item[] Line breaks and initial indents are preserved.\n\\end{DUlineblock}\n\\item[] Continuation lines are wrapped portions of long lines;\nthey begin with a space in place of the vertical bar.\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] The left edge of a continuation line need not be aligned with\nthe left edge of the text above it.\n\\end{DUlineblock}\n\\end{DUlineblock}\n\n\\begin{DUlineblock}{0em}\n\\item[] This is a second line block.\n\\item[] \n\\item[] Blank lines are permitted internally, but they must begin with a \\textquotedbl{}|\\textquotedbl{}.\n\\end{DUlineblock}\n\nTake it away, Eric the Orchestra Leader!\n\n\\begin{quote}\n\\begin{DUlineblock}{0em}\n\\item[] A one, two, a one two three four\n\\item[] \n\\item[] Half a bee, philosophically,\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] must, \\emph{ipso facto}, half not be.\n\\end{DUlineblock}\n\\item[] But half the bee has got to be,\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] \\emph{vis a vis} its entity.  D'you see?\n\\item[] \n\\end{DUlineblock}\n\\item[] But can a bee be said to be\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] or not to be an entire bee,\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] when half the bee is not a bee,\n\\item[]\n\\begin{DUlineblock}{\\DUlineblockindent}\n\\item[] due to some ancient injury?\n\\item[] \n\\end{DUlineblock}\n\\end{DUlineblock}\n\\end{DUlineblock}\n\\item[] Singing...\n\\end{DUlineblock}\n\\end{quote}\n\n\n\\subsection{2.9   Block Quotes%\n  \\label{block-quotes}%\n}\n\nBlock quotes consist of indented body elements:\n\n\\begin{quote}\nMy theory by A. Elk.  Brackets Miss, brackets.  This theory goes\nas follows and begins now.  All brontosauruses are thin at one\nend, much much thicker in the middle and then thin again at the\nfar end.  That is my theory, it is mine, and belongs to me and I\nown it, and what it is too.\n\\nopagebreak\n\n\\raggedleft —Anne Elk (Miss)\n\\end{quote}\n\n\n\\subsection{2.10   Doctest Blocks%\n  \\label{doctest-blocks}%\n}\n\n\\begin{quote}\n\\begin{alltt}\n>>> print 'Python-specific usage examples; begun with \">>>\"'\nPython-specific usage examples; begun with \">>>\"\n>>> print '(cut and pasted from interactive Python sessions)'\n(cut and pasted from interactive Python sessions)\n\\end{alltt}\n\\end{quote}\n\n\n\\subsection{2.11   Tables%\n  \\label{tables}%\n}\n\nHere's a grid table followed by a simple table:\n\n\\setlength{\\DUtablewidth}{\\linewidth}\n\\begin{longtable*}[c]{|p{0.296\\DUtablewidth}|p{0.156\\DUtablewidth}|p{0.133\\DUtablewidth}|p{0.133\\DUtablewidth}|}\n\\hline\n\\textbf{%\nHeader row, column 1\n(header rows optional)\n} & \\textbf{%\nHeader 2\n} & \\textbf{%\nHeader 3\n} & \\textbf{%\nHeader 4\n} \\\\\n\\hline\n\\endfirsthead\n\\hline\n\\textbf{%\nHeader row, column 1\n(header rows optional)\n} & \\textbf{%\nHeader 2\n} & \\textbf{%\nHeader 3\n} & \\textbf{%\nHeader 4\n} \\\\\n\\hline\n\\endhead\n\\multicolumn{4}{c}{\\hfill ... continued on next page} \\\\\n\\endfoot\n\\endlastfoot\n\nbody row 1, column 1\n & \ncolumn 2\n & \ncolumn 3\n & \ncolumn 4\n \\\\\n\\hline\n\nbody row 2\n & \\multicolumn{3}{p{0.42\\DUtablewidth}|}{%\nCells may span columns.\n} \\\\\n\\hline\n\nbody row 3\n & \\multirow{2}{0.16\\DUtablewidth}{%\nCells may\nspan rows.\n} & \\multicolumn{2}{p{0.27\\DUtablewidth}|}{%\nLaTeX cells can't\n} \\\\\n\\cline{1-1}\n\\cline{3-3}\n\\cline{4-4}\n\nbody row 4\n &  & \\multicolumn{2}{p{0.27\\DUtablewidth}|}{%\nspan both rows,cols\n} \\\\\n\\hline\n\nbody row 5\n & \\multicolumn{2}{p{0.29\\DUtablewidth}|}{%\nCells may also be\nempty: \\texttt{-{}->}\n} &  \\\\\n\\hline\n\\end{longtable*}\n\n\\setlength{\\DUtablewidth}{\\linewidth}\n\\begin{longtable*}[c]{|p{0.075\\DUtablewidth}|p{0.075\\DUtablewidth}|p{0.086\\DUtablewidth}|}\n\\hline\n\\multicolumn{2}{|p{0.15\\DUtablewidth}|}{\\textbf{%\nInputs\n}} & \\textbf{%\nOutput\n} \\\\\n\\hline\n\\textbf{%\nA\n} & \\textbf{%\nB\n} & \\textbf{%\nA or B\n} \\\\\n\\hline\n\\endfirsthead\n\\hline\n\\multicolumn{2}{|p{0.15\\DUtablewidth}|}{\\textbf{%\nInputs\n}} & \\textbf{%\nOutput\n} \\\\\n\\hline\n\\textbf{%\nA\n} & \\textbf{%\nB\n} & \\textbf{%\nA or B\n} \\\\\n\\hline\n\\endhead\n\\multicolumn{3}{c}{\\hfill ... continued on next page} \\\\\n\\endfoot\n\\endlastfoot\n\nFalse\n & \nFalse\n & \nFalse\n \\\\\n\\hline\n\nTrue\n & \nFalse\n & \nTrue\n \\\\\n\\hline\n\nFalse\n & \nTrue\n & \nTrue\n \\\\\n\\hline\n\nTrue\n & \nTrue\n & \nTrue\n \\\\\n\\hline\n\\end{longtable*}\n\n\n\\subsection{2.12   Footnotes%\n  \\label{footnotes}%\n}\n%\n\\DUfootnotetext{id6}{id1}{1}{%\nA footnote contains body elements, consistently indented by at\nleast 3 spaces.\n\nThis is the footnote's second paragraph.\n}\n%\n\\DUfootnotetext{label}{id3}{2}{\\phantomsection\\label{label}%\nFootnotes may be numbered, either manually (as in\\DUfootnotemark{id7}{id6}{1}) or\nautomatically using a \\textquotedbl{}\\#\\textquotedbl{}-prefixed label.  This footnote has a\nlabel so it can be referred to from multiple places, both as a\nfootnote reference (\\DUfootnotemark{id8}{label}{2}) and as a hyperlink reference\n(\\hyperref[label]{label}).\n}\n%\n\\DUfootnotetext{id9}{id2}{3}{%\nThis footnote is numbered automatically and anonymously using a\nlabel of \\textquotedbl{}\\#\\textquotedbl{} only.\n}\n%\n\\DUfootnotetext{id10}{id4}{*}{%\nFootnotes may also use symbols, specified with a \\textquotedbl{}*\\textquotedbl{} label.\nHere's a reference to the next footnote:\\DUfootnotemark{id11}{id12}{†}.\n}\n%\n\\DUfootnotetext{id12}{id11}{†}{%\nThis footnote shows the next symbol in the sequence.\n}\n%\n\\DUfootnotetext{id13}{id13}{4}{%\nHere's an unreferenced footnote, with a reference to a\nnonexistent footnote:%\n\\raisebox{1em}{\\hypertarget{id14}{}}\\hyperlink{id27}{\\textbf{\\color{red}{[}5{]}\\_}}.\n}\n\n\n\\subsection{2.13   Citations%\n  \\label{citations}%\n}\n\\begin{figure}[b]\\raisebox{1em}{\\hypertarget{cit2002}{}}[CIT2002]\nCitations are text-labeled footnotes. They may be\nrendered separately and differently from footnotes.\n\\end{figure}\n\nHere's a reference to the above, \\hyperlink{cit2002}{[CIT2002]}, and a %\n\\raisebox{1em}{\\hypertarget{id16}{}}\\hyperlink{id28}{\\textbf{\\color{red}{[}nonexistent{]}\\_}}\ncitation.\n\n\n\\subsection{2.14   Targets%\n  \\label{targets}%\n}\n\n\\phantomsection\\label{example}\nThis paragraph is pointed to by the explicit \\textquotedbl{}example\\textquotedbl{} target. A\nreference can be found under \\hyperref[inline-markup]{Inline Markup}, above. \\hyperref[inline-hyperlink-targets]{Inline\nhyperlink targets} are also possible.\n\nSection headers are implicit targets, referred to by name. See\n\\hyperref[targets]{Targets}, which is a subsection of \\hyperref[body-elements]{Body Elements}.\n\nExplicit external targets are interpolated into references such as\n\\textquotedbl{}\\href{http://www.python.org/}{Python}\\DUfootnotemark{id25}{id23}{5}\\textquotedbl{}.\n\nTargets may be indirect and anonymous.  Thus \\hyperref[targets]{this phrase} may also\nrefer to the \\hyperref[targets]{Targets} section.\n\nHere's a %\n\\raisebox{1em}{\\hypertarget{id30}{}}\\hyperlink{id29}{\\textbf{\\color{red}`hyperlink reference without a target`\\_}}, which generates an\nerror.\n\n\n\\subsubsection{2.14.1   Duplicate Target Names%\n  \\label{duplicate-target-names}%\n}\n\nDuplicate names in section headers or other implicit targets will\ngenerate \\textquotedbl{}info\\textquotedbl{} (level-1) system messages.  Duplicate names in\nexplicit targets will generate \\textquotedbl{}warning\\textquotedbl{} (level-2) system messages.\n\n\n\\subsubsection{2.14.2   Duplicate Target Names%\n  \\label{id18}%\n}\n\nSince there are two \\textquotedbl{}Duplicate Target Names\\textquotedbl{} section headers, we\ncannot uniquely refer to either of them by name.  If we try to (like\nthis: %\n\\raisebox{1em}{\\hypertarget{id32}{}}\\hyperlink{id31}{\\textbf{\\color{red}`Duplicate Target Names`\\_}}), an error is generated.\n\n\n\\subsection{2.15   Directives%\n  \\label{directives}%\n}\n\n\\phantomsection\\label{contents}\nThese are just a sample of the many reStructuredText Directives.  For\nothers, please see\n\\url{http://docutils.sourceforge.net/docs/ref/rst/directives.html}.\n\n\n\\subsubsection{2.15.1   Document Parts%\n  \\label{document-parts}%\n}\n\nAn example of the \\textquotedbl{}contents\\textquotedbl{} directive can be seen above this section\n(a local, untitled table of \\hyperref[contents]{contents}) and at the beginning of the\ndocument (a document-wide \\hyperref[table-of-contents]{table of contents}).\n\n\n\\subsubsection{2.15.2   Images%\n  \\label{images}%\n}\n\nAn image directive (also clickable -{}- a hyperlink reference):\n\n\\hyperref[directives]{\\includegraphics{images/title.png}}\n\nA figure directive:\n\n\\begin{figure}\n\\noindent\\makebox[\\linewidth][c]{\\includegraphics{images/title.png}}\n\\caption{A figure is an image with a caption and/or a legend:}\n\\begin{DUlegend}\n\\setlength{\\DUtablewidth}{\\linewidth}\n\\begin{longtable*}[c]{|p{0.156\\DUtablewidth}|p{0.563\\DUtablewidth}|}\n\\hline\n\nre\n & \nRevised, revisited, based on 're' module.\n \\\\\n\\hline\n\nStructured\n & \nStructure-enhanced text, structuredtext.\n \\\\\n\\hline\n\nText\n & \nWell it is, isn't it?\n \\\\\n\\hline\n\\end{longtable*}\n\nThis paragraph is also part of the legend.\n\\end{DUlegend}\n\\end{figure}\n\n\n\\subsubsection{2.15.3   Admonitions%\n  \\label{admonitions}%\n}\n\n\\DUadmonition[attention]{\n\\DUtitle[attention]{Attention!}\n\nDirectives at large.\n}\n\n\\DUadmonition[caution]{\n\\DUtitle[caution]{Caution!}\n\nDon't take any wooden nickels.\n}\n\n\\DUadmonition[danger]{\n\\DUtitle[danger]{!DANGER!}\n\nMad scientist at work!\n}\n\n\\DUadmonition[error]{\n\\DUtitle[error]{Error}\n\nDoes not compute.\n}\n\n\\DUadmonition[hint]{\n\\DUtitle[hint]{Hint}\n\nIt's bigger than a bread box.\n}\n\n\\DUadmonition[important]{\n\\DUtitle[important]{Important}\n\n\\begin{itemize}\n\\item Wash behind your ears.\n\n\\item Clean up your room.\n\n\\item Call your mother.\n\n\\item Back up your data.\n\\end{itemize}\n}\n\n\\DUadmonition[note]{\n\\DUtitle[note]{Note}\n\nThis is a note.\n}\n\n\\DUadmonition[tip]{\n\\DUtitle[tip]{Tip}\n\n15\\% if the service is good.\n}\n\n\\DUadmonition[warning]{\n\\DUtitle[warning]{Warning}\n\nStrong prose may provoke extreme mental exertion.\nReader discretion is strongly advised.\n}\n\n\\DUadmonition[admonition-and-by-the-way]{\n\\DUtitle[admonition-and-by-the-way]{And, by the way...}\n\nYou can make up your own admonition too.\n}\n\n\n\\subsubsection{2.15.4   Topics, Sidebars, and Rubrics%\n  \\label{topics-sidebars-and-rubrics}%\n}\n\n\\DUsidebar{\n\\DUtitle[sidebar]{Sidebar Title}\n\n\\DUsubtitle{Optional Subtitle}\n\nThis is a sidebar.  It is for text outside the flow of the main\ntext.\n\n\\DUrubric{This is a rubric inside a sidebar}\n\nSidebars often appears beside the main text with a border and\nbackground color.\n}\n\n\\begin{DUclass}{topic}\n\\begin{quote}\n\\DUtitle[topic]{Topic Title}\n\nThis is a topic.\n\\end{quote}\n\\end{DUclass}\n\n\\DUrubric{This is a rubric}\n\n\n\\subsubsection{2.15.5   Target Footnotes%\n  \\label{target-footnotes}%\n}\n%\n\\DUfootnotetext{id23}{id24}{5}{%\n\\url{http://www.python.org/}\n}\n\n\n\\subsubsection{2.15.6   Replacement Text%\n  \\label{replacement-text}%\n}\n\nI recommend you try \\href{http://www.python.org/}{Python, \\emph{the} best language around}\\DUfootnotemark{id26}{id23}{5}.\n\n\n\\subsubsection{2.15.7   Compound Paragraph%\n  \\label{compound-paragraph}%\n}\n\n\\begin{DUclass}{compound}\nThis paragraph contains a literal block:\n\\begin{quote}\n\\begin{alltt}\nConnecting... OK\nTransmitting data... OK\nDisconnecting... OK\n\\end{alltt}\n\\end{quote}\nand thus consists of a simple paragraph, a literal block, and\nanother simple paragraph.  Nonetheless it is semantically \\emph{one}\nparagraph.\n\\end{DUclass}\n\nThis construct is called a \\emph{compound paragraph} and can be produced\nwith the \\textquotedbl{}compound\\textquotedbl{} directive.\n\n\n\\subsection{2.16   Substitution Definitions%\n  \\label{substitution-definitions}%\n}\n\nAn inline image (\\includegraphics{images/biohazard.png}) example:\n\n(Substitution definitions are not visible in the HTML source.)\n\n\n\\subsection{2.17   Comments%\n  \\label{comments}%\n}\n\nHere's one:\n\n% Comments begin with two dots and a space. Anything may\n% follow, except for the syntax of footnotes, hyperlink\n% targets, directives, or substitution definitions.\n% \n% Double-dashes -- \"--\" -- must be escaped somehow in HTML output.\n\n(View the HTML source to see the comment.)\n\n\n\\section{3   Error Handling%\n  \\label{error-handling}%\n}\n\nAny errors caught during processing will generate system messages.\n\n%\n\\raisebox{1em}{\\hypertarget{id22}{}}\\hyperlink{id21}{\\textbf{\\color{red}|*** Expect 6 errors (including this one). ***|}}\n\nThere should be six messages in the following, auto-generated\nsection, \\textquotedbl{}Docutils System Messages\\textquotedbl{}:\n\n% section should be added by Docutils automatically"
+    },
+    "system_messages": [
+        {
+            "backrefs": ["id20"],
+            "ids": ["id19"],
+            "level": 3,
+            "line": 89,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Undefined substitution referenced: \\textquotedbl{}problematic\\textquotedbl{}."
+        },
+        {
+            "backrefs": ["id22"],
+            "ids": ["id21"],
+            "level": 3,
+            "line": 547,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Undefined substitution referenced: \\textquotedbl{}*** Expect 6 errors (including this one). ***\\textquotedbl{}."
+        },
+        {
+            "backrefs": ["id14"],
+            "ids": ["id27"],
+            "level": 3,
+            "line": 346,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Unknown target name: \\textquotedbl{}5\\textquotedbl{}."
+        },
+        {
+            "backrefs": ["id16"],
+            "ids": ["id28"],
+            "level": 3,
+            "line": 355,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Unknown target name: \\textquotedbl{}nonexistent\\textquotedbl{}."
+        },
+        {
+            "backrefs": ["id30"],
+            "ids": ["id29"],
+            "level": 3,
+            "line": 380,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Unknown target name: \\textquotedbl{}hyperlink reference without a target\\textquotedbl{}."
+        },
+        {
+            "backrefs": ["id32"],
+            "ids": ["id31"],
+            "level": 3,
+            "line": 393,
+            "source": "xelatex/demo.rst",
+            "type": "ERROR",
+            "body": "Duplicate target name, cannot be used as a unique reference: \\textquotedbl{}duplicate target names\\textquotedbl{}."
+        }
+    ]
+}

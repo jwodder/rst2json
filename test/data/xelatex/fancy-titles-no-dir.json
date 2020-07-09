@@ -1,0 +1,32 @@
+{
+    "meta": {
+        "title": "The Document Title",
+        "source": "xelatex/fancy-titles-no-dir.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\setcounter{secnumdepth}{0}",
+        "fallbacks": "",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdftitle={The Document Title},\n}"
+    },
+    "content": {
+        "title": "The \\emph{Document} Title",
+        "title_stripped": "The Document Title",
+        "subtitle": "The Document \\textbf{Sub}-Title",
+        "subtitle_stripped": "The Document Sub-Title",
+        "document_ids": ["the-document-title"],
+        "subtitle_ids": ["the-document-sub-title"],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.\n\n\n\\section{A \\emph{Section} Title%\n  \\label{a-section-title}%\n}\n\\subsection*{A Section \\textbf{Sub}-Title}\n\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum."
+    },
+    "system_messages": []
+}

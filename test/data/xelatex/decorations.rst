@@ -1,0 +1,1 @@
+../html4/decorations.rst
