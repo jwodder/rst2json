@@ -1,10 +1,19 @@
 % This is a Jinja2 template that can be applied to the output from `rst2json
-% --format=latex` to produce a LaTeX document that is as close to the output
-% from `rst2latex.py --use-latex-abstract --use-latex-docinfo` as is reasonably
-% possible.
+% --format=xelatex` to produce a XeLaTeX document that is as close to the
+% output from `rst2xetex.py --use-latex-abstract --use-latex-docinfo` as is
+% reasonably possible.
 
 \documentclass[a4paper{% if latex.language not in ['english', ''] %},{{latex.language}}{% endif %}]{article}
-\usepackage{cmap} % fix search and cut-and-paste in Acrobat
+% rubber: set program xelatex
+\usepackage{fontspec}
+% \defaultfontfeatures{Scale=MatchLowercase}
+% straight double quotes (defined T1 but missing in TU):
+{% raw %}
+\ifdefined \UnicodeEncodingName
+  \DeclareTextCommand{\textquotedbl}{\UnicodeEncodingName}{%
+    {\addfontfeatures{RawFeature=-tlig,Mapping=}\char34}}%
+\fi
+{% endraw %}
 {{latex.requirements}}
 {% if content.docinfo and '{tabularx}' not in latex.requirements %}
 \usepackage{tabularx}
@@ -24,10 +33,10 @@
 {% endif %}
 
 %%% Custom LaTeX preamble
-% PDF Standard Fonts
-\usepackage{mathptmx} % Times
-\usepackage[scaled=.90]{helvet}
-\usepackage{courier}
+% Linux Libertine (free, wide coverage, not only for Linux)
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Biolinum O}
+\setmonofont[HyphenChar=None,Scale=MatchLowercase]{DejaVu Sans Mono}
 
 %%% User specified packages and stylesheets
 
@@ -105,8 +114,6 @@
 
 {{latex.pdfsetup}}
 
-%%% Body
-\begin{document}
 {% if content.title %}
 \title{{ '{' }}{{content.title}}%
  {% for id in content.document_ids %}
@@ -137,6 +144,11 @@
     {% endfor %}
 }
 \date{{ '{' }}{% set sep = joiner(', ') %}{% for item in content.docinfo|selectattr("type", "eq", "date") %}{{sep()}}{{item.value}}{% endfor %}}
+{% endif %}
+
+%%% Body
+\begin{document}
+{% if content.title %}
 \maketitle
 {% endif %}
 {% set docinfo2 = content.docinfo|rejectattr("type", "in", ["author", "authors", "organization", "contact", "address", "date"]) %}

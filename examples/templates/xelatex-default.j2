@@ -1,10 +1,19 @@
 % This is a Jinja2 template that can be applied to the output from `rst2json
-% --format=latex` to produce a LaTeX document that is as close to the output
-% from `rst2latex.py --use-latex-abstract --use-latex-docinfo` as is reasonably
-% possible.
+% --format=xelatex` to produce a XeLaTeX document that is as close to the
+% output from `rst2xetex.py` as is reasonably possible.
 
 \documentclass[a4paper{% if latex.language not in ['english', ''] %},{{latex.language}}{% endif %}]{article}
-\usepackage{cmap} % fix search and cut-and-paste in Acrobat
+% rubber: set program xelatex
+\usepackage{fontspec}
+% \defaultfontfeatures{Scale=MatchLowercase}
+% straight double quotes (defined T1 but missing in TU):
+{% raw %}
+\ifdefined \UnicodeEncodingName
+  \DeclareTextCommand{\textquotedbl}{\UnicodeEncodingName}{%
+    {\addfontfeatures{RawFeature=-tlig,Mapping=}\char34}}%
+\fi
+{% endraw %}
+
 {{latex.requirements}}
 {% if content.docinfo and '{tabularx}' not in latex.requirements %}
 \usepackage{tabularx}
@@ -24,10 +33,10 @@
 {% endif %}
 
 %%% Custom LaTeX preamble
-% PDF Standard Fonts
-\usepackage{mathptmx} % Times
-\usepackage[scaled=.90]{helvet}
-\usepackage{courier}
+% Linux Libertine (free, wide coverage, not only for Linux)
+\setmainfont{Linux Libertine O}
+\setsansfont{Linux Biolinum O}
+\setmonofont[HyphenChar=None,Scale=MatchLowercase]{DejaVu Sans Mono}
 
 %%% User specified packages and stylesheets
 
@@ -72,7 +81,7 @@
   \renewenvironment{quote}{\begin{center}}{\end{center}}%
 }
 {% endif %}
-{% if system_messages and '{\\DUtitle}' not in latex.fallbacks %}
+{% if (content.abstract or system_messages) and '{\\DUtitle}' not in latex.fallbacks %}
 
 % title for topics, admonitions, unsupported section levels, and sidebar
 {% raw %}
@@ -84,6 +93,12 @@
     \smallskip\noindent\textbf{#2}\smallskip%
   \fi
 }
+{% endraw %}
+{% endif %}
+{% if content.abstract %}
+{% raw %}
+% abstract title
+\providecommand*{\DUtitleabstract}[1]{\centerline{\textbf{#1}}}
 {% endraw %}
 {% endif %}
 {% if system_messages and '{\\DUadmonition}' not in latex.fallbacks %}
@@ -104,13 +119,10 @@
 {% endif %}
 
 {{latex.pdfsetup}}
-
-%%% Body
-\begin{document}
 {% if content.title %}
 \title{{ '{' }}{{content.title}}%
- {% for id in content.document_ids %}
- \label{{ '{' }}{{id}}}%
+  {% for id in content.document_ids %}
+  \label{{ '{' }}{{id}}}%
   {% endfor %}
   {% if content.subtitle %}
   \\%
@@ -120,32 +132,21 @@
   {% endfor %}
   {% endif %}
   }
-\author{
-    {% set sep = joiner('\\and\n') %}
-    {% for item in content.docinfo %}
-    {% if item.type == 'authors' %}
-    {% for a in item.value %}
-    {{sep()}}{{a}}
-    {% endfor %}
-    {% elif item.type == 'author' %}
-    {{sep()}}{{item.value}}
-    {% elif item.type == 'address' %}\\
-    {{item.value}}
-    {% elif item.type in ['organization', 'contact'] %}\\
-    {{item.value_stripped}}
-    {% endif %}
-    {% endfor %}
-}
-\date{{ '{' }}{% set sep = joiner(', ') %}{% for item in content.docinfo|selectattr("type", "eq", "date") %}{{sep()}}{{item.value}}{% endfor %}}
+\author{}
+\date{}
+{% endif %}
+
+%%% Body
+\begin{document}
+{% if content.title %}
 \maketitle
 {% endif %}
-{% set docinfo2 = content.docinfo|rejectattr("type", "in", ["author", "authors", "organization", "contact", "address", "date"]) %}
-{% if docinfo2 %}
+{% if content.docinfo %}
 
 % Docinfo
 \begin{center}
 \begin{tabularx}{\DUdocinfowidth}{lX}
-{% for item in docinfo2 %}
+{% for item in content.docinfo %}
 {% if item.type == 'authors' %}
 {% for author in item.value %}
 \textbf{Author}: &
@@ -173,9 +174,14 @@
 \end{DUclass}
 {% endif %}
 {% if content.abstract %}
-\begin{abstract}
+
+\begin{DUclass}{abstract}
+\begin{quote}
+\DUtitle[abstract]{Abstract}
+
 {{content.abstract}}
-\end{abstract}
+\end{quote}
+\end{DUclass}
 {% endif %}
 
 {{content.body}}
