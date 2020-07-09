@@ -9,7 +9,7 @@
     },
     "latex": {
         "language": "english",
-        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{amsmath}",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage{amsmath}",
         "fallbacks": "% class handling for environments (block-level elements)\n% \\begin{DUclass}{spam} tries \\DUCLASSspam and\n% \\end{DUclass}{spam} tries \\endDUCLASSspam\n\\ifx\\DUclass\\undefined % poor man's \"provideenvironment\"\n \\newenvironment{DUclass}[1]%\n  {\\def\\DocutilsClassFunctionName{DUCLASS#1}% arg cannot be used in end-part of environment.\n     \\csname \\DocutilsClassFunctionName \\endcsname}%\n  {\\csname end\\DocutilsClassFunctionName \\endcsname}%\n\\fi\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[2][class-arg]{%\n  % call \\DUtitle#1{#2} if it exists:\n  \\ifcsname DUtitle#1\\endcsname%\n    \\csname DUtitle#1\\endcsname{#2}%\n  \\else\n    \\smallskip\\noindent\\textbf{#2}\\smallskip%\n  \\fi\n}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },

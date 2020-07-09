@@ -9,7 +9,7 @@
     },
     "latex": {
         "language": "english",
-        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
+        "requirements": "\\usepackage{ifthen}",
         "fallbacks": "",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdfauthor={Me;Joe Q. Programmer;Jane Z. Coder;Who?}\n}"
     },
