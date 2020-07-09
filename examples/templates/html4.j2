@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="{{meta.generator|escape}}" />
-<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source|escape}}{% endif %}</title>
+<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source|safe}}{% endif %}</title>
 {% for item in content.docinfo %}
 {% if item.type in ['author', 'authors', 'copyright', 'date', 'organization'] %}
 <meta name="{{item.type|escape}}" content="{{item.value_stripped|safe}}" />
@@ -85,7 +85,7 @@
 <h1>Docutils System Messages</h1>
 {% for msg in system_messages %}
 <div class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
-<p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<tt class="docutils">{{msg.source|escape}}</tt>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
+<p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<tt class="docutils">{{msg.source|safe}}</tt>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
     {% if msg.backrefs|length == 1 %}
     <em><a href="#{{msg.backrefs[0]|escape}}">backlink</a></em>
     {% else %}
