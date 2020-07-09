@@ -1,0 +1,52 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/espanol.rst",
+        "language": "es",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": ["yo"],
+        "header": null,
+        "footer": null,
+        "docinfo": [
+            {
+                "type": "author",
+                "name": "Autor",
+                "value": "yo",
+                "value_stripped": "yo",
+                "classes": []
+            },
+            {
+                "type": "version",
+                "name": "Versión",
+                "value": "1",
+                "value_stripped": "1",
+                "classes": []
+            },
+            {
+                "type": "field",
+                "name": "Author",
+                "value": "<p>Some Anglophone</p>",
+                "value_stripped": "Some Anglophone",
+                "classes": ["author"]
+            }
+        ],
+        "dedication": null,
+        "abstract": null,
+        "body": "<div class=\"admonition attention\">\n<p class=\"admonition-title\">¡Atención!</p>\n<p>The rendered topic should say &quot;¡Atención!&quot;</p>\n</div>"
+    },
+    "system_messages": []
+}

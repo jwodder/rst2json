@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/dcterms.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "<meta content=\"No one\" name=\"dcterms.audience\" />",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<p>When building with one of Docutils' builtin HTML writers, if any <span class=\"docutils literal\">&lt;meta&gt;</span>\ntags are created <a class=\"footnote-reference brackets\" href=\"#f1\" id=\"id1\">1</a> with a <span class=\"docutils literal\">name</span> attribute that starts with &quot;dcterms.&quot;,\nDocutils will add the following tag to the document head:</p>\n<pre class=\"literal-block\">&lt;link rel=&quot;schema.dcterms&quot; href=&quot;http://purl.org/dc/terms/&quot;&gt;</pre>\n<p>This test case is for asserting that the above <span class=\"docutils literal\">&lt;link&gt;</span> tag does not end up\nin the JSON output.</p>\n<dl class=\"footnote brackets\">\n<dt class=\"label\" id=\"f1\"><span class=\"brackets\"><a class=\"fn-backref\" href=\"#id1\">1</a></span></dt>\n<dd><p>Such tags can be created explicitly using the <span class=\"docutils literal\">meta::</span> directive.\nIn addition, if using the HTML5 writer, they are also created\nautomatically when a <span class=\"docutils literal\">:Copyright:</span> or <span class=\"docutils literal\">:Date:</span> bibliographic field\nis encountered.</p>\n</dd>\n</dl>"
+    },
+    "system_messages": []
+}

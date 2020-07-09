@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": "And &amp; Et",
+        "source": "html5/escaped-titles.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": "Special Characters in HTML &amp; LaTeX",
+        "title_stripped": "Special Characters in HTML &amp; LaTeX",
+        "subtitle": "The Ampersand: HTML &amp; LaTeX",
+        "subtitle_stripped": "The Ampersand: HTML &amp; LaTeX",
+        "document_ids": ["special-characters-in-html-latex"],
+        "subtitle_ids": ["the-ampersand-html-latex"],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>"
+    },
+    "system_messages": []
+}

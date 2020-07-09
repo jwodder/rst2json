@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/mathjax.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": "<script type=\"text/javascript\" src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML\"></script>"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<div class=\"topic\">\n<p class=\"topic-title\"><strong>Proof:</strong> There exist infinitely many prime numbers.</p>\n<p>Assume that the set <span class=\"math\">\\(P\\)</span> of all prime numbers is nonempty and finite.\nAs <span class=\"math\">\\(P\\)</span> is a finite set of integers, <span class=\"math\">\\(x = \\prod P\\)</span> and <span class=\"math\">\\(y\n= x+1\\)</span> are integers; moreover, as every element of <span class=\"math\">\\(P\\)</span> is greater\nthan one, <span class=\"math\">\\(1&lt;p\\leq\\prod P = x&lt;y\\)</span> for all <span class=\"math\">\\(p\\in P\\)</span>.  As\n<span class=\"math\">\\(y&gt;1\\)</span>, <span class=\"math\">\\(y\\)</span> must be either prime or composite.</p>\n<p>If <span class=\"math\">\\(y\\)</span> is prime, then, as it is greater than every element of\n<span class=\"math\">\\(P\\)</span>, it cannot be in <span class=\"math\">\\(P\\)</span>, and so there exists a prime not in\n<span class=\"math\">\\(P\\)</span>.</p>\n<p>Otherwise, if <span class=\"math\">\\(y\\)</span> is composite, then it must be divisible by some\nprime <span class=\"math\">\\(p\\)</span>.  It cannot be that <span class=\"math\">\\(p\\in P\\)</span>; for, if possible, let\nit be so: then <span class=\"math\">\\(p\\)</span> divides <span class=\"math\">\\(\\prod P = x\\)</span>, and as <span class=\"math\">\\(p\\)</span> also\ndivides <span class=\"math\">\\(y = x+1\\)</span>, <span class=\"math\">\\(p\\)</span> must divide <span class=\"math\">\\(y-x=1\\)</span>, which is\nabsurd.  Thus, there exists a prime not in <span class=\"math\">\\(P\\)</span>.</p>\n<p>Therefore, given a nonempty finite set of primes, there exists a prime\nnumber not in that set, and as the set of all primes is known to be\nnonempty, it cannot be finite, i.e., it must be infinite.</p>\n</div>"
+    },
+    "system_messages": []
+}

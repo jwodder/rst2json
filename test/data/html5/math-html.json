@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/math-html.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": "<link rel=\"stylesheet\" href=\"math.css\" type=\"text/css\" />"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<div class=\"topic\">\n<p class=\"topic-title\"><strong>Proof:</strong> There exist infinitely many prime numbers.</p>\n<p>Assume that the set <span class=\"formula\"><i>P</i></span> of all prime numbers is nonempty and finite.\nAs <span class=\"formula\"><i>P</i></span> is a finite set of integers, <span class=\"formula\"><i>x</i> = <span class=\"limits\"><span class=\"limit\">∏</span></span><i>P</i></span> and <span class=\"formula\"><i>y</i> = <i>x</i> + 1</span> are integers; moreover, as every element of <span class=\"formula\"><i>P</i></span> is greater\nthan one, <span class=\"formula\">1 &lt; <i>p</i> ≤ <span class=\"limits\"><span class=\"limit\">∏</span></span><i>P</i> = <i>x</i> &lt; <i>y</i></span> for all <span class=\"formula\"><i>p</i> ∈ <i>P</i></span>.  As\n<span class=\"formula\"><i>y</i> &gt; 1</span>, <span class=\"formula\"><i>y</i></span> must be either prime or composite.</p>\n<p>If <span class=\"formula\"><i>y</i></span> is prime, then, as it is greater than every element of\n<span class=\"formula\"><i>P</i></span>, it cannot be in <span class=\"formula\"><i>P</i></span>, and so there exists a prime not in\n<span class=\"formula\"><i>P</i></span>.</p>\n<p>Otherwise, if <span class=\"formula\"><i>y</i></span> is composite, then it must be divisible by some\nprime <span class=\"formula\"><i>p</i></span>.  It cannot be that <span class=\"formula\"><i>p</i> ∈ <i>P</i></span>; for, if possible, let\nit be so: then <span class=\"formula\"><i>p</i></span> divides <span class=\"formula\"><span class=\"limits\"><span class=\"limit\">∏</span></span><i>P</i> = <i>x</i></span>, and as <span class=\"formula\"><i>p</i></span> also\ndivides <span class=\"formula\"><i>y</i> = <i>x</i> + 1</span>, <span class=\"formula\"><i>p</i></span> must divide <span class=\"formula\"><i>y</i> − <i>x</i> = 1</span>, which is\nabsurd.  Thus, there exists a prime not in <span class=\"formula\"><i>P</i></span>.</p>\n<p>Therefore, given a nonempty finite set of primes, there exists a prime\nnumber not in that set, and as the set of all primes is known to be\nnonempty, it cannot be finite, i.e., it must be infinite.</p>\n</div>"
+    },
+    "system_messages": []
+}

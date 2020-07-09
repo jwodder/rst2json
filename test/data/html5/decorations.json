@@ -1,0 +1,30 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/decorations.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": "<p>Off with this <strong>head</strong>!</p>",
+        "footer": "<p>On with this <strong>foot</strong>!</p>",
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>"
+    },
+    "system_messages": []
+}
