@@ -84,7 +84,7 @@ Valid values (case insensitive) are:
 ``xetex``
    Alias for ``xelatex``
 
-``xelatex`` (not yet implemented)
+``xelatex``
    XeLaTeX output, based on the Docutils writer used for ``rst2xetex.py``
 
 In addition to the ``--format`` option, ``rst2json`` accepts all options that
