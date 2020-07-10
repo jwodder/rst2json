@@ -131,6 +131,9 @@ class XeLaTeXJSONTranslator(xetex.XeLaTeXTranslator):
             kls in node.parent["classes"] for kls in ('abstract', 'dedication')
         ):
             raise nodes.SkipNode
+        elif isinstance(node.parent, nodes.section) \
+                and 'system-messages' in node.parent["classes"]:
+            raise nodes.SkipNode
         else:
             super().visit_title(node)
 
@@ -293,14 +296,9 @@ class XeLaTeXJSONTranslator(xetex.XeLaTeXTranslator):
             super().depart_field_body(node)
 
     def visit_section(self, node):
-        if 'system-messages' in node["classes"]:
-            if isinstance(node.next_node(), nodes.title):
-                node.pop(0)
-        else:
+        if 'system-messages' not in node["classes"]:
             super().visit_section(node)
 
     def depart_section(self, node):
-        if 'system-messages' in node["classes"]:
-            pass
-        else:
+        if 'system-messages' not in node["classes"]:
             super().depart_section(node)
