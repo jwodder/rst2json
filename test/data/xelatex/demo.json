@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "xelatex"
     },
     "latex": {
         "language": "english",
@@ -18,9 +19,18 @@
         "title_stripped": "reStructuredText Demonstration",
         "subtitle": "Examples of Syntax Constructs",
         "subtitle_stripped": "Examples of Syntax Constructs",
-        "document_ids": ["restructuredtext-demonstration"],
-        "subtitle_ids": ["examples-of-syntax-constructs"],
-        "authors": ["David Goodger", "Me", "Myself", "I"],
+        "document_ids": [
+            "restructuredtext-demonstration"
+        ],
+        "subtitle_ids": [
+            "examples-of-syntax-constructs"
+        ],
+        "authors": [
+            "David Goodger",
+            "Me",
+            "Myself",
+            "I"
+        ],
         "header": null,
         "footer": null,
         "docinfo": [
@@ -42,14 +52,22 @@
                 "type": "contact",
                 "name": "Contact",
                 "value": "\\href{mailto:docutils-develop@lists.sourceforge.net}{docutils-develop@lists.sourceforge.net}",
-                "value_stripped": "docutils-develop@lists.sourceforge.net", 
+                "value_stripped": "docutils-develop@lists.sourceforge.net",
                 "classes": []
             },
             {
                 "type": "authors",
                 "name": "Authors",
-                "value": ["Me", "Myself", "I"],
-                "value_stripped": ["Me", "Myself", "I"],
+                "value": [
+                    "Me",
+                    "Myself",
+                    "I"
+                ],
+                "value_stripped": [
+                    "Me",
+                    "Myself",
+                    "I"
+                ],
                 "classes": []
             },
             {
@@ -99,14 +117,18 @@
                 "name": "field name",
                 "value": "This is a generic bibliographic field.",
                 "value_stripped": "This is a generic bibliographic field.",
-                "classes": ["field-name"]
+                "classes": [
+                    "field-name"
+                ]
             },
             {
                 "type": "field",
                 "name": "field name 2",
                 "value": "Generic bibliographic fields may contain multiple body elements.\n\nLike this.",
                 "value_stripped": "Generic bibliographic fields may contain multiple body elements.  Like this.",
-                "classes": ["field-name-2"]
+                "classes": [
+                    "field-name-2"
+                ]
             }
         ],
         "dedication": "For Docutils users \\& co-developers.",
@@ -115,8 +137,12 @@
     },
     "system_messages": [
         {
-            "backrefs": ["id20"],
-            "ids": ["id19"],
+            "backrefs": [
+                "id20"
+            ],
+            "ids": [
+                "id19"
+            ],
             "level": 3,
             "line": 89,
             "source": "xelatex/demo.rst",
@@ -124,8 +150,12 @@
             "body": "Undefined substitution referenced: \\textquotedbl{}problematic\\textquotedbl{}."
         },
         {
-            "backrefs": ["id22"],
-            "ids": ["id21"],
+            "backrefs": [
+                "id22"
+            ],
+            "ids": [
+                "id21"
+            ],
             "level": 3,
             "line": 547,
             "source": "xelatex/demo.rst",
@@ -133,8 +163,12 @@
             "body": "Undefined substitution referenced: \\textquotedbl{}*** Expect 6 errors (including this one). ***\\textquotedbl{}."
         },
         {
-            "backrefs": ["id14"],
-            "ids": ["id27"],
+            "backrefs": [
+                "id14"
+            ],
+            "ids": [
+                "id27"
+            ],
             "level": 3,
             "line": 346,
             "source": "xelatex/demo.rst",
@@ -142,8 +176,12 @@
             "body": "Unknown target name: \\textquotedbl{}5\\textquotedbl{}."
         },
         {
-            "backrefs": ["id16"],
-            "ids": ["id28"],
+            "backrefs": [
+                "id16"
+            ],
+            "ids": [
+                "id28"
+            ],
             "level": 3,
             "line": 355,
             "source": "xelatex/demo.rst",
@@ -151,8 +189,12 @@
             "body": "Unknown target name: \\textquotedbl{}nonexistent\\textquotedbl{}."
         },
         {
-            "backrefs": ["id30"],
-            "ids": ["id29"],
+            "backrefs": [
+                "id30"
+            ],
+            "ids": [
+                "id29"
+            ],
             "level": 3,
             "line": 380,
             "source": "xelatex/demo.rst",
@@ -160,8 +202,12 @@
             "body": "Unknown target name: \\textquotedbl{}hyperlink reference without a target\\textquotedbl{}."
         },
         {
-            "backrefs": ["id32"],
-            "ids": ["id31"],
+            "backrefs": [
+                "id32"
+            ],
+            "ids": [
+                "id31"
+            ],
             "level": 3,
             "line": 393,
             "source": "xelatex/demo.rst",

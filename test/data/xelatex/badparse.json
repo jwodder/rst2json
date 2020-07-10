@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "xelatex"
     },
     "latex": {
         "language": "english",
@@ -35,8 +36,12 @@
             "source": "xelatex/badparse.rst",
             "line": 1,
             "body": "Inline emphasis start-string without end-string.",
-            "ids": ["id1"],
-            "backrefs": ["id2"]
+            "ids": [
+                "id1"
+            ],
+            "backrefs": [
+                "id2"
+            ]
         }
     ]
 }

@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "",
@@ -16,8 +17,12 @@
         "title_stripped": "Special Characters in HTML &amp; LaTeX",
         "subtitle": "The Ampersand: HTML &amp; LaTeX",
         "subtitle_stripped": "The Ampersand: HTML &amp; LaTeX",
-        "document_ids": ["special-characters-in-html-latex"],
-        "subtitle_ids": ["the-ampersand-html-latex"],
+        "document_ids": [
+            "special-characters-in-html-latex"
+        ],
+        "subtitle_ids": [
+            "the-ampersand-html-latex"
+        ],
         "authors": [],
         "header": null,
         "footer": null,

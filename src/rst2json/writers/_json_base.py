@@ -10,6 +10,8 @@ def joinnl(lst):
     return '\n'.join(lst).strip('\n')
 
 class JSONWriterBase:
+    format_name = None
+
     # A `dict` with the same structure as `json_data`, except that fields are
     # replaced by ``(visitor_attr, converter)`` pairs:
     json_fields = {
@@ -82,6 +84,7 @@ class JSONWriterBase:
         if source is not None:
             source = self.visitor.encode(source)
         data["meta"]["source"] = source
+        data["meta"]["format"] = self.format_name
         data["meta"]["language"] = self.document.settings.language_code
         data["meta"].update(versioned_meta_strings)
         data["meta"]["generator"] \

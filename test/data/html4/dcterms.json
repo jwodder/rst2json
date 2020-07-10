@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "<meta content=\"No one\" name=\"dcterms.audience\" />",

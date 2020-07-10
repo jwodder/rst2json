@@ -3,6 +3,8 @@ from   docutils.writers import latex2e
 from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinnl
 
 class Writer(JSONWriterBase, latex2e.Writer):
+    format_name = 'latex'
+
     json_fields = dict(JSONWriterBase.json_fields, latex={
         "language": ("language_name", None),
         "requirements": ("requirements", joinnl),

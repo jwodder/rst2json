@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "",
@@ -58,7 +59,9 @@
                 "name": "Bits &amp; Bobs <em>à la mode</em>",
                 "value": "Made <strong>without</strong> dairy &amp; gluten",
                 "value_stripped": "Made without dairy &amp; gluten",
-                "classes": ["bits-bobs"]
+                "classes": [
+                    "bits-bobs"
+                ]
             }
         ],
         "dedication": null,

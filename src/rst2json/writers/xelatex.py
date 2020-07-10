@@ -3,6 +3,8 @@ from   docutils.writers import xetex
 from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinnl
 
 class Writer(JSONWriterBase, xetex.Writer):
+    format_name = 'xelatex'
+
     json_fields = dict(JSONWriterBase.json_fields, latex={
         "language": ("language_name", None),
         "requirements": ("requirements", joinnl),

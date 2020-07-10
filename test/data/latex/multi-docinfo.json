@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "latex"
     },
     "latex": {
         "language": "english",
@@ -20,7 +21,12 @@
         "subtitle_stripped": null,
         "document_ids": [],
         "subtitle_ids": [],
-        "authors": ["Me", "Joe Q. Programmer", "Jane Z. Coder", "Who?"],
+        "authors": [
+            "Me",
+            "Joe Q. Programmer",
+            "Jane Z. Coder",
+            "Who?"
+        ],
         "header": null,
         "footer": null,
         "docinfo": [
@@ -41,8 +47,14 @@
             {
                 "type": "authors",
                 "name": "Authors",
-                "value": ["Joe Q. Programmer", "Jane Z. Coder"],
-                "value_stripped": ["Joe Q. Programmer", "Jane Z. Coder"],
+                "value": [
+                    "Joe Q. Programmer",
+                    "Jane Z. Coder"
+                ],
+                "value_stripped": [
+                    "Joe Q. Programmer",
+                    "Jane Z. Coder"
+                ],
                 "classes": []
             },
             {

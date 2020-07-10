@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "<meta content=\"reStructuredText, demonstration, demo, parser\" name=\"keywords\" />\n<meta content=\"A demonstration of the reStructuredText markup language, containing examples of all basic constructs and many advanced constructs.\" lang=\"en\" name=\"description\" />",
@@ -16,9 +17,18 @@
         "title_stripped": "reStructuredText Demonstration",
         "subtitle": "Examples of Syntax Constructs",
         "subtitle_stripped": "Examples of Syntax Constructs",
-        "document_ids": ["restructuredtext-demonstration"],
-        "subtitle_ids": ["examples-of-syntax-constructs"],
-        "authors": ["David Goodger", "Me", "Myself", "I"],
+        "document_ids": [
+            "restructuredtext-demonstration"
+        ],
+        "subtitle_ids": [
+            "examples-of-syntax-constructs"
+        ],
+        "authors": [
+            "David Goodger",
+            "Me",
+            "Myself",
+            "I"
+        ],
         "header": null,
         "footer": null,
         "docinfo": [
@@ -39,15 +49,23 @@
             {
                 "type": "contact",
                 "name": "Contact",
-                "value": "<a class=\"first last reference external\" href=\"mailto:docutils-develop&#64;lists.sourceforge.net\">docutils-develop&#64;lists.sourceforge.net</a>", 
-                "value_stripped": "docutils-develop&#64;lists.sourceforge.net", 
+                "value": "<a class=\"first last reference external\" href=\"mailto:docutils-develop&#64;lists.sourceforge.net\">docutils-develop&#64;lists.sourceforge.net</a>",
+                "value_stripped": "docutils-develop&#64;lists.sourceforge.net",
                 "classes": []
             },
             {
                 "type": "authors",
                 "name": "Authors",
-                "value": ["Me", "Myself", "I"],
-                "value_stripped": ["Me", "Myself", "I"],
+                "value": [
+                    "Me",
+                    "Myself",
+                    "I"
+                ],
+                "value_stripped": [
+                    "Me",
+                    "Myself",
+                    "I"
+                ],
                 "classes": []
             },
             {
@@ -97,14 +115,18 @@
                 "name": "field name",
                 "value": "This is a generic bibliographic field.",
                 "value_stripped": "This is a generic bibliographic field.",
-                "classes": ["field-name"]
+                "classes": [
+                    "field-name"
+                ]
             },
             {
                 "type": "field",
                 "name": "field name 2",
                 "value": "<p class=\"first\">Generic bibliographic fields may contain multiple body elements.</p>\n<p class=\"last\">Like this.</p>",
                 "value_stripped": "Generic bibliographic fields may contain multiple body elements.  Like this.",
-                "classes": ["field-name-2"]
+                "classes": [
+                    "field-name-2"
+                ]
             }
         ],
         "dedication": "<p>For Docutils users &amp; co-developers.</p>",
@@ -113,8 +135,12 @@
     },
     "system_messages": [
         {
-            "backrefs": ["id20"],
-            "ids": ["id19"],
+            "backrefs": [
+                "id20"
+            ],
+            "ids": [
+                "id19"
+            ],
             "level": 3,
             "line": 89,
             "source": "html4/demo.rst",
@@ -122,8 +148,12 @@
             "body": "Undefined substitution referenced: &quot;problematic&quot;."
         },
         {
-            "backrefs": ["id22"],
-            "ids": ["id21"],
+            "backrefs": [
+                "id22"
+            ],
+            "ids": [
+                "id21"
+            ],
             "level": 3,
             "line": 547,
             "source": "html4/demo.rst",
@@ -131,8 +161,12 @@
             "body": "Undefined substitution referenced: &quot;*** Expect 6 errors (including this one). ***&quot;."
         },
         {
-            "backrefs": ["id14"],
-            "ids": ["id66"],
+            "backrefs": [
+                "id14"
+            ],
+            "ids": [
+                "id66"
+            ],
             "level": 3,
             "line": 346,
             "source": "html4/demo.rst",
@@ -140,8 +174,12 @@
             "body": "Unknown target name: &quot;5&quot;."
         },
         {
-            "backrefs": ["id16"],
-            "ids": ["id67"],
+            "backrefs": [
+                "id16"
+            ],
+            "ids": [
+                "id67"
+            ],
             "level": 3,
             "line": 355,
             "source": "html4/demo.rst",
@@ -149,8 +187,12 @@
             "body": "Unknown target name: &quot;nonexistent&quot;."
         },
         {
-            "backrefs": ["id69"],
-            "ids": ["id68"],
+            "backrefs": [
+                "id69"
+            ],
+            "ids": [
+                "id68"
+            ],
             "level": 3,
             "line": 380,
             "source": "html4/demo.rst",
@@ -158,8 +200,12 @@
             "body": "Unknown target name: &quot;hyperlink reference without a target&quot;."
         },
         {
-            "backrefs": ["id71"],
-            "ids": ["id70"],
+            "backrefs": [
+                "id71"
+            ],
+            "ids": [
+                "id70"
+            ],
             "level": 3,
             "line": 393,
             "source": "html4/demo.rst",

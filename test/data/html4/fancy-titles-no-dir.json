@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "",
@@ -16,8 +17,12 @@
         "title_stripped": "The Document Title",
         "subtitle": "The Document <strong>Sub</strong>-Title",
         "subtitle_stripped": "The Document Sub-Title",
-        "document_ids": ["the-document-title"],
-        "subtitle_ids": ["the-document-sub-title"],
+        "document_ids": [
+            "the-document-title"
+        ],
+        "subtitle_ids": [
+            "the-document-sub-title"
+        ],
         "authors": [],
         "header": null,
         "footer": null,

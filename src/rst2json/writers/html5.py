@@ -2,6 +2,8 @@ from   docutils.writers import html5_polyglot
 from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinstrs
 
 class Writer(JSONWriterBase, html5_polyglot.Writer):
+    format_name = 'html5'
+
     json_fields = dict(JSONWriterBase.json_fields, html={
         "math_requires": ("math_header", joinstrs),
         "meta_tags": ("meta_tags", joinstrs),

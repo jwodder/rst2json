@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "xelatex"
     },
     "latex": {
         "language": "english",
@@ -60,7 +61,9 @@
                 "name": "Bits \\& Bobs \\emph{à la mode}",
                 "value": "Made \\textbf{without} dairy \\& gluten",
                 "value_stripped": "Made without dairy \\& gluten",
-                "classes": ["bits-bobs"]
+                "classes": [
+                    "bits-bobs"
+                ]
             }
         ],
         "dedication": null,

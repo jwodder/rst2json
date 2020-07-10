@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "latex"
     },
     "latex": {
         "language": "english",
@@ -36,7 +37,9 @@
             "line": 5,
             "body": "Duplicate explicit target name: \\textquotedbl{}test\\textquotedbl{}.",
             "ids": [],
-            "backrefs": ["id1"]
+            "backrefs": [
+                "id1"
+            ]
         }
     ]
 }

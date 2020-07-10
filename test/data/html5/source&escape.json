@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html5"
     },
     "html": {
         "meta_tags": "",
@@ -34,7 +35,9 @@
             "line": 5,
             "body": "<p>Duplicate explicit target name: &quot;test&quot;.</p>",
             "ids": [],
-            "backrefs": ["id1"]
+            "backrefs": [
+                "id1"
+            ]
         }
     ]
 }

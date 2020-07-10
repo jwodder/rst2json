@@ -3,6 +3,8 @@ from   docutils.writers import html4css1
 from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinstrs
 
 class Writer(JSONWriterBase, html4css1.Writer):
+    format_name = 'html4'
+
     json_fields = dict(JSONWriterBase.json_fields, html={
         "math_requires": ("math_header", joinstrs),
         "meta_tags": ("meta_tags", joinstrs),

@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "latex"
     },
     "latex": {
         "language": "english",
@@ -29,7 +30,9 @@
                 "name": "Abstract",
                 "value": "This is not the abstract.  It will be left as a docinfo field with a system\nmessage.",
                 "value_stripped": "This is not the abstract.  It will be left as a docinfo field with a system message.",
-                "classes": ["abstract"]
+                "classes": [
+                    "abstract"
+                ]
             }
         ],
         "dedication": null,

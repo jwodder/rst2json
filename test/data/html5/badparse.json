@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html5"
     },
     "html": {
         "meta_tags": "",
@@ -33,8 +34,12 @@
             "source": "html5/badparse.rst",
             "line": 1,
             "body": "<p>Inline emphasis start-string without end-string.</p>",
-            "ids": ["id1"],
-            "backrefs": ["id2"]
+            "ids": [
+                "id1"
+            ],
+            "backrefs": [
+                "id2"
+            ]
         }
     ]
 }

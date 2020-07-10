@@ -242,6 +242,10 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    A dictionary of data about the input document and the ``rst2json`` process,
    containing the following fields:
 
+   ``format`` : string
+      The name of the target markup format: ``"html4"``, ``"html5"``,
+      ``"latex"``, or ``"xelatex"``.
+
    ``title`` : stripped string or ``null``
       The document's metadata title.  By default, this is equal to
       ``content.title_stripped``, but it can be overridden by a ``title::``

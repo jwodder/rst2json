@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
     },
     "html": {
         "meta_tags": "",
@@ -27,14 +28,18 @@
                 "name": "Empty",
                 "value": "",
                 "value_stripped": "",
-                "classes": ["empty"]
+                "classes": [
+                    "empty"
+                ]
             },
             {
                 "type": "field",
                 "name": "About Empty",
                 "value": "Empty fields are rendered as the empty string in HTML4 and as\n<tt class=\"docutils literal\"><span class=\"pre\">&lt;p&gt;&lt;/p&gt;</span></tt> in HTML5.",
                 "value_stripped": "Empty fields are rendered as the empty string in HTML4 and as &lt;p&gt;&lt;/p&gt; in HTML5.",
-                "classes": ["about-empty"]
+                "classes": [
+                    "about-empty"
+                ]
             }
         ],
         "dedication": null,

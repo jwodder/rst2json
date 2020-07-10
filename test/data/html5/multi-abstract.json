@@ -5,7 +5,8 @@
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
-        "generator": "-- REPLACED BY TEST FUNCTION --"
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html5"
     },
     "html": {
         "meta_tags": "",
@@ -27,7 +28,9 @@
                 "name": "Abstract",
                 "value": "<p>This is not the abstract.  It will be left as a docinfo field with a system\nmessage.</p>",
                 "value_stripped": "This is not the abstract.  It will be left as a docinfo field with a system message.",
-                "classes": ["abstract"]
+                "classes": [
+                    "abstract"
+                ]
             }
         ],
         "dedication": null,
