@@ -30,7 +30,7 @@ class Writer(latex2e.Writer):
 
     def __init__(self):
         self.parts = {}
-        self.translator_class = LaTeXTranslator
+        self.translator_class = LaTeXJSONTranslator
 
     def get_transforms(self):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
@@ -94,7 +94,7 @@ class Writer(latex2e.Writer):
         self.parts["json_data"] = self.json_data
 
 
-class LaTeXTranslator(latex2e.LaTeXTranslator):
+class LaTeXJSONTranslator(latex2e.LaTeXTranslator):
     def __init__(self, document, **kwargs):
         super().__init__(document, **kwargs)
         self.doctitle = None  # Keep this separate from the parent's `title`

@@ -27,7 +27,7 @@ class Writer(html4css1.Writer):
 
     def __init__(self):
         self.parts = {}
-        self.translator_class = HTMLTranslator
+        self.translator_class = HTMLJSONTranslator
 
     def get_transforms(self):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
@@ -78,7 +78,7 @@ class Writer(html4css1.Writer):
         self.parts["json_data"] = self.json_data
 
 
-class HTMLTranslator(html4css1.HTMLTranslator):
+class HTMLJSONTranslator(html4css1.HTMLTranslator):
     def __init__(self, document):
         super().__init__(document)
         self.title = None

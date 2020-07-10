@@ -30,7 +30,7 @@ class Writer(xetex.Writer):
 
     def __init__(self):
         super().__init__()
-        self.translator_class = XeLaTeXTranslator
+        self.translator_class = XeLaTeXJSONTranslator
 
     def get_transforms(self):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
@@ -94,7 +94,7 @@ class Writer(xetex.Writer):
         self.parts["json_data"] = self.json_data
 
 
-class XeLaTeXTranslator(xetex.XeLaTeXTranslator):
+class XeLaTeXJSONTranslator(xetex.XeLaTeXTranslator):
     def __init__(self, document, **kwargs):
         super().__init__(document, **kwargs)
         self.doctitle = None  # Keep this separate from the parent's `title`

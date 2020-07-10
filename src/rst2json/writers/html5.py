@@ -27,7 +27,7 @@ class Writer(html5_polyglot.Writer):
 
     def __init__(self):
         self.parts = {}
-        self.translator_class = HTMLTranslator
+        self.translator_class = HTMLJSONTranslator
 
     def get_transforms(self):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
@@ -78,7 +78,7 @@ class Writer(html5_polyglot.Writer):
         self.parts["json_data"] = self.json_data
 
 
-class HTMLTranslator(html5_polyglot.HTMLTranslator):
+class HTMLJSONTranslator(html5_polyglot.HTMLTranslator):
     def __init__(self, document):
         super().__init__(document)
         self.title = None
