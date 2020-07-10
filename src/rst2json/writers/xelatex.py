@@ -7,7 +7,7 @@ from   rst2json.util       import joinstrs
 
 class Writer(xetex.Writer):
     content_attributes = (
-        "doctitle", "subtitle", "title_stripped", "subtitle_stripped",
+        "title", "subtitle", "title_stripped", "subtitle_stripped",
         "document_ids", "subtitle_ids", "authors", "header", "footer",
         "docinfo", "abstract", "dedication", "body",
     )
@@ -21,7 +21,7 @@ class Writer(xetex.Writer):
     # List of visitor attributes that are lists that need to be joined into
     # strings before adding to the JSON data:
     joined_attributes = {
-        "doctitle", "subtitle",
+        "title", "subtitle",
         "header", "footer",
         "abstract", "dedication", "body",
         # In parent's head_parts:
@@ -84,7 +84,6 @@ class Writer(xetex.Writer):
             },
             "system_messages": self.get_attribute("system_messages"),
         }
-        data["content"]["title"] = data["content"].pop("doctitle")
         data["meta"]["generator"] \
             = self.visitor.encode(data["meta"]["generator"])
         self.json_data = data
@@ -97,7 +96,7 @@ class Writer(xetex.Writer):
 class XeLaTeXJSONTranslator(xetex.XeLaTeXTranslator):
     def __init__(self, document, **kwargs):
         super().__init__(document, **kwargs)
-        self.doctitle = None  # Keep this separate from the parent's `title`
+        self.title = None
         self.subtitle = None
         self.title_stripped = None
         self.subtitle_stripped = None
@@ -122,8 +121,8 @@ class XeLaTeXJSONTranslator(xetex.XeLaTeXTranslator):
 
     def visit_title(self, node):
         if isinstance(node.parent, nodes.document):
-            self.doctitle = []
-            self.push_output_collector(self.doctitle)
+            self.title = []
+            self.push_output_collector(self.title)
             self.title_stripped = self.attval(node.astext())
             self.context.append('')
             self.pdfinfo.append('  pdftitle={%s},' % self.encode(node.astext()))
