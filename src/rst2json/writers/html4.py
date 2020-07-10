@@ -207,10 +207,14 @@ class HTMLTranslator(html4css1.HTMLTranslator):
     def visit_docinfo_item(self, node, name, meta=True):
         self.push_output_collector([])
         assert self.current_docinfo_field is None
+        if name == "authors":
+            value_stripped = [self.attval(n.astext()) for n in node]
+        else:
+            value_stripped = self.attval(node.astext())
         self.current_docinfo_field = {
             "type": name,
             "name": self.language.labels[name],
-            "value_stripped": self.attval(node.astext()),
+            "value_stripped": value_stripped,
             "classes": node.get("classes", []),
         }
         if len(node):

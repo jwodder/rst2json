@@ -40,7 +40,7 @@
                 "type": "authors",
                 "name": "Authors",
                 "value": ["Joe Q. Programmer", "Jane Z. Coder"],
-                "value_stripped": "Joe Q. Programmer  Jane Z. Coder",
+                "value_stripped": ["Joe Q. Programmer", "Jane Z. Coder"],
                 "classes": []
             },
             {

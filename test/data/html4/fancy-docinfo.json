@@ -40,7 +40,10 @@
                     "<strong>The</strong> Jane Z. Programmer, Overlord of Time &amp; Space Constraints",
                     "<strong>The</strong> John X. Hacker, Conductor of Input &amp; Output"
                 ],
-                "value_stripped": "The Jane Z. Programmer, Overlord of Time &amp; Space Constraints  The John X. Hacker, Conductor of Input &amp; Output",
+                "value_stripped": [
+                    "The Jane Z. Programmer, Overlord of Time &amp; Space Constraints",
+                    "The John X. Hacker, Conductor of Input &amp; Output"
+                ],
                 "classes": []
             },
             {

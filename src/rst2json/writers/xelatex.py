@@ -201,10 +201,14 @@ class XeLaTeXTranslator(xetex.XeLaTeXTranslator):
     def visit_docinfo_item(self, node, name):
         self.push_output_collector([])
         assert self.current_docinfo_field is None
+        if name == "authors":
+            value_stripped = [self.attval(n.astext()) for n in node]
+        else:
+            value_stripped = self.attval(node.astext())
         self.current_docinfo_field = {
             "type": name,
             "name": self.language_label(name),
-            "value_stripped": self.attval(node.astext()),
+            "value_stripped": value_stripped,
             "classes": node.get("classes", []),
         }
 

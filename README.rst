@@ -211,12 +211,12 @@ The output from ``rst2json`` is a JSON object containing the following fields:
          significant, and ``value`` should be wrapped in ``<pre>`` tags or
          similar.
 
-      ``value_stripped`` : stripped string
+      ``value_stripped``
          The ``value`` field, but with non-escaping markup removed.  When
-         ``type`` is ``"authors"``, this field is equal to the elements of
-         ``value`` stripped of non-escaping markup and joined together with two
-         spaces as the delimiter.  This field can be used to populate the
-         ``content`` attribute of a ``<meta>`` tag.
+         ``type`` is ``"authors"`` (plural), this is a list of stripped
+         strings.  For all other values of ``type``, this is a stripped string.
+         This field can be used to populate the ``content`` attribute of a
+         ``<meta>`` tag.
 
       ``classes`` : list of strings
          A list of classes attached to the field.  Normally, for registered

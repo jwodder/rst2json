@@ -42,7 +42,10 @@
                     "\\textbf{The} Jane Z. Programmer, Overlord of Time \\& Space Constraints",
                     "\\textbf{The} John X. Hacker, Conductor of Input \\& Output"
                 ],
-                "value_stripped": "The Jane Z. Programmer, Overlord of Time \\& Space Constraints  The John X. Hacker, Conductor of Input \\& Output",
+                "value_stripped": [
+                    "The Jane Z. Programmer, Overlord of Time \\& Space Constraints",
+                    "The John X. Hacker, Conductor of Input \\& Output"
+                ],
                 "classes": []
             },
             {

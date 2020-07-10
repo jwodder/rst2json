@@ -47,7 +47,7 @@
                 "type": "authors",
                 "name": "Authors",
                 "value": ["Me", "Myself", "I"],
-                "value_stripped": "Me  Myself  I",
+                "value_stripped": ["Me", "Myself", "I"],
                 "classes": []
             },
             {
