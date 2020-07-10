@@ -2,6 +2,8 @@ import json
 import os
 from   pathlib           import Path
 from   traceback         import format_exception
+import pytest
+from   rst2json          import __version__
 from   rst2json.__main__ import main
 from   rst2json.core     import versioned_meta_strings
 
@@ -25,23 +27,24 @@ def show_result(r):
         return r.output
 
 def pytest_generate_tests(metafunc):
-    argvalues = []
-    ids = []
-    for fmt in FORMATS:
-        for p in (DATA_DIR / fmt).iterdir():
-            if p.suffix == '.rst':
-                input_path = p
-                json_path = p.with_suffix('.json')
-                conf_path = p.with_suffix('.conf')
-                if not conf_path.exists():
-                    conf_path = None
-                argvalues.append((fmt, input_path, json_path, conf_path))
-                ids.append(str(input_path.relative_to(DATA_DIR)))
-    metafunc.parametrize(
-        'fmt,input_path,json_path,conf_path',
-        argvalues,
-        ids=ids,
-    )
+    if 'fmt' in metafunc.fixturenames:
+        argvalues = []
+        ids = []
+        for fmt in FORMATS:
+            for p in (DATA_DIR / fmt).iterdir():
+                if p.suffix == '.rst':
+                    input_path = p
+                    json_path = p.with_suffix('.json')
+                    conf_path = p.with_suffix('.conf')
+                    if not conf_path.exists():
+                        conf_path = None
+                    argvalues.append((fmt, input_path, json_path, conf_path))
+                    ids.append(str(input_path.relative_to(DATA_DIR)))
+        metafunc.parametrize(
+            'fmt,input_path,json_path,conf_path',
+            argvalues,
+            ids=ids,
+        )
 
 def test_rst2json(capsys, monkeypatch, fmt, input_path, json_path, conf_path):
     with json_path.open() as fp:
@@ -65,3 +68,13 @@ def test_rst2json(capsys, monkeypatch, fmt, input_path, json_path, conf_path):
     stdout, _ = capsys.readouterr()
     output = json.loads(stdout)
     assert output == expected
+
+def test_rst2json_usage_error():
+    with pytest.raises(SystemExit) as excinfo:
+        main(['--format'])
+    assert '--format option missing required argument' in str(excinfo.value)
+
+def test_rst2json_version(capsys):
+    main(['--version'])
+    stdout, _ = capsys.readouterr()
+    assert stdout == f'rst2json {__version__}\n'
