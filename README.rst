@@ -69,7 +69,7 @@ Valid values (case insensitive) are:
    stylesheet distributed with Docutils) must be added to the final document in
    order for everything to render properly.
 
-``html5`` (not yet implemented)
+``html5``
    HTML 5 output, based on the Docutils writer used for ``rst2html4.py``.  A
    CSS stylesheet (such as the ``minimal.css`` and ``plain.css`` stylesheets
    distributed with Docutils) must be added to the final document in order for
