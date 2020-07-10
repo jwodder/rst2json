@@ -35,6 +35,7 @@ def test_get_json_writer_class(fmt, cls):
     '.html4',
     'writers.html4',
     'rst2json.writers.html4',
+    '_json_base',
 ])
 def test_get_invalid_json_writer_class(fmt):
     with pytest.raises(ValueError) as excinfo:
