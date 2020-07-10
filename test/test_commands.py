@@ -1,7 +1,5 @@
 import json
-import os
 from   pathlib           import Path
-from   traceback         import format_exception
 import pytest
 from   rst2json          import __version__
 from   rst2json.__main__ import main
@@ -10,21 +8,6 @@ from   rst2json.core     import versioned_meta_strings
 DATA_DIR = Path(__file__).with_name('data')
 
 FORMATS = ['html4', 'html5', 'latex', 'xelatex']
-
-def apply_versioned_meta_strings(data):
-    assert 'meta' in data, "'meta' field missing from data"
-    assert isinstance(data['meta'], dict), "'meta' field is not a dict"
-    for k,v in versioned_meta_strings.items():
-        assert k in data['meta'], "{k!r} field not in 'meta' dict"
-        data['meta'][k] = v
-
-def show_result(r):
-    if r.exception is not None:
-        return ''.join(format_exception(*r.exc_info))
-    elif r.stderr is not None:
-        return r.stdout + '\n---\n' + r.stderr
-    else:
-        return r.output
 
 def pytest_generate_tests(metafunc):
     if 'fmt' in metafunc.fixturenames:
@@ -49,10 +32,13 @@ def pytest_generate_tests(metafunc):
 def test_rst2json(capsys, monkeypatch, fmt, input_path, json_path, conf_path):
     with json_path.open() as fp:
         expected = json.load(fp)
-    apply_versioned_meta_strings(expected)
+    assert 'meta' in expected, "'meta' field missing from `expected`"
+    assert isinstance(expected['meta'], dict), "'meta' field is not a dict"
+    for k,v in versioned_meta_strings.items():
+        assert k in expected['meta'], "{k!r} field not in 'meta' dict"
+        expected['meta'][k] = v
     args = [
         f'--format={fmt}',
-        f'--warnings={os.devnull}',
         # --auto-id-prefix needs to be explicitly set because its default value
         # will change in a future version of Docutils
         '--auto-id-prefix=id',
