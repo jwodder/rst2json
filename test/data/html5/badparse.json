@@ -32,7 +32,7 @@
             "type": "WARNING",
             "source": "html5/badparse.rst",
             "line": 1,
-            "body": "Inline emphasis start-string without end-string.",
+            "body": "<p>Inline emphasis start-string without end-string.</p>",
             "ids": ["id1"],
             "backrefs": ["id2"]
         }

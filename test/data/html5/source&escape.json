@@ -32,7 +32,7 @@
             "type": "WARNING",
             "source": "html5/source&amp;escape.rst",
             "line": 5,
-            "body": "Duplicate explicit target name: &quot;test&quot;.",
+            "body": "<p>Duplicate explicit target name: &quot;test&quot;.</p>",
             "ids": [],
             "backrefs": ["id1"]
         }

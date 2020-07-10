@@ -40,7 +40,7 @@
             "type": "WARNING",
             "source": "html5/multi-abstract.rst",
             "line": 2,
-            "body": "There can only be one &quot;Abstract&quot; field.",
+            "body": "<p>There can only be one &quot;Abstract&quot; field.</p>",
             "ids": [],
             "backrefs": []
         }
