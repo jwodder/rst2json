@@ -1,93 +1,93 @@
 <!--
     This is a Jinja2 template that can be applied to the output from `rst2json
-    --format=html4` to produce an HTML4 document that is as close to the output
-    from `rst2html4.py --link-stylesheet` as is reasonably possible.
+    --format=html5` to produce an HTML4 document that is as close to the output
+    from `rst2html5.py --link-stylesheet` as is reasonably possible.
 -->
 
-<?xml version="1.0" encoding="utf-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{meta.language|escape}}" lang="{{meta.language|escape}}">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8"/>
 <meta name="generator" content="{{meta.generator|escape}}" />
 <title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source|safe}}{% endif %}</title>
 {% for item in content.docinfo %}
-{% if item.type in ['author', 'copyright', 'date', 'organization'] %}
+{% if item.type == 'author' %}
 <meta name="{{item.type|escape}}" content="{{item.value_stripped|safe}}" />
 {% elif item.type == 'authors' %}
-<meta name="{{item.type|escape}}" content="{{item.value_stripped|join("  ")|safe}}" />
+{% for a in item.value_stripped %}
+<meta name="author" content="{{a|safe}}" />
+{% endfor %}
+{% elif item.type == 'copyright' %}
+<meta name="dcterms.rights" content="{{item.value_stripped|safe}}" />
+{% elif item.type == 'date' %}
+<meta name="dcterms.date" content="{{item.value_stripped|safe}}" />
 {% endif %}
 {% endfor %}
 {{html.meta_tags|safe}}
-{% if 'name="dcterms.' in meta.meta_tags %}
+{% if 'name="dcterms.' in meta.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date']) %}
 <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
 {% endif %}
-<link rel="stylesheet" href="html4css1.css" type="text/css" />
+<link rel="stylesheet" href="minimal.css" type="text/css" />
+<link rel="stylesheet" href="plain.css" type="text/css" />
 {{html.math_requires|safe}}
 </head>
 <body>
-
 {% if content.header %}
 <div class="header">
 {{content.header|safe}}
 <hr class="header"/>
 </div>
 {% endif %}
-
 <div class="document"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
 
 {% if content.title %}
 <h1 class="title">{{content.title|safe}}</h1>
 {% endif %}
 {% if content.subtitle %}
-<h2 class="subtitle"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</h2>
+<p class="subtitle"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</p>
 {% endif %}
-
 {% if content.docinfo %}
-<table class="docinfo" frame="void" rules="none">
-<col class="docinfo-name" />
-<col class="docinfo-content" />
-<tbody valign="top">
+<dl class="docinfo">
 {% for item in content.docinfo %}
-<tr{% if item.type == 'field' %} class="{{item.classes|join(' ')|escape}} field"{% endif %}><th class="docinfo-name">{{item.name|safe}}:</th>
-<td{% if item.type == 'field' %} class="field-body"{% endif %}>{% if item.type == 'address' %}<pre class="address">
-{{item.value|safe}}
-</pre>
-</td></tr>
-{% elif item.type == 'authors' %}
-{% set sep = joiner('<br />') %}
+{% if item.type == 'field' %}
+{% set cls = item.classes|join(' ') %}
+{% else %}
+{% set cls = item.type %}
+{% endif %}
+<dt class="{{cls|escape}}">{{item.name}}</dt>
+<dd class="{{cls|escape}}">{% if item.type == 'author' %}
+<p>{{item.value|safe}}</p>{% elif item.type == 'authors' %}
 {% for a in item.value %}
-{{sep()|safe}}{{a}}
-{% endfor %}</td></tr>
-{% else %}{{item.value|safe}}</td></tr>
-{% endif %}
+<p>{{a|safe}}</p>
 {% endfor %}
-</tbody>
-</table>
+{% elif item.type == 'address' %}
+<pre class="address">{{item.value|safe}}
+</pre>
+{% else %}
+{{item.value|safe}}{% endif %}</dd>
+{% endfor %}
+</dl>
 {% endif %}
-
 {% if content.dedication %}
 <div class="dedication topic">
 <p class="topic-title">Dedication</p>
 {{content.dedication|safe}}
 </div>
 {% endif %}
-
 {% if content.abstract %}
 <div class="abstract topic">
 <p class="topic-title">Abstract</p>
 {{content.abstract|safe}}
 </div>
 {% endif %}
-
 {{content.body|safe}}
-
 {% if system_messages %}
 <div class="system-messages section">
 <h1>Docutils System Messages</h1>
 {% for msg in system_messages %}
 <div class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
-<p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<tt class="docutils">{{msg.source|safe}}</tt>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
+
+<p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<span class="docutils literal">{{msg.source|safe}}</span>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
     {% if msg.backrefs|length == 1 %}
     <em><a href="#{{msg.backrefs[0]|escape}}">backlink</a></em>
     {% else %}
@@ -100,19 +100,17 @@
     {% endif %}
     {% endif %}
 </p>
-{{msg.body|safe}}</div>
+{{msg.body|safe}}
+</div>
 {% endfor %}
 </div>
 {% endif %}
-
 </div>
-
 {% if content.footer %}
 <div class="footer">
 <hr class="footer" />
 {{content.footer|safe}}
 </div>
 {% endif %}
-
 </body>
 </html>
