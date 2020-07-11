@@ -120,6 +120,8 @@ Library Usage
 Convenience Function
 --------------------
 
+*New in version 0.2.0*
+
 .. code:: python
 
     rst2json.core.rst2json(source, format='html', options=None, config_files=None, destination_path=None)
@@ -162,7 +164,7 @@ Docutils Writers
 
 The actual rendering & conversion to JSON is done by custom Writer classes
 inheriting from Docutils' built-in Writers.  Users familiar with Docutils can
-thus use these Writers directly in combination with other Docutils machinery.
+use these Writers directly in combination with other Docutils machinery.
 
 The ``rst2json.writers.get_json_writer_class()`` function can be used to
 retrieve a specific Writer class by case-insensitive name.  The classes and
