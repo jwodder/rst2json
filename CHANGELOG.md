@@ -1,3 +1,7 @@
+v0.2.0.post1 (2020-07-11)
+-------------------------
+- Fix failing tests
+
 v0.2.0 (2020-07-11)
 -------------------
 - Added a convenience function, ``rst2json()``, for converting reStructuredText
