@@ -114,6 +114,75 @@ an effect when emitting HTML with ``math_output`` set to ``html`` with a
 stylesheet argument.
 
 
+Library Usage
+=============
+
+Convenience Function
+--------------------
+
+.. code:: python
+
+    rst2json.core.rst2json(source, format='html', options=None, config_files=None, destination_path=None)
+
+``rst2json`` provides a ``rst2json.core.rst2json()`` function for rendering &
+splitting reStructuredText into a ``dict`` directly within Python.
+
+``source`` specifies the input reStructuredText markup.  It can be a path to a
+file (a string), a file-like object (with ``read()`` and ``close()`` methods),
+or a path-like object.
+
+``format`` is a string specifying the markup format to produce.  It has the
+same set of possible values as the ``--format`` option to the ``rst2json``
+command.  Alternatively, it may be set directly to a Docutils writer class.
+
+``options`` sets values for Docutils settings.  When non-``None``, it must be a
+``dict`` that maps option names to option values.  Option names must be given
+as listed at <https://docutils.sourceforge.io/docs/user/config.html>, i.e., no
+leading hyphens, with internal hyphens replaced with underscores.  Option
+values must be of the appropriate Python type, e.g., ``bool`` for on/off
+switches or ``List[str]`` for comma-separated values.
+
+``config_files`` is a list of file paths specifying the Docutils configuration
+files to read from; if ``None``, configuration is read from the files specified
+in the ``DOCUTILSCONFIG`` environment variable, or from the standard
+configuration files if that is not set.  Settings in configuration files
+override any conflicting settings given in ``options``.
+
+``destination_path`` is a path to a file (which need not exist) which
+stylesheet paths in HTML ``<link>`` tags will be rewritten relative to; if
+``None``, the paths are rewritten relative to the current directory.  This
+parameter is only relevant when emitting HTML with ``math_output`` set to
+``html`` with a stylesheet argument.
+
+.. Will also be relevant if stylesheet_path links are ever captured
+
+
+Docutils Writers
+----------------
+
+The actual rendering & conversion to JSON is done by custom Writer classes
+inheriting from Docutils' built-in Writers.  Users familiar with Docutils can
+thus use these Writers directly in combination with other Docutils machinery.
+
+The ``rst2json.writers.get_json_writer_class()`` function can be used to
+retrieve a specific Writer class by case-insensitive name.  The classes and
+their names are as follows:
+
+======================  ===================================
+Names                   Class
+======================  ===================================
+``html``, ``html4``     ``rst2json.writers.html4.Writer``
+``html5``               ``rst2json.writers.html5.Writer``
+``latex``, ``latex2e``  ``rst2json.writers.latex.Writer``
+``xelatex``, ``xetex``  ``rst2json.writers.xelatex.Writer``
+======================  ===================================
+
+Each Writer's ``translate()`` method sets ``writer.json_data`` to the final
+JSON structure as a ``dict`` and sets ``writer.output`` to ``json_data`` as a
+JSON-serialized string.  After ``assemble_parts()`` is then called,
+``writer.parts["json_data"]`` will also equal the JSON ``dict``.
+
+
 JSON Output Structure
 =====================
 

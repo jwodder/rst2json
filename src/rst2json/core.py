@@ -1,5 +1,9 @@
-from docutils import __version__ as docutils_version
-from rst2json import __url__, __version__
+import os
+from   docutils      import __version__ as docutils_version
+from   docutils.core import publish_parts
+from   docutils.io   import FileInput
+from   .             import __url__, __version__
+from   .writers      import get_json_writer_class
 
 docutils_url = 'http://docutils.sourceforge.net/'
 
@@ -11,3 +15,73 @@ versioned_meta_strings = {
         f' Docutils {docutils_version} ({docutils_url})'
     ),
 }
+
+def rst2json(source, format='html', options=None, config_files=None,
+             destination_path=None):
+    """
+    Render reStructuredText in a given markup format and split the parts into a
+    `dict`.
+
+    :param source: The input reStructuredText markup.  It can be a path to a
+        file (a string), a file-like object (with ``read()`` and ``close()``
+        methods), or a path-like object.
+
+    :param format: A string specifying the markup format to produce.  It has
+        the same set of possible values as the :option:`--format` option to the
+        :command:`rst2json` command.  Alternatively, it may be set directly to
+        a Docutils writer class.
+
+    :param options: Set values for Docutils settings.  When non-`None`, it must
+        be a `dict` that maps option names to option values.  Option names must
+        be given as listed at
+        <https://docutils.sourceforge.io/docs/user/config.html>, i.e., no
+        leading hyphens, with internal hyphens replaced with underscores.
+        Option values must be of the appropriate Python type, e.g., `bool` for
+        on/off switches or ``List[str]`` for comma-separated values.
+
+    :param config_files: List of file paths specifying the Docutils
+        configuration files to read from; if `None`, configuration is read
+        from the files specified in the :envvar:`DOCUTILSCONFIG` environment
+        variable, or from the standard configuration files if that is not set.
+        Settings in configuration files override any conflicting settings given
+        in ``options``.
+
+    :param destination_path: Path to a file (which need not exist) which
+        stylesheet paths in HTML ``<link>`` tags will be rewritten relative to;
+        if `None`, the paths are rewritten relative to the current directory.
+        This parameter is only relevant when emitting HTML with ``math_output``
+        set to ``html`` with a stylesheet argument.
+
+    :rtype: dict
+    """
+
+    if hasattr(source, 'read'):
+        source_path = None
+    else:
+        source_path = os.fspath(source)
+        source = None
+    if isinstance(format, type):
+        writer = format()
+    else:
+        writer = get_json_writer_class(format)()
+    old_docutilsconfig = os.environ.get("DOCUTILSCONFIG")
+    if config_files is not None:
+        os.environ["DOCUTILSCONFIG"] \
+            = os.pathsep.join(map(os.fsdecode, config_files))
+    if destination_path is not None:
+        destination_path = os.fsdecode(destination_path)
+    try:
+        parts = publish_parts(
+            source             = source,
+            source_path        = source_path,
+            source_class       = FileInput,
+            destination_path   = destination_path,
+            writer             = writer,
+            settings_overrides = options,
+        )
+    finally:
+        if old_docutilsconfig is None:
+            os.environ.pop("DOCUTILSCONFIG", None)
+        else:
+            os.environ["DOCUTILSCONFIG"] = old_docutilsconfig
+    return parts["json_data"]
