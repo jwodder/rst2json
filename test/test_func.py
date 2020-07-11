@@ -114,8 +114,12 @@ OUTPUT_NO_DOC_TITLE = {
 
 def test_func_stringio():
     expected = deepcopy(OUTPUT)
-    expected["meta"]["source"] = None
-    expected["system_messages"][0]["source"] = None
+    # As of docutils v0.16, an unknown source value is stored in
+    # ``document["source"]`` as the string ``"None"`` rather than as an actual
+    # `None`.  This has been reported as a bug at
+    # <https://sourceforge.net/p/docutils/bugs/395/>.
+    expected["meta"]["source"] = 'None'
+    expected["system_messages"][0]["source"] = 'None'
     data = rst2json(StringIO(INPUT), format='html4', config_files=[])
     assert data == expected
 
