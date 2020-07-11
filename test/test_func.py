@@ -89,11 +89,11 @@ OUTPUT_NO_DOC_TITLE = {
         "meta_tags": ""
     },
     "meta": {
-        "docutils_version": "0.16",
+        "docutils_version": versioned_meta_strings["docutils_version"],
         "format": "html4",
-        "generator": "rst2json 0.2.0.dev1 (https://github.com/jwodder/rst2json), Docutils 0.16 (http://docutils.sourceforge.net/)",
+        "generator": versioned_meta_strings["generator"],
         "language": "en",
-        "rst2json_version": "0.2.0.dev1",
+        "rst2json_version": versioned_meta_strings["rst2json_version"],
         "source": "input.rst",
         "title": None,
     },
