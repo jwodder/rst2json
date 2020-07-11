@@ -64,3 +64,32 @@ def test_rst2json_version(capsys):
     main(['--version'])
     stdout, _ = capsys.readouterr()
     assert stdout == f'rst2json {__version__}\n'
+
+def test_rst2json_config_via_options(capsys, monkeypatch):
+    FORMAT = 'html4'
+    INPUT = DATA_DIR / FORMAT / 'configged.rst'
+    with INPUT.with_suffix('.json').open() as fp:
+        expected = json.load(fp)
+    assert 'meta' in expected, "'meta' field missing from `expected`"
+    assert isinstance(expected['meta'], dict), "'meta' field is not a dict"
+    for k,v in versioned_meta_strings.items():
+        assert k in expected['meta'], "{k!r} field not in 'meta' dict"
+        expected['meta'][k] = v
+    args = [
+        f'--format={FORMAT}',
+        # --auto-id-prefix needs to be explicitly set because its default value
+        # will change in a future version of Docutils
+        '--auto-id-prefix=id',
+        '--traceback',
+        '--smart-quotes=yes',
+        '--no-doc-title',
+        '--section-subtitles',
+        str(INPUT.relative_to(DATA_DIR)),
+    ]
+    monkeypatch.chdir(DATA_DIR)
+    # Override DOCUTILSCONFIG to disable standard/implicit config files
+    monkeypatch.setenv("DOCUTILSCONFIG", "")
+    main(args)
+    stdout, _ = capsys.readouterr()
+    output = json.loads(stdout)
+    assert output == expected
