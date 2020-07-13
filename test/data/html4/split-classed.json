@@ -1,0 +1,49 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html4/split-classed.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4",
+        "split_section_level": 1
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "subtitle_ids": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "intro": "<p>Here be an introduction.</p>",
+        "sections": [
+            {
+                "title": "Section Title",
+                "title_stripped": "Section Title",
+                "subtitle": "Section Subtitle",
+                "subtitle_stripped": "Section Subtitle",
+                "ids": ["section-title"],
+                "classes": ["sect-class"],
+                "subtitle_ids": ["section-subtitle"],
+                "subtitle_classes": ["subclass"],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "body": "<p>Lorem ipsum yadda yadda yadda.</p>"
+            }
+        ]
+    },
+    "id_sections": {},
+    "system_messages": []
+}
