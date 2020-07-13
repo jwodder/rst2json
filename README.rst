@@ -446,7 +446,7 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       The rendered content after the frontmatter, but before the first section.
       This field is only present if ``split_section_level`` is not 0.
 
-   ``section`` : list of objects
+   ``sections`` : list of objects
       A list of the top-level sections of the document, each one represented as
       an object with the below fields.  This field is only present if
       ``split_section_level`` is not 0.
