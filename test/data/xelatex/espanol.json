@@ -6,7 +6,8 @@
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --",
-        "format": "xelatex"
+        "format": "xelatex",
+        "split_section_level": 0
     },
     "latex": {
         "language": "spanish",

@@ -6,7 +6,8 @@
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --",
-        "format": "html4"
+        "format": "html4",
+        "split_section_level": 0
     },
     "html": {
         "meta_tags": "",

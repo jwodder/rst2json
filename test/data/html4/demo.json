@@ -6,7 +6,8 @@
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --",
-        "format": "html4"
+        "format": "html4",
+        "split_section_level": 0
     },
     "html": {
         "meta_tags": "<meta content=\"reStructuredText, demonstration, demo, parser\" name=\"keywords\" />\n<meta content=\"A demonstration of the reStructuredText markup language, containing examples of all basic constructs and many advanced constructs.\" lang=\"en\" name=\"description\" />",
