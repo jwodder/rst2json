@@ -683,9 +683,11 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    "`Configuration Options`_") is not 0.  It is a map in which each key is an ID
    appearing in the rendered document body and the corresponding value is the
    first ID of the deepest split-section object in which the key ID occurs.
-   IDs that appear in ``content.intro`` are mapped to the special string
-   ``"$intro"``.  IDs of top-level sections are not included as keys in this
-   map, but IDs of deeper sections are.
+   IDs of inter-section transitions are mapped to the ID of the section in
+   whose ``trailing_transition`` field they are stored.  IDs that appear in
+   ``content.intro`` are mapped to the special string ``"$intro"``.  IDs of
+   top-level sections are not included as keys in this map, but IDs of deeper
+   sections are.
 
    This field can be used to rewrite inter-document links when the output is
    used to create a separate templated document for each section.
