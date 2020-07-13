@@ -378,7 +378,7 @@ class JSONTranslatorBase:
     def depart_section(self, node):
         if 'system-messages' in node["classes"]:
             pass
-        elif self.split_this_level(self.section_level):
+        elif self.split_this_level():
             self.section_level -= 1
             sectobj = self.section_stack.pop()
             if "body" in sectobj or not sectobj["sections"]:
@@ -394,6 +394,30 @@ class JSONTranslatorBase:
                 self.sections.append(sectobj)
         else:
             super().depart_section(node)
+
+    def visit_transition(self, node):
+        if self.split_this_level(self.section_level + 1) and (
+            (self.section_level == 0 and self.sections)
+            or (self.section_stack and self.section_stack[-1]["sections"])
+        ):
+            if self.section_stack:
+                sectobj = self.section_stack[-1]["sections"][-1]
+            else:
+                sectobj = self.sections[-1]
+            sectobj["trailing_transition"] = {
+                "ids": node.get('ids', []),
+                "classes": node.get('classes', []),
+            }
+            try:
+                sectid = sectobj["ids"][0]
+            except IndexError:
+                pass
+            else:
+                for d in node.get('ids', []):
+                    self.id_sections[d] = sectid
+            raise nodes.SkipNode
+        else:
+            super().visit_transition(node)
 
     def visit_title(self, node):
         if isinstance(node.parent, nodes.document):

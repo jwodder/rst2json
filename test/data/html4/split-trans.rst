@@ -1,3 +1,7 @@
+The following transition goes into "intro":
+
+----
+
 Section 1
 =========
 
@@ -26,5 +30,17 @@ and ID!
 
 Section 3
 =========
+
+Just some filler text.
+
+Section 3.1
+-----------
+
+The following transition goes between sections 3.1 and 3.2:
+
+----
+
+Section 3.2
+-----------
 
 Some trailing text.

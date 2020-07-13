@@ -28,7 +28,7 @@
         "docinfo": [],
         "dedication": null,
         "abstract": null,
-        "intro": "",
+        "intro": "<p>The following transition goes into &quot;intro&quot;:</p>\n<hr class=\"docutils\" />",
         "sections": [
             {
                 "title": "Section 1",
@@ -95,14 +95,49 @@
                 "number": null,
                 "depth": 1,
                 "trailing_transition": null,
-                "intro": "<p>Some trailing text.</p>",
-                "sections": []
+                "intro": "<p>Just some filler text.</p>",
+                "sections": [
+                    {
+                        "title": "Section 3.1",
+                        "title_stripped": "Section 3.1",
+                        "subtitle": null,
+                        "subtitle_stripped": null,
+                        "ids": ["section-3-1"],
+                        "classes": [],
+                        "subtitle_ids": [],
+                        "subtitle_classes": [],
+                        "toc_backref": null,
+                        "number": null,
+                        "depth": 2,
+                        "trailing_transition": {"ids": [], "classes": []},
+                        "intro": "<p>The following transition goes between sections 3.1 and 3.2:</p>",
+                        "sections": []
+                    },
+                    {
+                        "title": "Section 3.2",
+                        "title_stripped": "Section 3.2",
+                        "subtitle": null,
+                        "subtitle_stripped": null,
+                        "ids": ["section-3-2"],
+                        "classes": [],
+                        "subtitle_ids": [],
+                        "subtitle_classes": [],
+                        "toc_backref": null,
+                        "number": null,
+                        "depth": 2,
+                        "trailing_transition": null,
+                        "intro": "<p>Some trailing text.</p>",
+                        "sections": []
+                    }
+                ]
             }
         ]
     },
     "id_sections": {
-        "a-rule": "section-2",
-        "section-2-1": "section-2"
+        "transit": "section-2",
+        "section-2-1": "section-2",
+        "section-3-1": "section-3",
+        "section-3-2": "section-3"
     },
     "system_messages": []
 }
