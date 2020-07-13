@@ -91,27 +91,13 @@ Valid values (case insensitive) are:
 ``xelatex``
    XeLaTeX output, based on the Docutils writer used for ``rst2xetex.py``
 
-In addition to the ``--format`` option, ``rst2json`` accepts all options that
-Docutils' ``rst2html4.py``, ``rst2html5.py``, ``rst2latex.py``, and
-``rst2xetex.py`` commands accept, and it can also be configured via a `Docutils
-configuration file <https://docutils.sourceforge.io/docs/user/config.html>`_
-the same way as the respective Docutils commands.
-
-``rst2json`` ignores the following Docutils configuration options, as they have
-no effect on its operation:
-
-- ``documentclass``
-- ``documentoptions``
-- ``latex_preamble``
-- ``stylesheet_path``
-- ``stylesheet``
-- ``template``
-- ``use_latex_abstract``
-- ``use_latex_docinfo``
-
-In addition, the ``embed_stylesheet`` and ``stylesheet_dirs`` options only have
-an effect when emitting HTML with ``math_output`` set to ``html`` with a
-stylesheet argument.
+In addition to the ``--format`` option, the ``rst2json`` command accepts all
+options that Docutils' ``rst2html4.py``, ``rst2html5.py``, ``rst2latex.py``,
+and ``rst2xetex.py`` commands accept, and it can also be configured via a
+`Docutils configuration file
+<https://docutils.sourceforge.io/docs/user/config.html>`_ the same way as the
+respective Docutils commands.  Additional ``rst2json``-specific options are
+also accepted; see "`Configuration Options`_" for details.
 
 
 Library Usage
@@ -143,7 +129,9 @@ writer class.
 as listed at <https://docutils.sourceforge.io/docs/user/config.html>, i.e., no
 leading hyphens, with internal hyphens replaced with underscores.  Option
 values must be of the appropriate Python type, e.g., ``bool`` for on/off
-switches or ``List[str]`` for comma-separated values.
+switches or ``List[str]`` for comma-separated values.  Both standard Docutils
+options and the ``rst2json``-specific options listed under "`Configuration
+Options`_" are accepted.
 
 ``config_files`` is a list of file paths specifying the Docutils configuration
 files to read from; if ``None``, configuration is read from the files specified
@@ -184,6 +172,142 @@ Each Writer's ``translate()`` method sets ``writer.json_data`` to the final
 JSON structure as a ``dict`` and sets ``writer.output`` to ``json_data`` as a
 JSON-serialized string.  After ``assemble_parts()`` is then called,
 ``writer.parts["json_data"]`` will also equal the JSON ``dict``.
+
+
+Configuration Options
+=====================
+
+New Options
+-----------
+
+In addition to the standard Docutils options, ``rst2json`` accepts the
+following options, both via configuration files and (for the command) via the
+command line.  When setting these options via a configuration file, they should
+be placed in an ``[rst2json]`` section.
+
+``split_section_level``
+~~~~~~~~~~~~~~~~~~~~~~~
+
+*New in version 0.3.0*
+
+Set this option to an integer value.  Setting it to a positive number causes
+the content body to be split up into an ``"intro"`` field (all content before
+the start of the first section) and a ``"sections"`` field (each section
+represented as an object).  The sections' subsections are split up as well, up
+to a depth given by the value of ``split_section_level``.  Setting this option
+to zero disables section splitting; setting it to a negative number causes all
+sections at all depths to be split up.
+
+As an example, consider the following document:
+
+.. code:: restructuredtext
+
+    Text before sections, except after C.
+
+    Section 1
+    =========
+
+    .. _foo:
+
+    Lorem ipsum yadda yadda yadda.
+
+    Section 2
+    =========
+
+    'Twas brillig, and the slithy toves did gyre and gimble in the wabe.
+
+    Section 2.1
+    -----------
+
+    .. _bar:
+
+    All mimsy were the borogoves, and the mome raths outgrabe.
+
+    Section 2.1.1
+    ~~~~~~~~~~~~~
+
+    Beware the Jabberwock, my son!
+
+Processing this document with ``split_section_level`` set to 1 will produce a
+JSON document in which the ``content`` object's ``body`` field is replaced with
+the following fields (Some fields have been omitted for brevity):
+
+.. code:: json
+
+    {
+        "intro": "<p>Text before sections, except after C.</p>",
+        "sections": [
+            {
+                "title": "Section 1",
+                "ids": ["section-1"],
+                "depth": 1,
+                "body": "<p id=\"foo\">Lorem ipsum yadda yadda yadda.</p>\n"
+            },
+            {
+                "title": "Section 2",
+                "ids": ["section-2"],
+                "depth": 1,
+                "body": "<p>'Twas brillig, and the slithy toves did gyre and gimble in the wabe.</p>\n<div class=\"section\" id=\"section-2-1\">\n<h2>Section 2.1</h2>\n<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<div class=\"section\" id=\"section-2-1-1\">\n<h3>Section 2.1.1</h3>\n<p>Beware the Jabberwock, my son!</p>\n</div>\n</div>"
+            }
+        ]
+    }
+
+Processing with the option set to 2 causes all top-level sections' bodies to be
+split up into ``"intro"`` and ``"sections"`` like so:
+
+.. code:: json
+
+    {
+        "intro": "<p>Text before sections, except after C.</p>",
+        "sections": [
+            {
+                "title": "Section 1",
+                "ids": ["section-1"],
+                "depth": 1,
+                "intro": "<p id=\"foo\">Lorem ipsum yadda yadda yadda.</p>",
+                "sections": []
+            },
+            {
+                "title": "Section 2",
+                "ids": ["section-2"],
+                "depth": 1,
+                "intro": "<p>'Twas brillig, and the slithy toves did gyre and gimble in the wabe.</p>",
+                "sections": [
+                    {
+                        "title": "Section 2.1",
+                        "ids": ["section-2-1"],
+                        "depth": 2,
+                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<div class=\"section\" id=\"section-2-1-1\">\n<h3>Section 2.1.1</h3>\n<p>Beware the Jabberwock, my son!</p>\n</div>"
+                    }
+                ]
+            }
+        ]
+    }
+
+Setting the option to 3 will in turn cause the "Section 2.1" object to also be
+split up, and so forth.
+
+Default: 0.  Command line option: ``--split-section-level``
+
+
+Ignored Options
+---------------
+
+``rst2json`` ignores the following Docutils configuration options, as they have
+no effect on its operation:
+
+- ``documentclass``
+- ``documentoptions``
+- ``latex_preamble``
+- ``stylesheet_path``
+- ``stylesheet``
+- ``template``
+- ``use_latex_abstract``
+- ``use_latex_docinfo``
+
+In addition, the ``embed_stylesheet`` and ``stylesheet_dirs`` options only have
+an effect when emitting HTML with ``math_output`` set to ``html`` with a
+stylesheet argument.
 
 
 JSON Output Structure
@@ -314,7 +438,72 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       block are not included.
 
    ``body`` : rendered string
-      The rendered contents of the rest of the document.
+      The rendered contents of the rest of the document after the frontmatter.
+      This field is only present if ``split_section_level`` (See
+      "`Configuration Options`_") is 0.
+
+   ``intro`` : rendered string
+      The rendered content after the frontmatter, but before the first section.
+      This field is only present if ``split_section_level`` is not 0.
+
+   ``section`` : list of objects
+      A list of the top-level sections of the document, each one represented as
+      an object with the below fields.  This field is only present if
+      ``split_section_level`` is not 0.
+
+      ``title`` : rendered string
+         The section title
+
+      ``subtitle`` : rendered string or ``null``
+         The section subtitle, derived from a lone second-level title after the
+         section title if |sectsubtitle_xform|_ is enabled, or ``null`` if no
+         subtitle was specified or ``sectsubtitle_xform`` was not enabled.
+
+      ``title_stripped`` : stripped string
+         The ``title`` field, but with non-escaping markup removed
+
+      ``subtitle_stripped`` : stripped string or ``null``
+         The ``subtitle`` field, but with non-escaping markup removed
+
+      ``ids`` : list of strings
+         A list of all IDs assigned to the parsed ``section`` node.
+
+      ``subtitle_ids`` : list of strings
+         A list of all IDs assigned to the section subtitle, or the empty list
+         if the section does not have a subtitle.
+
+         (As far as I can determine, it is not possible for a section title to
+         have any IDs; there is thus no ``title_ids`` field.)
+
+      ``toc_backref`` : string or ``null``
+         If this section is listed in a table of contents with backlinks, this
+         field will equal the ID of the location in the table of contents that
+         the backlink should point to; otherwise, it will be ``null``.  If the
+         section is listed in more than one table of contents with backlinks,
+         which value ends up in this field is Docutils-implementation-defined.
+
+      ``number`` : string or ``null``
+         The section number as generated by the ``sectnum::`` directive, or
+         ``null`` if no section number was generated for the section.
+
+      ``depth`` : integer
+         The depth of the section: 1 for a top-level section, 2 for a
+         subsection, 3 for a sub-subsection, etc.
+
+      ``body`` : rendered string
+         The rendered contents of the section.  This field is only present if
+         ``split_section_level`` is equal to the section depth.
+
+      ``intro`` : rendered string
+         The rendered content of the section before the first subsection.  This
+         field is only present if ``split_section_level`` is negative or
+         greater than the section depth.
+
+      ``sections`` : list of objects
+         A list of the top-level subsections of this section, each one
+         represented as an object with the same schema as
+         ``content.sections[]``.  This field is only present if
+         ``split_section_level`` is negative or greater than the section depth.
 
    **Note**: As far as the author of this library can determine, it is not
    possible for a reStructuredText document to produce a doctree in which the
@@ -329,6 +518,10 @@ The output from ``rst2json`` is a JSON object containing the following fields:
    ``format`` : string
       The name of the target markup format: ``"html4"``, ``"html5"``,
       ``"latex"``, or ``"xelatex"``.
+
+   ``split_section_level`` : integer
+      The value set for the ``split_section_level`` option (See
+      "`Configuration Options`_").  Negative values are converted to -1.
 
    ``title`` : stripped string or ``null``
       The document's metadata title.  By default, this is equal to
@@ -473,9 +666,77 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       rendered ``problematic`` node's IDs, usable for creating an
       intra-document link.
 
+``id_sections`` : object
+   This object only appears in the output when ``split_section_level`` (See
+   "`Configuration Options`_") is not 0.  It is a map in which each key is an ID
+   appearing in the rendered document body and the corresponding value is the
+   first ID of the deepest split-section object in which the key ID occurs.
+   IDs that appear in ``content.intro`` are mapped to the special string
+   ``"$intro"``.  IDs of top-level sections are not included as keys in this
+   map, but IDs of deeper sections are.
+
+   This field can be used to rewrite inter-document links when the output is
+   used to create a separate templated document for each section.
+
+   As an example, consider the following document:
+
+   .. code:: restructuredtext
+
+       Section 1
+       =========
+
+       .. _foo:
+
+       Lorem ipsum yadda yadda yadda.
+
+       Section 2
+       =========
+
+       'Twas brillig, and the slithy toves did gyre and gimble in the wabe.
+
+       Section 2.1
+       -----------
+
+       .. _bar:
+
+       All mimsy were the borogoves, and the mome raths outgrabe.
+
+       Section 2.1.1
+       ~~~~~~~~~~~~~
+
+       Beware the Jabberwock, my son!
+
+   If this is processed with a ``split_section_level`` of 1, then
+   ``id_sections`` will look like:
+
+   .. code:: json
+
+       {
+           "foo": "section-1",
+           "bar": "section-2",
+       }
+
+
+   If this is processed with a ``split_section_level`` of 2, then
+   ``id_sections`` will look like:
+
+   .. code:: json
+
+       {
+           "foo": "section-1",
+           "bar": "section-2-1",
+           "section-2-1": "section-2"
+       }
+
+   Increasing ``split_section_level`` beyond this point or making it negative
+   will only add the pair ``"section-2-1-1": "section-2-1"``.
+
 
 .. |doctitle_xform| replace:: ``doctitle_xform``
 .. _doctitle_xform: https://docutils.sourceforge.io/docs/user/config.html#doctitle-xform
+
+.. |sectsubtitle_xform| replace:: ``sectsubtitle_xform``
+.. _sectsubtitle_xform: https://docutils.sourceforge.io/docs/user/config.html#sectsubtitle-xform
 
 .. _bibliographic fields: https://docutils.sourceforge.io/docs/ref/rst/restructuredtext.html#bibliographic-fields
 
