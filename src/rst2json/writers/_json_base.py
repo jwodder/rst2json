@@ -21,7 +21,9 @@ class JSONWriterBase:
             "title_stripped": ("title_stripped", None),
             "subtitle_stripped": ("subtitle_stripped", None),
             "document_ids": ("document_ids", None),
+            "document_classes": ("document_classes", None),
             "subtitle_ids": ("subtitle_ids", None),
+            "subtitle_classes": ("subtitle_classes", None),
             "authors": ("authors", None),
             "header": ("header", joinstrs),
             "footer": ("footer", joinstrs),
@@ -108,7 +110,9 @@ class JSONTranslatorBase:
         self.title_stripped = None
         self.subtitle_stripped = None
         self.document_ids = []
+        self.document_classes = []
         self.subtitle_ids = []
+        self.subtitle_classes = []
         self.header = None
         self.footer = None
         self.authors = []
@@ -134,6 +138,7 @@ class JSONTranslatorBase:
         if self.meta_title is not None:
             self.meta_title = self.encode(self.meta_title)
         self.document_ids = node.get('ids', [])
+        self.document_classes = node.get('classes', [])
 
     def visit_header(self, node):
         self.header = []
@@ -323,6 +328,7 @@ class JSONTranslatorBase:
             self.push_output_collector(self.subtitle)
             self.subtitle_stripped = self.attval(node.astext())
             self.subtitle_ids = node.get('ids', [])
+            self.subtitle_classes = node.get('classes', [])
         else:
             super().visit_subtitle(node)
 

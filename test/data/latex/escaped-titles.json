@@ -22,9 +22,11 @@
         "document_ids": [
             "special-characters-in-html-latex"
         ],
+        "document_classes": [],
         "subtitle_ids": [
             "the-ampersand-html-latex"
         ],
+        "subtitle_classes": [],
         "authors": [],
         "header": null,
         "footer": null,

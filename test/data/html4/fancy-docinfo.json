@@ -18,7 +18,9 @@
         "subtitle": null,
         "subtitle_stripped": null,
         "document_ids": [],
+        "document_classes": [],
         "subtitle_ids": [],
+        "subtitle_classes": [],
         "authors": [
             "<strong class=\"first\">The</strong> Joe Q. Coder, Lord &amp; Master of the Byte",
             "<strong>The</strong> Jane Z. Programmer, Overlord of Time &amp; Space Constraints",

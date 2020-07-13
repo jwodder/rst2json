@@ -22,9 +22,11 @@
         "document_ids": [
             "the-document-title"
         ],
+        "document_classes": [],
         "subtitle_ids": [
             "the-document-sub-title"
         ],
+        "subtitle_classes": [],
         "authors": [],
         "header": null,
         "footer": null,

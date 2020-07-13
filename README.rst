@@ -237,16 +237,18 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       templated document using HTML's ``id`` attribute or (Xe)LaTeX's
       ``\label`` command.
 
+   ``document_classes`` : list of strings
+      A list of classes attached to the parsed ``document`` node.
+
    ``subtitle_ids`` : list of strings
       A list of all IDs assigned to the document subtitle, or the empty list if
       the document does not have a subtitle.  Such IDs should be attached to
       the templated subtitle using HTML's ``id`` attribute or (Xe)LaTeX's
       ``\label`` command.
 
-      (As far as I can determine, it is not possible for a reStructuredText
-      document to produce a doctree in which the ``title`` node has any IDs;
-      the output from ``rst2json`` thus does not include a
-      ``content.title_ids`` field.)
+   ``subtitle_classes`` : list of strings
+      A list of classes attached to the document subtitle, or the empty list if
+      the document does not have a subtitle.
 
    ``authors`` : list of rendered strings
       A list of all authors specified in the ``:Author:`` and/or ``:Authors:``
@@ -313,6 +315,12 @@ The output from ``rst2json`` is a JSON object containing the following fields:
 
    ``body`` : rendered string
       The rendered contents of the rest of the document.
+
+   **Note**: As far as the author of this library can determine, it is not
+   possible for a reStructuredText document to produce a doctree in which the
+   document title, docinfo, header, footer, abstract, or dedication nodes have
+   any IDs or classes, nor for any docinfo field nodes to have any IDs.
+   ``rst2json`` thus does not output any fields for such values.
 
 ``meta`` : object
    A dictionary of data about the input document and the ``rst2json`` process,

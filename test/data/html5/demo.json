@@ -20,9 +20,11 @@
         "document_ids": [
             "restructuredtext-demonstration"
         ],
+        "document_classes": [],
         "subtitle_ids": [
             "examples-of-syntax-constructs"
         ],
+        "subtitle_classes": [],
         "authors": [
             "David Goodger",
             "Me",
