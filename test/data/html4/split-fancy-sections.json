@@ -40,6 +40,7 @@
                 "toc_backref": null,
                 "number": null,
                 "depth": 1,
+                "trailing_transition": null,
                 "body": "<p>Lorem ipsum yadda yadda yadda.</p>"
             }
         ]

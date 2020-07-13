@@ -509,6 +509,14 @@ The output from ``rst2json`` is a JSON object containing the following fields:
          ``content.sections[]``.  This field is only present if
          ``split_section_level`` is negative or greater than the section depth.
 
+      ``trailing_transition`` : object or ``null``
+         If there is a transition between this section and the next one, this
+         field will be an object with the fields ``ids`` (a list of IDs
+         assigned to the transition) and ``classes`` (a list of classes
+         assigned to the transition); otherwise, this field will be ``null``.
+         Note that, in a parsed document tree, inter-section transitions only
+         ever occur between consecutive sections of the same depth.
+
    **Note**: As far as the author of this library can determine, it is not
    possible for a reStructuredText document to produce a doctree in which the
    document title, docinfo, header, footer, abstract, dedication, or section
