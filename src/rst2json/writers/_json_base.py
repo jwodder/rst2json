@@ -9,6 +9,10 @@ def joinstrs(lst):
 def joinnl(lst):
     return '\n'.join(lst).strip('\n')
 
+def validate_int(setting, value, option_parser, config_parser=None,
+                 config_section=None):
+    return int(value)
+
 class JSONWriterBase:
     format_name = None
 
@@ -38,9 +42,24 @@ class JSONWriterBase:
         "system_messages": ("system_messages", None),
     }
 
-    #def __init__(self):
-    #    super().__init__()
-    #    self.translator_class = «Insert Translator class here»
+    def __init__(self):
+        super().__init__()
+        self.config_section_dependencies += ('rst2json',)
+        self.settings_spec += (
+            'rst2json-Specific Options',
+            None,
+            (
+                (
+                    'Split up sections to the given depth',
+                    ['--split-section-level'],
+                    {
+                        'default': 0,
+                        'validator': validate_int,
+                        'metavar': '<int>',
+                    },
+                ),
+            ),
+        )
 
     def get_transforms(self):
         return super().get_transforms() + [MoveEmbeddedSystemMessages]
@@ -91,6 +110,8 @@ class JSONWriterBase:
         data["meta"].update(versioned_meta_strings)
         data["meta"]["generator"] \
             = self.visitor.encode(data["meta"]["generator"])
+        data["meta"]["split_section_level"] \
+            = self.document.settings.split_section_level
         self.json_data = data
 
     def assemble_parts(self):
