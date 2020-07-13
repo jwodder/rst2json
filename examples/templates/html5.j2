@@ -38,13 +38,13 @@
 <hr class="header"/>
 </div>
 {% endif %}
-<div class="document"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+<div class="{{(['document'] + content.document_classes)|sort|join(" ")|escape}}"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
 
 {% if content.title %}
 <h1 class="title">{{content.title|safe}}</h1>
 {% endif %}
 {% if content.subtitle %}
-<p class="subtitle"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</p>
+<p class="{{(['subtitle'] + content.subtitle_classes)|sort|join(" ")|escape}}"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</p>
 {% endif %}
 {% if content.docinfo %}
 <dl class="docinfo">
