@@ -282,7 +282,7 @@ def test_func_class_format(in_tmpdir):
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
-    data = rst2json('input.rst', format=latex.Writer, config_files=[])
+    data = rst2json('input.rst', format=latex.Writer(), config_files=[])
     assert data == OUTPUT_LATEX
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 

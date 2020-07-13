@@ -135,7 +135,8 @@ or a path-like object.
 
 ``format`` is a string specifying the markup format to produce.  It has the
 same set of possible values as the ``--format`` option to the ``rst2json``
-command.  Alternatively, it may be set directly to a Docutils writer class.
+command.  Alternatively, it may be set directly to an instance of a Docutils
+writer class.
 
 ``options`` sets values for Docutils settings.  When non-``None``, it must be a
 ``dict`` that maps option names to option values.  Option names must be given

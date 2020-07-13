@@ -29,7 +29,7 @@ def rst2json(source, format='html', options=None, config_files=None,
     :param format: A string specifying the markup format to produce.  It has
         the same set of possible values as the :option:`--format` option to the
         :command:`rst2json` command.  Alternatively, it may be set directly to
-        a Docutils writer class.
+        an instance of a Docutils writer class.
 
     :param options: Set values for Docutils settings.  When non-`None`, it must
         be a `dict` that maps option names to option values.  Option names must
@@ -60,10 +60,10 @@ def rst2json(source, format='html', options=None, config_files=None,
     else:
         source_path = os.fspath(source)
         source = None
-    if isinstance(format, type):
-        writer = format()
-    else:
+    if isinstance(format, str):
         writer = get_json_writer_class(format)()
+    else:
+        writer = format
     old_docutilsconfig = os.environ.get("DOCUTILSCONFIG")
     if config_files is not None:
         os.environ["DOCUTILSCONFIG"] \

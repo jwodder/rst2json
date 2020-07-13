@@ -1,3 +1,9 @@
+v0.3.0 (in development)
+-----------------------
+- **Breaking**: When not a string, the ``format`` argument to the
+  ``rst2json()`` function must now be an instance of a writer class, not an
+  actual class
+
 v0.2.0.post1 (2020-07-11)
 -------------------------
 - Fix failing tests
