@@ -1,0 +1,89 @@
+{
+    "meta": {
+        "title": null,
+        "source": "html5/split1.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html5",
+        "split_section_level": 1
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "document_classes": [],
+        "subtitle_ids": [],
+        "subtitle_classes": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "intro": "<p id=\"in-intro\">Text before sections, except after C.</p>",
+        "sections": [
+            {
+                "title": "Section 1",
+                "title_stripped": "Section 1",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-1"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "body": "<p id=\"foo\">Lorem ipsum yadda yadda yadda.</p>"
+            },
+            {
+                "title": "Section 2",
+                "title_stripped": "Section 2",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-2"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "body": "<p>'Twas brillig, and the slithy toves did gyre and gimble in the wabe.</p>\n<div class=\"section\" id=\"section-2-1\">\n<h2>Section 2.1</h2>\n<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<div class=\"section\" id=\"section-2-1-1\">\n<h3>Section 2.1.1</h3>\n<p>Beware the Jabberwock, my son!</p>\n</div>\n</div>\n<div class=\"section\" id=\"section-2-2\">\n<h2>Section 2.2</h2>\n<p>The jaws that bite, the claws that catch!</p>\n</div>"
+            },
+            {
+                "title": "Section 3",
+                "title_stripped": "Section 3",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-3"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "body": "<p>Beware the Jubjub bird, and shun the frumious Bandersnatch!</p>"
+            }
+        ]
+    },
+    "id_sections": {
+        "in-intro": "$intro",
+        "foo": "section-1",
+        "bar": "section-2",
+        "section-2-1": "section-2",
+        "section-2-1-1": "section-2",
+        "section-2-2": "section-2"
+    },
+    "system_messages": []
+}
