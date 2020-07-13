@@ -344,9 +344,10 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       of ``"*War &amp; Peace*"``, with the asterisks left as-is and the
       ampersand escaped.
 
-   ``source`` : stripped string or ``null``
-      The name of/path to the input file, or ``null`` if no name can be
-      determined
+   ``source`` : stripped string
+      The name of/path to the input file.  If no name can be determined, then
+      (due to Docutils implementation details) this will be the string
+      ``"None"``.
 
    ``language`` : string
       The language code for the document language, as set via the
@@ -444,9 +445,10 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``SEVERE``   4
       ===========  =========
 
-   ``source`` : stripped string or ``null``
-      The name of the input file in which the message was generated, or
-      ``null`` if it cannot be determined
+   ``source`` : stripped string
+      The name of the input file in which the message was generated.  If no
+      name can be determined, then (due to Docutils implementation details)
+      this will be the string ``"None"``.
 
    ``line`` : integer or ``null``
       The line of the input file at which the message was generated, or
