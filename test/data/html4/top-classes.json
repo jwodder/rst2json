@@ -1,0 +1,33 @@
+{
+    "meta": {
+        "title": "Document Title",
+        "source": "html4/top-classes.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "html4"
+    },
+    "html": {
+        "meta_tags": "",
+        "math_requires": ""
+    },
+    "content": {
+        "title": "Document Title",
+        "title_stripped": "Document Title",
+        "subtitle": "Subtitle",
+        "subtitle_stripped": "Subtitle",
+        "document_ids": ["document-title"],
+        "document_classes": ["docclass"],
+        "subtitle_ids": ["subtitle"],
+        "subtitle_classes": ["subclass"],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "<p>Lorem ipsum yadda yadda yadda.</p>"
+    },
+    "system_messages": []
+}

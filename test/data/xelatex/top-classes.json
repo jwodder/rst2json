@@ -1,0 +1,35 @@
+{
+    "meta": {
+        "title": "Document Title",
+        "source": "xelatex/top-classes.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "xelatex"
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}",
+        "fallbacks": "",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdftitle={Document Title},\n}"
+    },
+    "content": {
+        "title": "Document Title",
+        "title_stripped": "Document Title",
+        "subtitle": "Subtitle",
+        "subtitle_stripped": "Subtitle",
+        "document_ids": ["document-title"],
+        "document_classes": ["docclass"],
+        "subtitle_ids": ["subtitle"],
+        "subtitle_classes": ["subclass"],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "body": "Lorem ipsum yadda yadda yadda."
+    },
+    "system_messages": []
+}
