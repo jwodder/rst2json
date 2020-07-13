@@ -468,12 +468,16 @@ The output from ``rst2json`` is a JSON object containing the following fields:
       ``ids`` : list of strings
          A list of all IDs assigned to the parsed ``section`` node.
 
+      ``classes`` : list of strings
+         A list of classes attached to the parsed ``section`` node.
+
       ``subtitle_ids`` : list of strings
          A list of all IDs assigned to the section subtitle, or the empty list
          if the section does not have a subtitle.
 
-         (As far as I can determine, it is not possible for a section title to
-         have any IDs; there is thus no ``title_ids`` field.)
+      ``subtitle_classes`` : list of strings
+         A list of classes attached to the section subtitle, or the empty list
+         if the section does not have a subtitle.
 
       ``toc_backref`` : string or ``null``
          If this section is listed in a table of contents with backlinks, this
@@ -507,9 +511,9 @@ The output from ``rst2json`` is a JSON object containing the following fields:
 
    **Note**: As far as the author of this library can determine, it is not
    possible for a reStructuredText document to produce a doctree in which the
-   document title, docinfo, header, footer, abstract, or dedication nodes have
-   any IDs or classes, nor for any docinfo field nodes to have any IDs.
-   ``rst2json`` thus does not output any fields for such values.
+   document title, docinfo, header, footer, abstract, dedication, or section
+   title nodes have any IDs or classes, nor for any docinfo field nodes to have
+   any IDs.  ``rst2json`` thus does not output any fields for such values.
 
 ``meta`` : object
    A dictionary of data about the input document and the ``rst2json`` process,
