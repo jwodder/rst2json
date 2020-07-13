@@ -95,7 +95,7 @@
         ]
     },
     "id_sections": {
-        "in_intro": "$intro",
+        "in-intro": "$intro",
         "foo": "section-1",
         "bar": "section-2-1",
         "section-2-1": "section-2",

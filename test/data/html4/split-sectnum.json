@@ -1,13 +1,13 @@
 {
     "meta": {
         "title": null,
-        "source": "html4/split-inf.rst",
+        "source": "html4/split-sectnum.rst",
         "language": "en",
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --",
         "format": "html4",
-        "split_section_level": -1
+        "split_section_level": 2
     },
     "html": {
         "meta_tags": "",
@@ -36,7 +36,7 @@
                 "ids": ["section-1"],
                 "subtitle_ids": [],
                 "toc_backref": null,
-                "number": null,
+                "number": "[5]",
                 "depth": 1,
                 "intro": "<p id=\"foo\">Lorem ipsum yadda yadda yadda.</p>",
                 "sections": []
@@ -49,7 +49,7 @@
                 "ids": ["section-2"],
                 "subtitle_ids": [],
                 "toc_backref": null,
-                "number": null,
+                "number": "[6]",
                 "depth": 1,
                 "intro": "<p>'Twas brillig, and the slithy toves did gyre and gimble in the wabe.</p>",
                 "sections": [
@@ -61,24 +61,9 @@
                         "ids": ["section-2-1"],
                         "subtitle_ids": [],
                         "toc_backref": null,
-                        "number": null,
+                        "number": "[6.1]",
                         "depth": 2,
-                        "intro": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>",
-                        "sections": [
-                            {
-                                "title": "Section 2.1.1",
-                                "title_stripped": "Section 2.1.1",
-                                "subtitle": null,
-                                "subtitle_stripped": null,
-                                "ids": ["section-2-1-1"],
-                                "subtitle_ids": [],
-                                "toc_backref": null,
-                                "number": null,
-                                "depth": 3,
-                                "intro": "<p>Beware the Jabberwock, my son!</p>",
-                                "sections": []
-                            }
-                        ]
+                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<div class=\"section\" id=\"section-2-1-1\">\n<h3>[6.1.1]&nbsp;&nbsp;&nbsp;Section 2.1.1</h3>\n<p>Beware the Jabberwock, my son!</p>\n</div>"
                     },
                     {
                         "title": "Section 2.2",
@@ -88,10 +73,9 @@
                         "ids": ["section-2-2"],
                         "subtitle_ids": [],
                         "toc_backref": null,
-                        "number": null,
+                        "number": "[6.2]",
                         "depth": 2,
-                        "intro": "<p>The jaws that bite, the claws that catch!</p>",
-                        "sections": []
+                        "body": "<p>The jaws that bite, the claws that catch!</p>"
                     }
                 ]
             },
@@ -103,7 +87,7 @@
                 "ids": ["section-3"],
                 "subtitle_ids": [],
                 "toc_backref": null,
-                "number": null,
+                "number": "[7]",
                 "depth": 1,
                 "intro": "<p>Beware the Jubjub bird, and shun the frumious Bandersnatch!</p>",
                 "sections": []
@@ -115,8 +99,7 @@
         "foo": "section-1",
         "bar": "section-2-1",
         "section-2-1": "section-2",
-        "section-2-2": "section-2",
-        "section-2-1-1": "section-2-1"
+        "section-2-2": "section-2"
     },
     "system_messages": []
 }
