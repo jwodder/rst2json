@@ -6,7 +6,8 @@
         "docutils_version": "-- REPLACED BY TEST FUNCTION --",
         "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
         "generator": "-- REPLACED BY TEST FUNCTION --",
-        "format": "xelatex"
+        "format": "xelatex",
+        "split_section_level": 0
     },
     "latex": {
         "language": "english",
@@ -19,10 +20,18 @@
         "title_stripped": "Document Title",
         "subtitle": "Subtitle",
         "subtitle_stripped": "Subtitle",
-        "document_ids": ["document-title"],
-        "document_classes": ["docclass"],
-        "subtitle_ids": ["subtitle"],
-        "subtitle_classes": ["subclass"],
+        "document_ids": [
+            "document-title"
+        ],
+        "document_classes": [
+            "docclass"
+        ],
+        "subtitle_ids": [
+            "subtitle"
+        ],
+        "subtitle_classes": [
+            "subclass"
+        ],
         "authors": [],
         "header": null,
         "footer": null,
