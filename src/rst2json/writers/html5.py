@@ -28,3 +28,15 @@ class HTMLJSONTranslator(JSONTranslatorBase, html5_polyglot.HTMLTranslator):
             # del(node['lang'])
         meta = self.emptytag(node, 'meta', **node.non_default_attributes())
         self.meta_tags.append(meta)
+
+    def starttag(self, node, tagname, suffix='\n', empty=False, **attributes):
+        ids = node.get('ids', []) + attributes.get('ids', [])
+        if ids and self.section_stack:
+            try:
+                sectid = self.section_stack[-1]["ids"][0]
+            except ValueError:
+                pass
+            else:
+                for i in ids:
+                    self.id_sections[i] = sectid
+        return super().starttag(node, tagname, suffix, empty, **attributes)

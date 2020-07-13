@@ -116,7 +116,8 @@
         "foo": "section-1",
         "bar": "section-2-1",
         "section-2-1": "section-2",
-        "section-2-2": "section-2"
+        "section-2-2": "section-2",
+        "section-2-1-1": "section-2-1"
     },
     "system_messages": []
 }

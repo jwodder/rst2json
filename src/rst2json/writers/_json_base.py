@@ -35,11 +35,13 @@ class JSONWriterBase:
             "abstract": ("abstract", joinstrs),
             "dedication": ("dedication", joinstrs),
             "body": ("body", joinstrs),
+            "sections": ("sections", None),
         },
         "meta": {
             "title": ("meta_title", None),
         },
         "system_messages": ("system_messages", None),
+        "id_sections": ("id_sections", None),
     }
 
     def __init__(self):
@@ -111,7 +113,12 @@ class JSONWriterBase:
         data["meta"]["generator"] \
             = self.visitor.encode(data["meta"]["generator"])
         data["meta"]["split_section_level"] \
-            = self.document.settings.split_section_level
+            = max(-1, self.document.settings.split_section_level)
+        if self.document.settings.split_section_level == 0:
+            del data["content"]["sections"]
+            del data["id_sections"]
+        else:
+            data["content"]["intro"] = data["content"].pop("body")
         self.json_data = data
 
     def assemble_parts(self):
@@ -144,6 +151,9 @@ class JSONTranslatorBase:
         self.system_messages = []
         self.out_stack = []
         self.current_docinfo_field = None
+        self.sections = []
+        self.section_stack = []
+        self.id_sections = {}
 
     def push_output_collector(self, new):
         self.out_stack.append(getattr(self, self.out_varname))
@@ -314,12 +324,75 @@ class JSONTranslatorBase:
         else:
             super().depart_field_body(node)
 
+    def split_this_level(self, depth=None):
+        if depth is None:
+            depth = self.section_level
+        return self.settings.split_section_level < 0 or \
+            self.settings.split_section_level >= depth
+
     def visit_section(self, node):
-        if 'system-messages' not in node["classes"]:
+        if 'system-messages' in node["classes"]:
+            pass
+        elif self.split_this_level(self.section_level + 1):
+            self.section_level += 1
+            sectobj = {
+                "title": None,
+                "title_stripped": None,
+                "subtitle": None,
+                "subtitle_stripped": None,
+                "ids": node.get('ids', []),
+                "classes": node.get('classes', []),
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": None,
+                "trailing_transition": None,
+                "number": None,
+                "depth": len(self.section_stack) + 1,
+            }
+            if self.section_stack:
+                try:
+                    outerid = self.section_stack[-1]["ids"][0]
+                except IndexError:
+                    pass
+                else:
+                    for i in sectobj["ids"]:
+                        self.id_sections[i] = outerid
+            if self.section_stack and \
+                    self.section_stack[-1].get("sections") == []:
+                # We are starting a subsection inside a section which doesn't
+                # already have any subsections, and so the current output
+                # collector is the outer section's "intro", which needs to be
+                # closed (popped).
+                self.pop_output_collector()
+            if self.split_this_level(self.section_level + 1):
+                sectobj["intro"] = []
+                sectobj["sections"] = []
+                self.push_output_collector(sectobj["intro"])
+            else:
+                sectobj["body"] = []
+                self.push_output_collector(sectobj["body"])
+            self.section_stack.append(sectobj)
+        else:
             super().visit_section(node)
 
     def depart_section(self, node):
-        if 'system-messages' not in node["classes"]:
+        if 'system-messages' in node["classes"]:
+            pass
+        elif self.split_this_level(self.section_level):
+            self.section_level -= 1
+            sectobj = self.section_stack.pop()
+            if "body" in sectobj or not sectobj["sections"]:
+                # Section's body/intro is "open" (is the current output
+                # collector) and needs to be closed (popped)
+                self.pop_output_collector()
+            for field in ('title', 'subtitle', 'body', 'intro'):
+                if sectobj.get(field) is not None:
+                    sectobj[field] = joinstrs(sectobj[field])
+            if self.section_stack:
+                self.section_stack[-1]["sections"].append(sectobj)
+            else:
+                self.sections.append(sectobj)
+        else:
             super().depart_section(node)
 
     def visit_title(self, node):
@@ -334,11 +407,26 @@ class JSONTranslatorBase:
         elif isinstance(node.parent, nodes.section) \
                 and 'system-messages' in node.parent["classes"]:
             raise nodes.SkipNode
+        elif isinstance(node.parent, nodes.section) and self.split_this_level():
+            sectobj = self.section_stack[-1]
+            sectobj["title"] = []
+            self.push_output_collector(sectobj["title"])
+            sectobj["title_stripped"] = self.attval(
+                ''.join(
+                    n.astext()
+                    for n in node.children
+                    if not (isinstance(n, nodes.generated)
+                            and 'sectnum' in n['classes'])
+                )
+            )
+            sectobj["toc_backref"] = node.get('refid', None)
         else:
             super().visit_title(node)
 
     def depart_title(self, node):
         if isinstance(node.parent, nodes.document):
+            self.pop_output_collector()
+        elif isinstance(node.parent, nodes.section) and self.split_this_level():
             self.pop_output_collector()
         else:
             super().depart_title(node)
@@ -350,11 +438,20 @@ class JSONTranslatorBase:
             self.subtitle_stripped = self.attval(node.astext())
             self.subtitle_ids = node.get('ids', [])
             self.subtitle_classes = node.get('classes', [])
+        elif isinstance(node.parent, nodes.section) and self.split_this_level():
+            sectobj = self.section_stack[-1]
+            sectobj["subtitle"] = []
+            self.push_output_collector(sectobj["subtitle"])
+            sectobj["subtitle_stripped"] = self.attval(node.astext())
+            sectobj["subtitle_ids"] = node.get('ids', [])
+            sectobj["subtitle_classes"] = node.get('classes', [])
         else:
             super().visit_subtitle(node)
 
     def depart_subtitle(self, node):
         if isinstance(node.parent, nodes.document):
+            self.pop_output_collector()
+        elif isinstance(node.parent, nodes.section) and self.split_this_level():
             self.pop_output_collector()
         else:
             super().depart_subtitle(node)
@@ -376,6 +473,16 @@ class JSONTranslatorBase:
             self.pop_output_collector()
         else:
             super().depart_topic(node)
+
+    def visit_generated(self, node):
+        if 'sectnum' in node['classes'] and \
+                isinstance(node.parent, nodes.title) and \
+                self.split_this_level():
+            self.section_stack[-1]["number"] \
+                = self.encode(node.astext().rstrip('\xA0'))
+            raise nodes.SkipNode
+        else:
+            super().visit_generated(node)
 
     def visit_system_message(self, node):
         self.push_output_collector([])

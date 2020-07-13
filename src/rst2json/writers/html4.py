@@ -37,3 +37,20 @@ class HTMLJSONTranslator(JSONTranslatorBase, html4css1.HTMLTranslator):
     def visit_meta(self, node):
         meta = self.emptytag(node, 'meta', **node.non_default_attributes())
         self.meta_tags.append(meta)
+
+    def starttag(self, node, tagname, suffix='\n', empty=False, **attributes):
+        ids = node.get('ids', []) + attributes.get('ids', [])
+        if ids:
+            if self.section_stack:
+                try:
+                    sectid = self.section_stack[-1]["ids"][0]
+                except ValueError:
+                    sectid = None
+            elif not self.out_stack:
+                sectid = '$intro'
+            else:
+                sectid = None
+            if sectid is not None:
+                for i in ids:
+                    self.id_sections[i] = sectid
+        return super().starttag(node, tagname, suffix, empty, **attributes)
