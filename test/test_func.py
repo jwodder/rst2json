@@ -51,7 +51,8 @@ OUTPUT = {
         "language": "en",
         "rst2json_version": versioned_meta_strings["rst2json_version"],
         "source": "input.rst",
-        "title": "A Document"
+        "title": "A Document",
+        "split_section_level": 0
     },
     "system_messages": [
         {
@@ -100,6 +101,7 @@ OUTPUT_NO_DOC_TITLE = {
         "rst2json_version": versioned_meta_strings["rst2json_version"],
         "source": "input.rst",
         "title": None,
+        "split_section_level": 0
     },
     "system_messages": [
         {
@@ -151,7 +153,8 @@ OUTPUT_LATEX = {
         "language": "en",
         "rst2json_version": versioned_meta_strings["rst2json_version"],
         "source": "input.rst",
-        "title": "A Document"
+        "title": "A Document",
+        "split_section_level": 0
     },
     "system_messages": [
         {
