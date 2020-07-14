@@ -29,9 +29,13 @@ unlike Docutils_' builtin converters, which produce a complete output document
 subtitle, bibliographic fields, etc.) has been broken out from the body and
 split into multiple fields.  By combining the output with a templating system
 like Jinja_, the user can perform more powerful & more customizable templating
-than is possible with Docutils' built-in template support.
+than is possible with Docutils' built-in template support.  Version 0.3.0 even
+introduces the ability to split apart documents at section boundaries, thereby
+making it possible to convert a single input document into multiple output
+files.
 
-Sample templates that make use of the library's output can be found in
+Sample templates that make use of the library's output, along with a sample
+application for splitting sections into separate files, can be found in
 |exampledir|_.
 
 .. _reStructuredText: https://docutils.sourceforge.io/rst.html
