@@ -1,0 +1,57 @@
+{
+    "meta": {
+        "title": null,
+        "source": "xelatex/split-fn.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "xelatex",
+        "split_section_level": 1
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}",
+        "fallbacks": "% numeric or symbol footnotes with hyperlinks\n\\providecommand*{\\DUfootnotemark}[3]{%\n  \\raisebox{1em}{\\hypertarget{#1}{}}%\n  \\hyperlink{#2}{\\textsuperscript{#3}}%\n}\n\\providecommand{\\DUfootnotetext}[4]{%\n  \\begingroup%\n  \\renewcommand{\\thefootnote}{%\n    \\protect\\raisebox{1em}{\\protect\\hypertarget{#1}{}}%\n    \\protect\\hyperlink{#2}{#3}}%\n  \\footnotetext{#4}%\n  \\endgroup%\n}",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "document_classes": [],
+        "subtitle_ids": [],
+        "subtitle_classes": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "intro": "This is some text.\\DUfootnotemark{id1}{id2}{1}",
+        "sections": [
+            {
+                "title": "Footnotes",
+                "title_stripped": "Footnotes",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["footnotes"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "body": "%\n\\DUfootnotetext{id2}{id1}{1}{%\nIs that really such a surprise?\n}"
+            }
+        ]
+    },
+    "id_sections": {
+        "id1": "$intro",
+        "id2": "footnotes"
+    },
+    "system_messages": []
+}
