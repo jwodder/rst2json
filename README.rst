@@ -551,8 +551,8 @@ The output from ``rst2json`` is a JSON object containing the following fields:
 
    ``source`` : stripped string
       The name of/path to the input file.  If no name can be determined, then
-      (due to Docutils implementation details) this will be the string
-      ``"None"``.
+      this will be the string ``"None"`` in Docutils 0.16 and the empty string
+      in later versions.
 
    ``language`` : string
       The language code for the document language, as set via the
@@ -652,8 +652,8 @@ The output from ``rst2json`` is a JSON object containing the following fields:
 
    ``source`` : stripped string
       The name of the input file in which the message was generated.  If no
-      name can be determined, then (due to Docutils implementation details)
-      this will be the string ``"None"``.
+      name can be determined, then this will be the string ``"None"`` in
+      Docutils 0.16 and the empty string in later versions.
 
    ``line`` : integer or ``null``
       The line of the input file at which the message was generated, or

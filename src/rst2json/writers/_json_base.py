@@ -103,10 +103,7 @@ class JSONWriterBase:
                     data[key][field_name] = self.get_field(*whence)
             else:
                 data[key] = self.get_field(*fields)
-        source = self.document["source"]
-        if source is not None:
-            source = self.visitor.encode(source)
-        data["meta"]["source"] = source
+        data["meta"]["source"] = self.visitor.encode(self.document["source"])
         data["meta"]["format"] = self.format_name
         data["meta"]["language"] = self.document.settings.language_code
         data["meta"].update(versioned_meta_strings)
@@ -527,13 +524,10 @@ class JSONTranslatorBase:
 
     def depart_system_message(self, node):
         body = self.pop_output_collector()
-        source = node.get("source")
-        if source is not None:
-            source = self.encode(source)
         self.system_messages.append({
             "level": node["level"],
             "type": node["type"],
-            "source": source,
+            "source": self.encode(node["source"]),
             "line": node.get("line", None),
             "body": joinstrs(body),
             "ids": node.get("ids", []),
