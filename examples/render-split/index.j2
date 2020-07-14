@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{meta.language|escape}}" lang="{{meta.language|escape}}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="{{meta.generator|escape}}" />
+<title>
+    {% if content.title_stripped %}
+        {{content.title_stripped|safe}}{% if content.subtitle_stripped %}: {{content.subtitle_stripped|safe}}{% endif %}
+    {% else %}
+        {{meta.source|safe}}
+    {% endif %}
+</title>
+{{html.meta_tags|safe}}
+<link rel="stylesheet" href="styles.css" type="text/css" />
+{{html.math_requires|safe}}
+</head>
+<body>
+
+{% if content.header %}
+<div class="header">
+{{content.header|safe}}
+<hr class="header"/>
+</div>
+{% endif %}
+
+<div class="{{(['document'] + content.document_classes)|sort|join(" ")|escape}}"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+
+{% if content.title %}
+<h1 class="title">{{content.title|safe}}</h1>
+{% endif %}
+{% if content.subtitle %}
+<h2 class="{{(['subtitle'] + content.subtitle_classes)|sort|join(" ")|escape}}"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</h2>
+{% endif %}
+
+{% if content.docinfo %}
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+{% for item in content.docinfo %}
+<tr{% if item.type == 'field' %} class="{{item.classes|join(' ')|escape}} field"{% endif %}><th class="docinfo-name">{{item.name|safe}}:</th>
+<td{% if item.type == 'field' %} class="field-body"{% endif %}>{% if item.type == 'address' %}<pre class="address">
+{{item.value|safe}}
+</pre>
+</td></tr>
+{% elif item.type == 'authors' %}
+{% set sep = joiner('<br />') %}
+{% for a in item.value %}
+{{sep()|safe}}{{a}}
+{% endfor %}</td></tr>
+{% else %}{{item.value|safe}}</td></tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if content.dedication %}
+<div class="dedication topic">
+<p class="topic-title">Dedication</p>
+{{content.dedication|safe}}
+</div>
+{% endif %}
+
+{% if content.abstract %}
+<div class="abstract topic">
+<p class="topic-title">Abstract</p>
+{{content.abstract|safe}}
+</div>
+{% endif %}
+
+{{content.body|safe}}
+
+</div>
+
+{% if content.footer %}
+<div class="footer">
+<hr class="footer" />
+{{content.footer|safe}}
+</div>
+{% endif %}
+
+</body>
+</html>

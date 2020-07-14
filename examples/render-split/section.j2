@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{meta.language|escape}}" lang="{{meta.language|escape}}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="{{meta.generator|escape}}" />
+<title>{% if content.title_stripped %}{{content.title_stripped|safe}} — {% endif %}{{section.title_stripped}}</title>
+<link rel="stylesheet" href="styles.css" type="text/css" />
+{{html.math_requires|safe}}
+</head>
+<body>
+
+<div class="navlink-head">
+    <div class="navlinks">
+        {% if section.prev_file %}
+        <div class="prevlink"><a href="{{section.prev_file|escape}}">&lt; Prev</a></div>
+        {% endif %}
+        <div class="uplink"><a href="{{section.intro_file|escape}}">Home</a></div>
+        {% if section.next_file %}
+        <div class="nextlink"><a href="{{section.next_file|escape}}">Next &gt;</a></div>
+        {% endif %}
+    </div>
+    <hr/>
+</div>
+
+{% if content.header %}
+<div class="header">
+{{content.header|safe}}
+<hr class="header"/>
+</div>
+{% endif %}
+
+<div class="{{(['document'] + section.classes)|sort|join(" ")|escape}}"{% if section.ids %} id="{{section.ids[0]|escape}}"{% endif %}>{% for i in section.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+
+{% if section.number %}
+<div class="sectnum">- {{section.number}} -</div>
+{% endif %}
+
+<h1 class="title">{{section.title|safe}}</h1>
+{% if section.subtitle %}
+<h2 class="{{(['subtitle'] + section.subtitle_classes)|sort|join(" ")|escape}}"{% if section.subtitle_ids %} id="{{section.subtitle_ids[0]|escape}}"{% endif %}>{% for i in section.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{section.subtitle|safe}}</h2>
+{% endif %}
+
+{{section.body|safe}}
+
+</div>
+
+{% if content.footer %}
+<div class="footer">
+<hr class="footer" />
+{{content.footer|safe}}
+</div>
+{% endif %}
+
+</body>
+</html>
