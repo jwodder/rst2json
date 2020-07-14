@@ -1,0 +1,145 @@
+{
+    "meta": {
+        "title": null,
+        "source": "latex/split-trans.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "latex",
+        "split_section_level": -1
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
+        "fallbacks": "% transition (break, fancybreak, anonymous section)\n\\providecommand*{\\DUtransition}{%\n  \\hspace*{\\fill}\\hrulefill\\hspace*{\\fill}\n  \\vskip 0.5\\baselineskip\n}",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "document_classes": [],
+        "subtitle_ids": [],
+        "subtitle_classes": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "intro": "The following transition goes into \\textquotedbl{}intro\\textquotedbl{}:\n\n%___________________________________________________________________________\n\\DUtransition",
+        "sections": [
+            {
+                "title": "Section 1",
+                "title_stripped": "Section 1",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-1"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": {"ids": [], "classes": []},
+                "intro": "The following transition goes between sections 1 and 2:",
+                "sections": []
+            },
+            {
+                "title": "Section 2",
+                "title_stripped": "Section 2",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-2"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": {
+                    "ids": ["transit"],
+                    "classes": ["a-rule"]
+                },
+                "intro": "The following transition goes into Section 2's \\textquotedbl{}intro\\textquotedbl{} field:\n\n%___________________________________________________________________________\n\\DUtransition",
+                "sections": [
+                    {
+                        "title": "Section 2.1",
+                        "title_stripped": "Section 2.1",
+                        "subtitle": null,
+                        "subtitle_stripped": null,
+                        "ids": ["section-2-1"],
+                        "classes": [],
+                        "subtitle_ids": [],
+                        "subtitle_classes": [],
+                        "toc_backref": null,
+                        "number": null,
+                        "depth": 2,
+                        "trailing_transition": null,
+                        "intro": "The following transition goes between sections 2 and 3.  It also has a class\nand ID!",
+                        "sections": []
+                    }
+                ]
+            },
+            {
+                "title": "Section 3",
+                "title_stripped": "Section 3",
+                "subtitle": null,
+                "subtitle_stripped": null,
+                "ids": ["section-3"],
+                "classes": [],
+                "subtitle_ids": [],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "intro": "Just some filler text.",
+                "sections": [
+                    {
+                        "title": "Section 3.1",
+                        "title_stripped": "Section 3.1",
+                        "subtitle": null,
+                        "subtitle_stripped": null,
+                        "ids": ["section-3-1"],
+                        "classes": [],
+                        "subtitle_ids": [],
+                        "subtitle_classes": [],
+                        "toc_backref": null,
+                        "number": null,
+                        "depth": 2,
+                        "trailing_transition": {"ids": [], "classes": []},
+                        "intro": "The following transition goes between sections 3.1 and 3.2:",
+                        "sections": []
+                    },
+                    {
+                        "title": "Section 3.2",
+                        "title_stripped": "Section 3.2",
+                        "subtitle": null,
+                        "subtitle_stripped": null,
+                        "ids": ["section-3-2"],
+                        "classes": [],
+                        "subtitle_ids": [],
+                        "subtitle_classes": [],
+                        "toc_backref": null,
+                        "number": null,
+                        "depth": 2,
+                        "trailing_transition": null,
+                        "intro": "Some trailing text.",
+                        "sections": []
+                    }
+                ]
+            }
+        ]
+    },
+    "id_sections": {
+        "transit": "section-2",
+        "section-2-1": "section-2",
+        "section-3-1": "section-3",
+        "section-3-2": "section-3"
+    },
+    "system_messages": []
+}

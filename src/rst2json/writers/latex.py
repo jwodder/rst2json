@@ -55,3 +55,21 @@ class LaTeXJSONTranslator(JSONTranslatorBase, latex2e.LaTeXTranslator):
         if self.split_this_level():
             self._section_number.pop()
         super().depart_section(node)
+
+    def append_hypertargets(self, node):
+        super().append_hypertargets(node)
+        self.add_ids_to_section(node.get('ids', []))
+
+    def ids_to_labels(self, node, set_anchor=True):
+        self.add_ids_to_section(node.get('ids', []))
+        return super().ids_to_labels(node, set_anchor)
+
+    def visit_footnote(self, node):
+        super().visit_footnote(node)
+        if self.docutils_footnotes:
+            self.add_ids_to_section(node['ids'][:1])
+
+    def visit_footnote_reference(self, node):
+        super().visit_footnote_reference(node)
+        if self.settings.footnote_references != 'brackets':
+            self.add_ids_to_section(node['ids'][:1])

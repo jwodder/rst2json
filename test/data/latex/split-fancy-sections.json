@@ -1,0 +1,54 @@
+{
+    "meta": {
+        "title": null,
+        "source": "latex/split-fancy-sections.rst",
+        "language": "en",
+        "docutils_version": "-- REPLACED BY TEST FUNCTION --",
+        "rst2json_version": "-- REPLACED BY TEST FUNCTION --",
+        "generator": "-- REPLACED BY TEST FUNCTION --",
+        "format": "latex",
+        "split_section_level": 1
+    },
+    "latex": {
+        "language": "english",
+        "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
+        "fallbacks": "% titlereference role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}",
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
+    },
+    "content": {
+        "title": null,
+        "title_stripped": null,
+        "subtitle": null,
+        "subtitle_stripped": null,
+        "document_ids": [],
+        "document_classes": [],
+        "subtitle_ids": [],
+        "subtitle_classes": [],
+        "authors": [],
+        "header": null,
+        "footer": null,
+        "docinfo": [],
+        "dedication": null,
+        "abstract": null,
+        "intro": "Here be an introduction.",
+        "sections": [
+            {
+                "title": "\\emph{Fire} \\& \\textbf{Ice}",
+                "title_stripped": "Fire \\& Ice",
+                "subtitle": "\\texttt{red} \\&\\& \\DUroletitlereference{Blue}",
+                "subtitle_stripped": "red \\&\\& Blue",
+                "ids": ["fire-ice"],
+                "classes": [],
+                "subtitle_ids": ["red-blue"],
+                "subtitle_classes": [],
+                "toc_backref": null,
+                "number": null,
+                "depth": 1,
+                "trailing_transition": null,
+                "body": "Lorem ipsum yadda yadda yadda."
+            }
+        ]
+    },
+    "id_sections": {},
+    "system_messages": []
+}

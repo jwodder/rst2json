@@ -164,6 +164,26 @@ class JSONTranslatorBase:
         setattr(self, self.out_varname, self.out_stack.pop())
         return top
 
+    def split_this_level(self, depth=None):
+        if depth is None:
+            depth = self.section_level
+        return self.settings.split_section_level < 0 or \
+            self.settings.split_section_level >= depth
+
+    def add_ids_to_section(self, ids):
+        if self.section_stack:
+            try:
+                sectid = self.section_stack[-1]["ids"][0]
+            except ValueError:
+                sectid = None
+        elif not self.out_stack:
+            sectid = '$intro'
+        else:
+            sectid = None
+        if sectid is not None:
+            for i in ids:
+                self.id_sections[i] = sectid
+
     def visit_document(self, node):
         self.meta_title = node.get('title', None)
         if self.meta_title is not None:
@@ -323,12 +343,6 @@ class JSONTranslatorBase:
             self.current_docinfo_field = None
         else:
             super().depart_field_body(node)
-
-    def split_this_level(self, depth=None):
-        if depth is None:
-            depth = self.section_level
-        return self.settings.split_section_level < 0 or \
-            self.settings.split_section_level >= depth
 
     def visit_section(self, node):
         if 'system-messages' in node["classes"]:
