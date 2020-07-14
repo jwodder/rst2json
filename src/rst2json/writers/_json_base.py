@@ -174,7 +174,7 @@ class JSONTranslatorBase:
         if self.section_stack:
             try:
                 sectid = self.section_stack[-1]["ids"][0]
-            except ValueError:
+            except IndexError:
                 sectid = None
         elif not self.out_stack:
             sectid = '$intro'
