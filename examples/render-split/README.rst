@@ -47,7 +47,8 @@ for the intro template, except that the ``context.body`` field is removed and a
 ``section`` field is added at the top level.  This field is equal to the
 corresponding element of ``content.sections``, except that any intra-document
 ``href`` attributes in the ``body`` field are rewritten to point to the
-appropriate output files, and the following extra fields are added:
+appropriate output files, and the following extra fields are inserted into the
+``section`` object:
 
 ``this_file``
    The name of the output file for the current section
