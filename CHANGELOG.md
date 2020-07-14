@@ -5,6 +5,8 @@ v0.3.0 (in development)
   actual class
 - Added ``content.document_classes`` and ``content.subtitle_classes`` fields to
   output
+- Added a ``split_section_level`` option for splitting the content body up by
+  sections
 
 v0.2.0.post1 (2020-07-11)
 -------------------------
