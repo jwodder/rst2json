@@ -1,5 +1,5 @@
-v0.3.0 (in development)
------------------------
+v0.3.0 (2020-07-14)
+-------------------
 - **Breaking**: When not a string, the `format` argument to the `rst2json()`
   function must now be an instance of a writer class, not an actual class
 - Added `content.document_classes` and `content.subtitle_classes` fields to
