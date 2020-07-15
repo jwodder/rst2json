@@ -1,20 +1,18 @@
 PYTHON = python3
-BASENAME = demo
+INPUT  = demo.rst
 OUTDIR = build
 
-$(OUTDIR) : render-split.py $(BASENAME).json index.j2 section.j2 styles.css
+$(OUTDIR) : render-split.py $(INPUT) index.j2 section.j2 styles.css docutils.conf
 	rm -rf $(OUTDIR)
 	$(PYTHON) render-split.py \
+		-f html4 \
 		-o $(OUTDIR) \
 		-i index.html \
 		-s section%02d.html \
-		$(BASENAME).json \
+		$(INPUT) \
 		index.j2 \
 		section.j2
 	cp styles.css $(OUTDIR)
 
-$(BASENAME).json : $(BASENAME).rst docutils.conf
-	rst2json --format=html4 --split-section-level=1 $< $@
-
 clean :
-	rm -rf $(BASENAME).json $(OUTDIR)
+	rm -rf $(OUTDIR)

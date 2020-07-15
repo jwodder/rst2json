@@ -1,25 +1,32 @@
 This is an example application that makes use of ``rst2json``'s
 ``split_section_level`` feature in order to divide up a document into multiple
-files or "chunks."  It processes a reStructuredText document with ``rst2json
---split-section-level 1`` and then uses a custom Python script to template the
-document intro and sections in separate files, with intra-document links
-rewritten to point to the appropriate files.
+files or "chunks."
 
 ``render-split.py``
 ===================
 
 ::
 
-    python3 render-split.py [<options>] <rst2json output file> <intro template> <section template>
+    python3 render-split.py [<options>] <rst input file> <intro template> <section template>
 
-The ``render-split.py`` script takes the output from an invocation of
-``rst2json`` with ``split_section_level`` set to 1, along with two Jinja2
-templates (one for the intro, one for the sections), and it rewrites the
-intra-document links in the content before templating the intro and each
-section as separate files.
+The ``render-split.py`` script takes a reStructutedText input file plus two
+Jinja2 templates (one for the intro, one for the sections).  It processes the
+input file with ``rst2json`` with ``split_section_level`` set to 1, rewrites
+the intra-document links in the content to point to the appropriate output
+files, and then templates the intro and each section as separate files.
+
+Docutils options can be passed to ``rst2json`` via a Docutils config file —
+either one of the standard files (e.g., ``docutils.conf``) or via a file
+specified on the command line with ``--config``.
 
 Options
 -------
+
+-c, --config FILE      Read Docutils configuration options from FILE
+
+-f, --format FORMAT    Markup format to render the input into.
+                       ``render-split.py`` only supports HTML formats ("html",
+                       "html4", and "html5").  (default: html)
 
 -i, --intro-name NAME  Filename at which to save the rendered intro
                        (default: intro.html)

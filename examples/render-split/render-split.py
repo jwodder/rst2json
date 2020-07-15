@@ -1,24 +1,37 @@
-from   copy    import deepcopy
-import json
+from   copy              import deepcopy
 import os
-from   pathlib import Path
-from   bs4     import BeautifulSoup
+from   pathlib           import Path
+from   bs4               import BeautifulSoup
 import click
+from   docutils.frontend import OptionParser
 import jinja2
+from   rst2json.core     import rst2json
 
 @click.command()
 @click.option(
-    '-o', '--out-dir',
-    type    = click.Path(file_okay=False, dir_okay=True, writable=True),
-    metavar = 'DIR',
-    help    = 'Directory in which to place the templated files',
-    default = os.curdir,
+    '-c', '--config',
+    type = click.Path(exists=True, dir_okay=False),
+    help = 'Read configuration from the given file',
+)
+@click.option(
+    '-f', '--format',
+    default      = 'html',
+    help         = 'Target markup format (must be "html", "html4", or "html5",'
+                   ' case insensitive)',
+    show_default = True,
 )
 @click.option(
     '-i', '--intro-name',
     default      = 'intro.html',
     help         = 'Name of the templated intro file',
     show_default = True,
+)
+@click.option(
+    '-o', '--out-dir',
+    type    = click.Path(file_okay=False, dir_okay=True, writable=True),
+    metavar = 'DIR',
+    help    = 'Directory in which to place the templated files',
+    default = os.curdir,
 )
 @click.option(
     '-s', '--section-fmt',
@@ -28,12 +41,22 @@ import jinja2
                    ' templated section files',
     show_default = True,
 )
-@click.argument('rst_json', type=click.File())
+@click.argument('rst_input', type=click.File())
 @click.argument('intro_template', type=click.Path(exists=True, dir_okay=False))
 @click.argument('section_template', type=click.Path(exists=True, dir_okay=False))
-def main(out_dir, intro_name, section_fmt, rst_json, intro_template,
-         section_template):
-    data = json.load(rst_json)
+def main(out_dir, intro_name, section_fmt, rst_input, intro_template,
+         section_template, format, config):
+    if format.lower() not in ('html', 'html4', 'html5'):
+        raise click.UsageError('--format must be "html", "html4", or "html5"')
+    cfg_files = get_docutils_config_files()
+    if config is not None:
+        cfg_files.append(config)
+    data = rst2json(
+        rst_input,
+        format       = format,
+        options      = {"split_section_level": 1},
+        config_files = cfg_files,
+    )
     contexts = prepare_contexts(data, intro_name, section_fmt)
     outdir = Path(out_dir)
     outdir.mkdir(parents=True, exist_ok=True)
@@ -48,7 +71,15 @@ def main(out_dir, intro_name, section_fmt, rst_json, intro_template,
         tmpl = section_tmpl if i else intro_tmpl
         (outdir / filename).write_text(tmpl.render(cntxt))
 
+def get_docutils_config_files():
+    try:
+        return os.environ["DOCUTILSCONFIG"].split(os.pathsep)
+    except KeyError:
+        return OptionParser.standard_config_files[:]
+
 def prepare_contexts(data, intro_name, section_fmt):
+    if data["meta"]["format"] not in ("html4", "html5"):
+        raise ValueError('Markup format must be HTML')
     if data["meta"]["split_section_level"] != 1:
         raise ValueError('split_section_level of input must be 1')
     intro = data["content"].pop("intro")
