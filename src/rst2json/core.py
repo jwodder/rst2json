@@ -1,9 +1,10 @@
 import os
-from   docutils      import __version__ as docutils_version
-from   docutils.core import publish_parts
-from   docutils.io   import FileInput
-from   .             import __url__, __version__
-from   .writers      import get_json_writer_class
+from   docutils          import __version__ as docutils_version
+from   docutils.core     import publish_parts
+from   docutils.frontend import OptionParser
+from   docutils.io       import FileInput
+from   .                 import __url__, __version__
+from   .writers          import get_json_writer_class
 
 docutils_url = 'http://docutils.sourceforge.net/'
 
@@ -44,7 +45,8 @@ def rst2json(source, format='html', options=None, config_files=None,
         from the files specified in the :envvar:`DOCUTILSCONFIG` environment
         variable, or from the standard configuration files if that is not set.
         Settings in configuration files override any conflicting settings given
-        in ``options``.
+        in ``options``.  Note that, when ``config_files`` is non-`None`,
+        Docutils configuration files *not* in the list will not be read.
 
     :param destination_path: Path to a file (which need not exist) which
         stylesheet paths in HTML ``<link>`` tags will be rewritten relative to;
@@ -85,3 +87,15 @@ def rst2json(source, format='html', options=None, config_files=None,
         else:
             os.environ["DOCUTILSCONFIG"] = old_docutilsconfig
     return parts["json_data"]
+
+def get_docutils_config_files():
+    """
+    Return a list of the config file paths that Docutils will read from, based
+    on the current setting of the :envvar:`DOCUTILSCONFIG` environment
+    variable.  Tildes in file paths are not expanded.
+    """
+    try:
+        cfgs = os.environ["DOCUTILSCONFIG"].split(os.pathsep)
+    except KeyError:
+        cfgs = list(OptionParser.standard_config_files)
+    return [f for f in cfgs if f.strip()]

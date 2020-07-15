@@ -141,7 +141,16 @@ Options`_" are accepted.
 files to read from; if ``None``, configuration is read from the files specified
 in the ``DOCUTILSCONFIG`` environment variable, or from the standard
 configuration files if that is not set.  Settings in configuration files
-override any conflicting settings given in ``options``.
+override any conflicting settings given in ``options``.  Note that, when
+``config_files`` is non-``None``, Docutils configuration files *not* in the
+list will not be read.
+
+Starting in version 0.4.0, if you want to append to the list of config files
+instead of replacing it, you can call the
+``rst2json.core.get_docutils_config_files()`` function to get a list of config
+file paths Docutils will read from based on the current environment; simply
+append your config files to this list and pass the result to ``rst2json()``,
+and all of the files (should they exist) will be read.
 
 ``destination_path`` is a path to a file (which need not exist) which
 stylesheet paths in HTML ``<link>`` tags will be rewritten relative to; if
