@@ -19,6 +19,7 @@
 `GitHub <https://github.com/jwodder/rst2json>`_
 | `PyPI <https://pypi.org/project/rst2json/>`_
 | `Issues <https://github.com/jwodder/rst2json/issues>`_
+| `Changelog <https://github.com/jwodder/rst2json/blob/master/CHANGELOG.md>`_
 
 .. contents::
     :backlinks: top
