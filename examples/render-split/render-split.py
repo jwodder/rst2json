@@ -100,7 +100,7 @@ def prepare_contexts(data, intro_name, section_fmt):
             href_map[f'#{id}'] = f'{sectid2file[sectid]}#{id}'
     for (sect, fname) in zip(sections, section_filenames):
         for id in sect["ids"]:
-            href_map[f'#{id}'] = f'{fname}#{id}'
+            href_map[f'#{id}'] = fname
     intro = rewrite_hrefs(intro, href_map)
     intro_context = deepcopy(data)
     intro_context["content"]["body"] = intro
