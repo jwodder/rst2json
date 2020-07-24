@@ -1,0 +1,122 @@
+<!--
+    This is a Jinja2 template that can be applied to the output from `rst2json
+    --format=html4` to produce a (slightly) customized frontmatter layout.
+-->
+
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{meta.language|escape}}" lang="{{meta.language|escape}}">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="{{meta.generator|escape}}" />
+<title>{% if content.title_stripped %}{{content.title_stripped|safe}}{% if content.subtitle_stripped %}: {{content.subtitle_stripped}}{% endif %}{% else %}{{meta.source|safe}}{% endif %}</title>
+{{html.meta_tags|safe}}
+<link rel="stylesheet" href="html4css1.css" type="text/css" />
+{{html.math_requires|safe}}
+<style type="text/css">
+div.authors, div.date {
+    font-size: x-large;
+    text-align: center;
+}
+</style>
+</head>
+<body>
+
+{% if content.header %}
+<div class="header">
+{{content.header|safe}}
+<hr class="header"/>
+</div>
+{% endif %}
+
+<div class="{{(['document'] + content.document_classes)|sort|join(" ")|escape}}"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>
+{% for i in content.document_ids[1:] %}
+<span id="{{i|escape}}"></span>
+{% endfor %}
+
+{% if content.title %}
+<h1 class="title">{{content.title|safe}}</h1>
+{% endif %}
+
+{% if content.subtitle %}
+<h2 class="{{(['subtitle'] + content.subtitle_classes)|sort|join(" ")|escape}}"{% if content.subtitle_ids %} id="{{content.subtitle_ids[0]|escape}}"{% endif %}>{% for i in content.subtitle_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}{{content.subtitle|safe}}</h2>
+{% endif %}
+
+{% if content.authors %}
+<div class="authors">{% set sep = joiner(', ') %}{% for a in content.authors %}{{sep()}}{{a}}{% endfor %}</div>
+{% endif %}
+
+{% set dates = content.docinfo|selectattr("type", "eq", "date")|map(attribute="value")|list %}
+{% if dates %}
+<div class="date">{% set sep = joiner(', ') %}{% for d in dates %}{{sep()}}{{d}}{% endfor %}</div>
+{% endif %}
+
+{% set docinfo = content.docinfo|rejectattr("type", "in", ["author", "authors", "date"]) %}
+{% if docinfo %}
+<table class="docinfo" frame="void" rules="none">
+<col class="docinfo-name" />
+<col class="docinfo-content" />
+<tbody valign="top">
+{% for item in docinfo %}
+<tr{% if item.type == 'field' %} class="{{item.classes|join(' ')|escape}} field"{% endif %}><th class="docinfo-name">{{item.name|safe}}:</th>
+<td{% if item.type == 'field' %} class="field-body"{% endif %}>{% if item.type == 'address' %}<pre class="address">
+{{item.value|safe}}
+</pre>
+</td></tr>
+{% else %}{{item.value|safe}}</td></tr>
+{% endif %}
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+
+{% if content.dedication %}
+<div class="dedication topic">
+<p class="topic-title">Dedication</p>
+{{content.dedication|safe}}
+</div>
+{% endif %}
+
+{% if content.abstract %}
+<div class="abstract topic">
+<p class="topic-title">Abstract</p>
+{{content.abstract|safe}}
+</div>
+{% endif %}
+
+{{content.body|safe}}
+
+{% if system_messages %}
+<div class="system-messages section">
+<h1>Docutils System Messages</h1>
+{% for msg in system_messages %}
+<div class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+<p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<tt class="docutils">{{msg.source|safe}}</tt>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
+    {% if msg.backrefs|length == 1 %}
+    <em><a href="#{{msg.backrefs[0]|escape}}">backlink</a></em>
+    {% else %}
+    <em>backlinks: 
+        {% set sep = joiner(', ') %}
+        {% for b in msg.backrefs %}
+        {{sep()}}<a href="#{{b|escape}}">{{loop.index}}</a>
+        {% endfor %}
+    </em>
+    {% endif %}
+    {% endif %}
+</p>
+{{msg.body|safe}}</div>
+{% endfor %}
+</div>
+{% endif %}
+
+</div>
+
+{% if content.footer %}
+<div class="footer">
+<hr class="footer" />
+{{content.footer|safe}}
+</div>
+{% endif %}
+
+</body>
+</html>
