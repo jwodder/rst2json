@@ -24,7 +24,7 @@
 {% endif %}
 {% endfor %}
 {{html.meta_tags|safe}}
-{% if 'name="dcterms.' in meta.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date']) %}
+{% if 'name="dcterms.' in meta.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date'])|list %}
 <link rel="schema.dcterms" href="http://purl.org/dc/terms/">
 {% endif %}
 <link rel="stylesheet" href="minimal.css" type="text/css" />
