@@ -3,6 +3,7 @@ from   docutils          import __version__ as docutils_version
 from   docutils.core     import publish_parts
 from   docutils.frontend import OptionParser
 from   docutils.io       import FileInput
+from   morecontext       import envrollback
 from   .                 import __url__, __version__
 from   .writers          import get_json_writer_class
 
@@ -66,13 +67,12 @@ def rst2json(source, format='html', options=None, config_files=None,
         writer = get_json_writer_class(format)()
     else:
         writer = format
-    old_docutilsconfig = os.environ.get("DOCUTILSCONFIG")
-    if config_files is not None:
-        os.environ["DOCUTILSCONFIG"] \
-            = os.pathsep.join(map(os.fsdecode, config_files))
     if destination_path is not None:
         destination_path = os.fsdecode(destination_path)
-    try:
+    with envrollback("DOCUTILSCONFIG"):
+        if config_files is not None:
+            os.environ["DOCUTILSCONFIG"] \
+                = os.pathsep.join(map(os.fsdecode, config_files))
         parts = publish_parts(
             source             = source,
             source_path        = source_path,
@@ -81,11 +81,6 @@ def rst2json(source, format='html', options=None, config_files=None,
             writer             = writer,
             settings_overrides = options,
         )
-    finally:
-        if old_docutilsconfig is None:
-            os.environ.pop("DOCUTILSCONFIG", None)
-        else:
-            os.environ["DOCUTILSCONFIG"] = old_docutilsconfig
     return parts["json_data"]
 
 def get_docutils_config_files():
