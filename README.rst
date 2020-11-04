@@ -310,7 +310,6 @@ Ignored Options
 ``rst2json`` ignores the following Docutils configuration options, as they have
 no effect on its operation:
 
-- ``documentclass``
 - ``documentoptions``
 - ``latex_preamble``
 - ``stylesheet_path``
