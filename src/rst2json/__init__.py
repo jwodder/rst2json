@@ -5,7 +5,7 @@ Split rendered reStructuredText into JSON
 unlike Docutils_' builtin converters, which produce a complete output document
 — it outputs a JSON object in which the document "frontmatter" (title,
 subtitle, bibliographic fields, etc.) has been broken out from the body and
-split into multiple fields.  By combining the output with a templating system
+split into multiple fields.  By combining this output with a templating system
 like Jinja_, the user can perform more powerful & more customizable templating
 than is possible with Docutils' built-in template support.  Version 0.3.0 even
 introduces the ability to split apart documents at section boundaries, thereby
