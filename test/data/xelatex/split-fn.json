@@ -12,7 +12,7 @@
     "latex": {
         "language": "english",
         "requirements": "\\usepackage{ifthen}",
-        "fallbacks": "% numeric or symbol footnotes with hyperlinks\n\\providecommand*{\\DUfootnotemark}[3]{%\n  \\raisebox{1em}{\\hypertarget{#1}{}}%\n  \\hyperlink{#2}{\\textsuperscript{#3}}%\n}\n\\providecommand{\\DUfootnotetext}[4]{%\n  \\begingroup%\n  \\renewcommand{\\thefootnote}{%\n    \\protect\\raisebox{1em}{\\protect\\hypertarget{#1}{}}%\n    \\protect\\hyperlink{#2}{#3}}%\n  \\footnotetext{#4}%\n  \\endgroup%\n}",
+        "fallbacks": "% numerical or symbol footnotes with hyperlinks and backlinks\n\\providecommand*{\\DUfootnotemark}[3]{%\n  \\raisebox{1em}{\\hypertarget{#1}{}}%\n  \\hyperlink{#2}{\\textsuperscript{#3}}%\n}\n\\providecommand{\\DUfootnotetext}[4]{%\n  \\begingroup%\n  \\renewcommand{\\thefootnote}{%\n    \\protect\\raisebox{1em}{\\protect\\hypertarget{#1}{}}%\n    \\protect\\hyperlink{#2}{#3}}%\n  \\footnotetext{#4}%\n  \\endgroup%\n}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },
     "content": {
@@ -37,7 +37,9 @@
                 "title_stripped": "Footnotes",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["footnotes"],
+                "ids": [
+                    "footnotes"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],

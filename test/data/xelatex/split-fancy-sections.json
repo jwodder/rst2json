@@ -12,7 +12,7 @@
     "latex": {
         "language": "english",
         "requirements": "\\usepackage{ifthen}",
-        "fallbacks": "% titlereference role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}",
+        "fallbacks": "% titlereference standard role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },
     "content": {
@@ -37,9 +37,13 @@
                 "title_stripped": "Fire \\& Ice",
                 "subtitle": "\\texttt{red} \\&\\& \\DUroletitlereference{Blue}",
                 "subtitle_stripped": "red \\&\\& Blue",
-                "ids": ["fire-ice"],
+                "ids": [
+                    "fire-ice"
+                ],
                 "classes": [],
-                "subtitle_ids": ["red-blue"],
+                "subtitle_ids": [
+                    "red-blue"
+                ],
                 "subtitle_classes": [],
                 "toc_backref": null,
                 "number": null,

@@ -74,7 +74,7 @@
                         "number": "[6.1]",
                         "depth": 2,
                         "trailing_transition": null,
-                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<div class=\"section\" id=\"section-2-1-1\">\n<h3><span class=\"sectnum\">[6.1.1]</span> Section 2.1.1</h3>\n<p>Beware the Jabberwock, my son!</p>\n</div>"
+                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<section id=\"section-2-1-1\">\n<h4><span class=\"sectnum\">[6.1.1]</span> Section 2.1.1</h4>\n<p>Beware the Jabberwock, my son!</p>\n</section>"
                     },
                     {
                         "title": "Section 2.2",

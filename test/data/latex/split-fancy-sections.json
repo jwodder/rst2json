@@ -12,7 +12,7 @@
     "latex": {
         "language": "english",
         "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
-        "fallbacks": "% titlereference role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}",
+        "fallbacks": "% titlereference standard role\n\\providecommand*{\\DUroletitlereference}[1]{\\textsl{#1}}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },
     "content": {

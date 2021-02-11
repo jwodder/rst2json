@@ -28,7 +28,7 @@
         "docinfo": [],
         "dedication": null,
         "abstract": null,
-        "body": "<div class=\"section\" id=\"just-a-section-title\">\n<h1 class=\"with-subtitle\">Just a Section Title</h1>\n<p class=\"section-subtitle\" id=\"not-a-document-title\">(Not a Document Title)</p>\n<p>“What are these ‘smart quotes’ you speak of?” said Smart Alek.  “I’ve never\nheard of them before.”</p>\n<p>“Well…” said Smart Alice, “remember from 2000–2010 when you used Micro—”</p>\n<p>“<em>I never used that, and you can’t prove I did!</em>”</p>\n</div>"
+        "body": "<section id=\"just-a-section-title\">\n<h2 class=\"with-subtitle\">Just a Section Title</h2>\n<p class=\"section-subtitle\" id=\"not-a-document-title\">(Not a Document Title)</p>\n<p>“What are these ‘smart quotes’ you speak of?” said Smart Alek.  “I’ve never\nheard of them before.”</p>\n<p>“Well…” said Smart Alice, “remember from 2000–2010 when you used Micro—”</p>\n<p>“<em>I never used that, and you can’t prove I did!</em>”</p>\n</section>"
     },
     "system_messages": []
 }

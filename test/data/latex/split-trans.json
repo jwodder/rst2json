@@ -12,7 +12,7 @@
     "latex": {
         "language": "english",
         "requirements": "\\usepackage{ifthen}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}",
-        "fallbacks": "% transition (break, fancybreak, anonymous section)\n\\providecommand*{\\DUtransition}{%\n  \\hspace*{\\fill}\\hrulefill\\hspace*{\\fill}\n  \\vskip 0.5\\baselineskip\n}",
+        "fallbacks": "% transition (break / fancybreak / anonymous section)\n\\providecommand*{\\DUtransition}{%\n  \\hspace*{\\fill}\\hrulefill\\hspace*{\\fill}\n  \\vskip 0.5\\baselineskip\n}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },
     "content": {
@@ -37,14 +37,19 @@
                 "title_stripped": "Section 1",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-1"],
+                "ids": [
+                    "section-1"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],
                 "toc_backref": null,
                 "number": null,
                 "depth": 1,
-                "trailing_transition": {"ids": [], "classes": []},
+                "trailing_transition": {
+                    "ids": [],
+                    "classes": []
+                },
                 "intro": "The following transition goes between sections 1 and 2:",
                 "sections": []
             },
@@ -53,7 +58,9 @@
                 "title_stripped": "Section 2",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-2"],
+                "ids": [
+                    "section-2"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],
@@ -61,8 +68,12 @@
                 "number": null,
                 "depth": 1,
                 "trailing_transition": {
-                    "ids": ["transit"],
-                    "classes": ["a-rule"]
+                    "ids": [
+                        "transit"
+                    ],
+                    "classes": [
+                        "a-rule"
+                    ]
                 },
                 "intro": "The following transition goes into Section 2's \\textquotedbl{}intro\\textquotedbl{} field:\n\n%___________________________________________________________________________\n\\DUtransition",
                 "sections": [
@@ -71,7 +82,9 @@
                         "title_stripped": "Section 2.1",
                         "subtitle": null,
                         "subtitle_stripped": null,
-                        "ids": ["section-2-1"],
+                        "ids": [
+                            "section-2-1"
+                        ],
                         "classes": [],
                         "subtitle_ids": [],
                         "subtitle_classes": [],
@@ -89,7 +102,9 @@
                 "title_stripped": "Section 3",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-3"],
+                "ids": [
+                    "section-3"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],
@@ -104,14 +119,19 @@
                         "title_stripped": "Section 3.1",
                         "subtitle": null,
                         "subtitle_stripped": null,
-                        "ids": ["section-3-1"],
+                        "ids": [
+                            "section-3-1"
+                        ],
                         "classes": [],
                         "subtitle_ids": [],
                         "subtitle_classes": [],
                         "toc_backref": null,
                         "number": null,
                         "depth": 2,
-                        "trailing_transition": {"ids": [], "classes": []},
+                        "trailing_transition": {
+                            "ids": [],
+                            "classes": []
+                        },
                         "intro": "The following transition goes between sections 3.1 and 3.2:",
                         "sections": []
                     },
@@ -120,7 +140,9 @@
                         "title_stripped": "Section 3.2",
                         "subtitle": null,
                         "subtitle_stripped": null,
-                        "ids": ["section-3-2"],
+                        "ids": [
+                            "section-3-2"
+                        ],
                         "classes": [],
                         "subtitle_ids": [],
                         "subtitle_classes": [],

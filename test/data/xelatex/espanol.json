@@ -13,7 +13,7 @@
         "language": "spanish",
         "requirements": "\\usepackage{ifthen}\n\\usepackage{polyglossia}\n\\setdefaultlanguage{spanish}",
         "fallbacks": "% admonition (specially marked topic)\n\\providecommand{\\DUadmonition}[2][class-arg]{%\n  % try \\DUadmonition#1{#2}:\n  \\ifcsname DUadmonition#1\\endcsname%\n    \\csname DUadmonition#1\\endcsname{#2}%\n  \\else\n    \\begin{center}\n      \\fbox{\\parbox{0.9\\linewidth}{#2}}\n    \\end{center}\n  \\fi\n}\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[2][class-arg]{%\n  % call \\DUtitle#1{#2} if it exists:\n  \\ifcsname DUtitle#1\\endcsname%\n    \\csname DUtitle#1\\endcsname{#2}%\n  \\else\n    \\smallskip\\noindent\\textbf{#2}\\smallskip%\n  \\fi\n}",
-        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdfauthor={yo}\n}"
+        "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}\n\\hypersetup{\n  pdflang={es},\n  pdfauthor={yo}\n}"
     },
     "content": {
         "title": null,
