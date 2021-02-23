@@ -1,7 +1,8 @@
 <!--
     This is a Jinja2 template that can be applied to the output from `rst2json
     --format=html5` to produce an HTML5 document that is as close to the output
-    from `rst2html5.py --link-stylesheet` as is reasonably possible.
+    from `rst2html5.py --link-stylesheet` (as of Docutils 0.17) as is
+    reasonably possible.
 -->
 
 <!DOCTYPE html>
@@ -9,7 +10,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="generator" content="{{meta.generator|escape}}" />
-<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source|safe}}{% endif %}</title>
+<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source.rstrip("/").split("/")[-1]|safe}}{% endif %}</title>
 {% for item in content.docinfo %}
 {% if item.type == 'author' %}
 <meta name="{{item.type|escape}}" content="{{item.value_stripped|safe}}" />
@@ -24,8 +25,8 @@
 {% endif %}
 {% endfor %}
 {{html.meta_tags|safe}}
-{% if 'name="dcterms.' in meta.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date'])|list %}
-<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+{% if 'name="dcterms.' in html.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date'])|list %}
+<link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 {% endif %}
 <link rel="stylesheet" href="minimal.css" type="text/css" />
 <link rel="stylesheet" href="plain.css" type="text/css" />
@@ -33,12 +34,11 @@
 </head>
 <body>
 {% if content.header %}
-<div class="header">
+<header>
 {{content.header|safe}}
-<hr class="header"/>
-</div>
+</header>
 {% endif %}
-<div class="{{(['document'] + content.document_classes)|sort|join(" ")|escape}}"{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+<main{% if content.document_classes %} class="{{content.document_classes|sort|join(" ")|escape}}"{% endif %}{% if content.document_ids %} id="{{content.document_ids[0]|escape}}"{% endif %}>{% for i in content.document_ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
 
 {% if content.title %}
 <h1 class="title">{{content.title|safe}}</h1>
@@ -82,8 +82,8 @@
 {% endif %}
 {{content.body|safe}}
 {% if system_messages %}
-<div class="system-messages section">
-<h1>Docutils System Messages</h1>
+<section class="system-messages">
+<h2>Docutils System Messages</h2>
 {% for msg in system_messages %}
 <div class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
 
@@ -103,14 +103,13 @@
 {{msg.body|safe}}
 </div>
 {% endfor %}
-</div>
+</section>
 {% endif %}
-</div>
+</main>
 {% if content.footer %}
-<div class="footer">
-<hr class="footer" />
+<footer>
 {{content.footer|safe}}
-</div>
+</footer>
 {% endif %}
 </body>
 </html>

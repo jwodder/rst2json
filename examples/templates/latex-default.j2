@@ -179,9 +179,9 @@
 }
 {% for msg in system_messages %}
 \DUadmonition[system-message]{
-\DUtitle[system-message]{system-message}
+\DUtitle[system-message]{system-message
 {% set sep = joiner('%\n') %}
-{% for id in msg.ids %}{{sep()}}\raisebox{1em}{\hypertarget{{ '{' }}{{id}}}{}}{% endfor %}
+{% for id in msg.ids %}{{sep()}}\raisebox{1em}{\hypertarget{{ '{' }}{{id}}}{}}{% endfor %}}
 
 {\color{red}{{msg.type}}/{{msg.level}}} in \texttt{{ '{' }}{{msg.source}}}{% if msg.line %}, line~{{msg.line}}{% endif %}
 

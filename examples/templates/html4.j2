@@ -10,7 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="{{meta.generator|escape}}" />
-<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source|safe}}{% endif %}</title>
+<title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source.rstrip("/").split("/")[-1]|safe}}{% endif %}</title>
 {% for item in content.docinfo %}
 {% if item.type in ['author', 'copyright', 'date', 'organization'] %}
 <meta name="{{item.type|escape}}" content="{{item.value_stripped|safe}}" />
@@ -19,8 +19,8 @@
 {% endif %}
 {% endfor %}
 {{html.meta_tags|safe}}
-{% if 'name="dcterms.' in meta.meta_tags %}
-<link rel="schema.dcterms" href="http://purl.org/dc/terms/">
+{% if 'name="dcterms.' in html.meta_tags %}
+<link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 {% endif %}
 <link rel="stylesheet" href="html4css1.css" type="text/css" />
 {{html.math_requires|safe}}
