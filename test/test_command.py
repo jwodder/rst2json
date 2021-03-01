@@ -14,15 +14,14 @@ def pytest_generate_tests(metafunc):
         argvalues = []
         ids = []
         for fmt in FORMATS:
-            for p in (DATA_DIR / fmt).iterdir():
-                if p.suffix == '.rst':
-                    input_path = p
-                    json_path = p.with_suffix('.json')
-                    conf_path = p.with_suffix('.conf')
-                    if not conf_path.exists():
-                        conf_path = None
-                    argvalues.append((fmt, input_path, json_path, conf_path))
-                    ids.append(str(input_path.relative_to(DATA_DIR)))
+            for p in (DATA_DIR / fmt).glob("*.rst"):
+                input_path = p
+                json_path = p.with_suffix('.json')
+                conf_path = p.with_suffix('.conf')
+                if not conf_path.exists():
+                    conf_path = None
+                argvalues.append((fmt, input_path, json_path, conf_path))
+                ids.append(str(input_path.relative_to(DATA_DIR)))
         metafunc.parametrize(
             'fmt,input_path,json_path,conf_path',
             argvalues,
