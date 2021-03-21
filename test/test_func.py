@@ -191,7 +191,8 @@ def test_func_stringio():
     assert data == expected
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_strpath(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_strpath():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
@@ -199,7 +200,8 @@ def test_func_strpath(in_tmpdir):
     assert data == OUTPUT
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_pathlib(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_pathlib():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
@@ -207,7 +209,8 @@ def test_func_pathlib(in_tmpdir):
     assert data == OUTPUT
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_filehandle(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_filehandle():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
@@ -216,7 +219,8 @@ def test_func_filehandle(in_tmpdir):
     assert data == OUTPUT
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_custom_conf(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_custom_conf():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     with open('custom.conf', 'w') as fp:
@@ -227,7 +231,8 @@ def test_func_custom_conf(in_tmpdir):
     assert data == OUTPUT_NO_DOC_TITLE
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_custom_conf_ignore_standard_conf(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_custom_conf_ignore_standard_conf():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     with open('custom.conf', 'w') as fp:
@@ -245,7 +250,8 @@ def test_func_custom_conf_ignore_standard_conf(in_tmpdir):
     (Path.home()/'.docutils').exists() or Path('/etc/docutils.conf').exists(),
     reason="Other standard docutils config files exist; environment can't be trusted",
 )
-def test_func_standard_conf(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_standard_conf():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     with open('docutils.conf', 'w') as fp:
@@ -256,7 +262,8 @@ def test_func_standard_conf(in_tmpdir):
     assert data == OUTPUT_NO_DOC_TITLE
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_options(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_options():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
@@ -269,7 +276,8 @@ def test_func_options(in_tmpdir):
     assert data == OUTPUT_NO_DOC_TITLE
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_options_vs_config(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_options_vs_config():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     with open('custom.conf', 'w') as fp:
@@ -287,7 +295,8 @@ def test_func_options_vs_config(in_tmpdir):
     assert "<h2>A Document</h2>" in data["content"]["body"]
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_class_format(in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_class_format():
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     docutilsconfig = os.environ.get("DOCUTILSCONFIG")
@@ -295,7 +304,8 @@ def test_func_class_format(in_tmpdir):
     assert data == OUTPUT_LATEX
     assert os.environ.get("DOCUTILSCONFIG") == docutilsconfig
 
-def test_func_nonnull_envvar(monkeypatch, in_tmpdir):
+@pytest.mark.usefixtures("in_tmpdir")
+def test_func_nonnull_envvar(monkeypatch):
     with open('input.rst', 'w') as fp:
         fp.write(INPUT)
     with open('custom.conf', 'w') as fp:

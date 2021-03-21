@@ -9,8 +9,8 @@ def joinstrs(lst):
 def joinnl(lst):
     return '\n'.join(lst).strip('\n')
 
-def validate_int(setting, value, option_parser, config_parser=None,
-                 config_section=None):
+def validate_int(setting, value, option_parser, config_parser=None,  # noqa: U100
+                 config_section=None):  # noqa: U100
     return int(value)
 
 class JSONWriterBase:
@@ -188,24 +188,24 @@ class JSONTranslatorBase:
         self.document_ids = node.get('ids', [])
         self.document_classes = node.get('classes', [])
 
-    def visit_header(self, node):
+    def visit_header(self, _node):
         self.header = []
         self.push_output_collector(self.header)
 
-    def depart_header(self, node):
+    def depart_header(self, _node):
         self.pop_output_collector()
 
-    def visit_footer(self, node):
+    def visit_footer(self, _node):
         self.footer = []
         self.push_output_collector(self.footer)
 
-    def depart_footer(self, node):
+    def depart_footer(self, _node):
         self.pop_output_collector()
 
-    def visit_docinfo(self, node):
+    def visit_docinfo(self, _node):
         self.in_docinfo = True
 
-    def depart_docinfo(self, node):
+    def depart_docinfo(self, _node):
         self.in_docinfo = False
 
     def visit_docinfo_item(self, node, name):
@@ -232,7 +232,7 @@ class JSONTranslatorBase:
     def visit_address(self, node):
         self.visit_docinfo_item(node, 'address')
 
-    def depart_address(self, node):
+    def depart_address(self, _node):
         self.depart_docinfo_item()
 
     def visit_author(self, node):
@@ -253,49 +253,49 @@ class JSONTranslatorBase:
     def visit_authors(self, node):
         self.visit_docinfo_item(node, 'authors')
 
-    def depart_authors(self, node):
+    def depart_authors(self, _node):
         self.depart_docinfo_item()
 
     def visit_contact(self, node):
         self.visit_docinfo_item(node, 'contact')
 
-    def depart_contact(self, node):
+    def depart_contact(self, _node):
         self.depart_docinfo_item()
 
     def visit_copyright(self, node):
         self.visit_docinfo_item(node, 'copyright')
 
-    def depart_copyright(self, node):
+    def depart_copyright(self, _node):
         self.depart_docinfo_item()
 
     def visit_date(self, node):
         self.visit_docinfo_item(node, 'date')
 
-    def depart_date(self, node):
+    def depart_date(self, _node):
         self.depart_docinfo_item()
 
     def visit_organization(self, node):
         self.visit_docinfo_item(node, 'organization')
 
-    def depart_organization(self, node):
+    def depart_organization(self, _node):
         self.depart_docinfo_item()
 
     def visit_revision(self, node):
         self.visit_docinfo_item(node, 'revision')
 
-    def depart_revision(self, node):
+    def depart_revision(self, _node):
         self.depart_docinfo_item()
 
     def visit_status(self, node):
         self.visit_docinfo_item(node, 'status')
 
-    def depart_status(self, node):
+    def depart_status(self, _node):
         self.depart_docinfo_item()
 
     def visit_version(self, node):
         self.visit_docinfo_item(node, 'version')
 
-    def depart_version(self, node):
+    def depart_version(self, _node):
         self.depart_docinfo_item()
 
     def visit_field(self, node):
@@ -519,7 +519,7 @@ class JSONTranslatorBase:
         else:
             super().visit_generated(node)
 
-    def visit_system_message(self, node):
+    def visit_system_message(self, _node):
         self.push_output_collector([])
 
     def depart_system_message(self, node):
