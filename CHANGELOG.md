@@ -1,5 +1,5 @@
-v0.4.0 (in development)
------------------------
+v0.4.0 (2021-06-06)
+-------------------
 - Added an `rst2json.core.get_docutils_config_files()` function for fetching
   the list of config files Docutils will read from based on the environment
 - Support Python 3.9
