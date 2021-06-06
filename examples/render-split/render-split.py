@@ -5,7 +5,7 @@ from   bs4               import BeautifulSoup
 import click
 from   docutils.frontend import OptionParser
 import jinja2
-from   rst2json.core     import rst2json
+from   rst2json.core     import get_docutils_config_files, rst2json
 
 @click.command()
 @click.option(
@@ -70,12 +70,6 @@ def main(out_dir, intro_name, section_fmt, rst_input, intro_template,
     for i, (filename, cntxt) in enumerate(contexts):
         tmpl = section_tmpl if i else intro_tmpl
         (outdir / filename).write_text(tmpl.render(cntxt))
-
-def get_docutils_config_files():
-    try:
-        return os.environ["DOCUTILSCONFIG"].split(os.pathsep)
-    except KeyError:
-        return OptionParser.standard_config_files[:]
 
 def prepare_contexts(data, intro_name, section_fmt):
     if data["meta"]["format"] not in ("html4", "html5"):

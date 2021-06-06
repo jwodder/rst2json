@@ -1,5 +1,5 @@
 # Python ~= 3.6
 beautifulsoup4 ~= 4.5
-click ~= 7.0
-Jinja2 ~= 2.8
-rst2json ~= 0.3.0
+click >= 7.0
+Jinja2 ~= 3.0
+rst2json ~= 0.4
