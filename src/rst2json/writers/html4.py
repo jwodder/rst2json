@@ -1,14 +1,18 @@
-from   docutils         import nodes
-from   docutils.writers import html4css1
-from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinstrs
+from docutils import nodes
+from docutils.writers import html4css1
+from ._json_base import JSONTranslatorBase, JSONWriterBase, joinstrs
+
 
 class Writer(JSONWriterBase, html4css1.Writer):
-    format_name = 'html4'
+    format_name = "html4"
 
-    json_fields = dict(JSONWriterBase.json_fields, html={
-        "math_requires": ("math_header", joinstrs),
-        "meta_tags": ("meta_tags", joinstrs),
-    })
+    json_fields = dict(
+        JSONWriterBase.json_fields,
+        html={
+            "math_requires": ("math_header", joinstrs),
+            "meta_tags": ("meta_tags", joinstrs),
+        },
+    )
 
     def __init__(self):
         super().__init__()
@@ -16,29 +20,29 @@ class Writer(JSONWriterBase, html4css1.Writer):
 
 
 class HTMLJSONTranslator(JSONTranslatorBase, html4css1.HTMLTranslator):
-    out_varname = 'body'
+    out_varname = "body"
 
     def visit_docinfo_item(self, node, name):
         super().visit_docinfo_item(node, name)
         if len(node):
             if isinstance(node[0], nodes.Element):
-                node[0]['classes'].append('first')
+                node[0]["classes"].append("first")
             if isinstance(node[-1], nodes.Element):
-                node[-1]['classes'].append('last')
+                node[-1]["classes"].append("last")
 
     def visit_field_body(self, node):
         super().visit_field_body(node)
         if self.in_docinfo:
-            self.set_class_on_child(node, 'first', 0)
+            self.set_class_on_child(node, "first", 0)
             # If we are in the docinfo, do not add vertical space after last
             # element.
-            self.set_class_on_child(node, 'last', -1)
+            self.set_class_on_child(node, "last", -1)
 
     def visit_meta(self, node):
-        meta = self.emptytag(node, 'meta', **node.non_default_attributes())
+        meta = self.emptytag(node, "meta", **node.non_default_attributes())
         self.meta_tags.append(meta)
 
-    def starttag(self, node, tagname, suffix='\n', empty=False, **attributes):
-        ids = node.get('ids', []) + attributes.get('ids', [])
+    def starttag(self, node, tagname, suffix="\n", empty=False, **attributes):
+        ids = node.get("ids", []) + attributes.get("ids", [])
         self.add_ids_to_section(ids)
         return super().starttag(node, tagname, suffix, empty, **attributes)

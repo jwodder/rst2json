@@ -1,10 +1,11 @@
-from   collections import namedtuple
+from collections import namedtuple
 import re
 
-OptionDetails = namedtuple('OptionDetails', 'field_name is_flag')
+OptionDetails = namedtuple("OptionDetails", "field_name is_flag")
 
-SHORT_RGX = re.compile(r'-[^-]')
-LONG_RGX  = re.compile(r'--[^-].*')
+SHORT_RGX = re.compile(r"-[^-]")
+LONG_RGX = re.compile(r"--[^-].*")
+
 
 class KnownOptionParser:
     """
@@ -51,15 +52,15 @@ class KnownOptionParser:
         longopts = []
         field_name = None
         for a in args:
-            if a.startswith('-'):
+            if a.startswith("-"):
                 if LONG_RGX.fullmatch(a):
                     longopts.append(a[2:])
                 elif SHORT_RGX.fullmatch(a):
                     shortopts.append(a[1])
                 else:
-                    raise ValueError(f'Invalid option: {a!r}')
+                    raise ValueError(f"Invalid option: {a!r}")
             elif field_name is not None:
-                raise ValueError('More than one field name specified')
+                raise ValueError("More than one field name specified")
             else:
                 field_name = a
         if field_name is None:
@@ -68,17 +69,17 @@ class KnownOptionParser:
             elif shortopts:
                 field_name = shortopts[0]
             else:
-                raise ValueError('No arguments supplied')
+                raise ValueError("No arguments supplied")
         if not shortopts and not longopts:
-            raise ValueError('No options supplied')
+            raise ValueError("No options supplied")
         deets = OptionDetails(field_name=field_name, is_flag=is_flag)
         for so in shortopts:
             if so in self.shortopts:
-                raise ValueError(f'-{so} option registered more than once')
+                raise ValueError(f"-{so} option registered more than once")
             self.shortopts[so] = deets
         for lo in longopts:
             if lo in self.longopts:
-                raise ValueError(f'--{lo} option registered more than once')
+                raise ValueError(f"--{lo} option registered more than once")
             self.longopts[lo] = deets
 
     def parse(self, argv):
@@ -94,10 +95,10 @@ class KnownOptionParser:
         delindices = []
         i = 0
         while i < len(argv):
-            if argv[i] == '--':
+            if argv[i] == "--":
                 break
-            elif argv[i].startswith('--'):
-                name, eq, value = argv[i][2:].partition('=')
+            elif argv[i].startswith("--"):
+                name, eq, value = argv[i][2:].partition("=")
                 try:
                     deets = self.longopts[name]
                 except KeyError:
@@ -107,21 +108,19 @@ class KnownOptionParser:
                     if deets.is_flag:
                         if eq:
                             raise UsageError(
-                                f'--{name} option does not take an argument'
+                                f"--{name} option does not take an argument"
                             )
                         else:
                             opts[deets.field_name] = True
                     elif eq:
                         opts[deets.field_name] = value
-                    elif i+1 < len(argv):
-                        opts[deets.field_name] = argv[i+1]
+                    elif i + 1 < len(argv):
+                        opts[deets.field_name] = argv[i + 1]
                         i += 1
                         delindices.append(i)
                     else:
-                        raise UsageError(
-                            f'--{name} option missing required argument'
-                        )
-            elif argv[i].startswith('-') and argv[i] != '-':
+                        raise UsageError(f"--{name} option missing required argument")
+            elif argv[i].startswith("-") and argv[i] != "-":
                 name = argv[i][1]
                 value = argv[i][2:]
                 try:
@@ -132,21 +131,19 @@ class KnownOptionParser:
                     if deets.is_flag:
                         opts[deets.field_name] = True
                         if value:
-                            argv[i] = '-' + value
+                            argv[i] = "-" + value
                         else:
                             delindices.append(i)
                     elif value:
                         opts[deets.field_name] = value
                         delindices.append(i)
-                    elif i+1 < len(argv):
+                    elif i + 1 < len(argv):
                         delindices.append(i)
-                        opts[deets.field_name] = argv[i+1]
+                        opts[deets.field_name] = argv[i + 1]
                         i += 1
                         delindices.append(i)
                     else:
-                        raise UsageError(
-                            f'-{name} option missing required argument'
-                        )
+                        raise UsageError(f"-{name} option missing required argument")
             i += 1
         for i in reversed(delindices):
             argv.pop(i)

@@ -1,5 +1,6 @@
-from docutils            import nodes
+from docutils import nodes
 from docutils.transforms import Transform
+
 
 class MoveEmbeddedSystemMessages(Transform):
     """

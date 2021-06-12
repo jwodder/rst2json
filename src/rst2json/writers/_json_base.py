@@ -1,17 +1,22 @@
 import json
-from   docutils            import nodes, writers
-from   rst2json.core       import versioned_meta_strings
-from   rst2json.transforms import MoveEmbeddedSystemMessages
+from docutils import nodes, writers
+from rst2json.core import versioned_meta_strings
+from rst2json.transforms import MoveEmbeddedSystemMessages
+
 
 def joinstrs(lst):
-    return ''.join(lst).strip('\n')
+    return "".join(lst).strip("\n")
+
 
 def joinnl(lst):
-    return '\n'.join(lst).strip('\n')
+    return "\n".join(lst).strip("\n")
 
-def validate_int(setting, value, option_parser, config_parser=None,  # noqa: U100
-                 config_section=None):  # noqa: U100
+
+def validate_int(
+    setting, value, option_parser, config_parser=None, config_section=None  # noqa: U100
+):  # noqa: U100
     return int(value)
+
 
 class JSONWriterBase:
     format_name = None
@@ -46,18 +51,18 @@ class JSONWriterBase:
 
     def __init__(self):
         super().__init__()
-        self.config_section_dependencies += ('rst2json',)
+        self.config_section_dependencies += ("rst2json",)
         self.settings_spec += (
-            'rst2json-Specific Options',
+            "rst2json-Specific Options",
             None,
             (
                 (
-                    'Split up sections to the given depth',
-                    ['--split-section-level'],
+                    "Split up sections to the given depth",
+                    ["--split-section-level"],
                     {
-                        'default': 0,
-                        'validator': validate_int,
-                        'metavar': '<int>',
+                        "default": 0,
+                        "validator": validate_int,
+                        "metavar": "<int>",
                     },
                 ),
             ),
@@ -80,13 +85,16 @@ class JSONWriterBase:
 
     def apply_template(self):
         self.assemble_json_data()
-        ensure_ascii = (self.document.settings.output_encoding != 'utf8')
-        return json.dumps(
-            self.json_data,
-            sort_keys    = True,
-            indent       = 4,
-            ensure_ascii = ensure_ascii,
-        ) + "\n"
+        ensure_ascii = self.document.settings.output_encoding != "utf8"
+        return (
+            json.dumps(
+                self.json_data,
+                sort_keys=True,
+                indent=4,
+                ensure_ascii=ensure_ascii,
+            )
+            + "\n"
+        )
 
     def get_field(self, visitor_attr, converter):
         value = getattr(self, visitor_attr)
@@ -107,10 +115,10 @@ class JSONWriterBase:
         data["meta"]["format"] = self.format_name
         data["meta"]["language"] = self.document.settings.language_code
         data["meta"].update(versioned_meta_strings)
-        data["meta"]["generator"] \
-            = self.visitor.encode(data["meta"]["generator"])
-        data["meta"]["split_section_level"] \
-            = max(-1, self.document.settings.split_section_level)
+        data["meta"]["generator"] = self.visitor.encode(data["meta"]["generator"])
+        data["meta"]["split_section_level"] = max(
+            -1, self.document.settings.split_section_level
+        )
         if self.document.settings.split_section_level == 0:
             del data["content"]["sections"]
             del data["id_sections"]
@@ -164,8 +172,10 @@ class JSONTranslatorBase:
     def split_this_level(self, depth=None):
         if depth is None:
             depth = self.section_level
-        return self.settings.split_section_level < 0 or \
-            self.settings.split_section_level >= depth
+        return (
+            self.settings.split_section_level < 0
+            or self.settings.split_section_level >= depth
+        )
 
     def add_ids_to_section(self, ids):
         if self.section_stack:
@@ -174,7 +184,7 @@ class JSONTranslatorBase:
             except IndexError:
                 sectid = None
         elif not self.out_stack:
-            sectid = '$intro'
+            sectid = "$intro"
         else:
             sectid = None
         if sectid is not None:
@@ -182,11 +192,11 @@ class JSONTranslatorBase:
                 self.id_sections[i] = sectid
 
     def visit_document(self, node):
-        self.meta_title = node.get('title', None)
+        self.meta_title = node.get("title", None)
         if self.meta_title is not None:
             self.meta_title = self.encode(self.meta_title)
-        self.document_ids = node.get('ids', [])
-        self.document_classes = node.get('classes', [])
+        self.document_ids = node.get("ids", [])
+        self.document_classes = node.get("classes", [])
 
     def visit_header(self, _node):
         self.header = []
@@ -230,7 +240,7 @@ class JSONTranslatorBase:
         self.current_docinfo_field = None
 
     def visit_address(self, node):
-        self.visit_docinfo_item(node, 'address')
+        self.visit_docinfo_item(node, "address")
 
     def depart_address(self, _node):
         self.depart_docinfo_item()
@@ -239,7 +249,7 @@ class JSONTranslatorBase:
         if isinstance(node.parent, nodes.authors):
             self.push_output_collector([])
         else:
-            self.visit_docinfo_item(node, 'author')
+            self.visit_docinfo_item(node, "author")
 
     def depart_author(self, node):
         if isinstance(node.parent, nodes.authors):
@@ -251,49 +261,49 @@ class JSONTranslatorBase:
             self.authors.append(self.docinfo[-1]["value"])
 
     def visit_authors(self, node):
-        self.visit_docinfo_item(node, 'authors')
+        self.visit_docinfo_item(node, "authors")
 
     def depart_authors(self, _node):
         self.depart_docinfo_item()
 
     def visit_contact(self, node):
-        self.visit_docinfo_item(node, 'contact')
+        self.visit_docinfo_item(node, "contact")
 
     def depart_contact(self, _node):
         self.depart_docinfo_item()
 
     def visit_copyright(self, node):
-        self.visit_docinfo_item(node, 'copyright')
+        self.visit_docinfo_item(node, "copyright")
 
     def depart_copyright(self, _node):
         self.depart_docinfo_item()
 
     def visit_date(self, node):
-        self.visit_docinfo_item(node, 'date')
+        self.visit_docinfo_item(node, "date")
 
     def depart_date(self, _node):
         self.depart_docinfo_item()
 
     def visit_organization(self, node):
-        self.visit_docinfo_item(node, 'organization')
+        self.visit_docinfo_item(node, "organization")
 
     def depart_organization(self, _node):
         self.depart_docinfo_item()
 
     def visit_revision(self, node):
-        self.visit_docinfo_item(node, 'revision')
+        self.visit_docinfo_item(node, "revision")
 
     def depart_revision(self, _node):
         self.depart_docinfo_item()
 
     def visit_status(self, node):
-        self.visit_docinfo_item(node, 'status')
+        self.visit_docinfo_item(node, "status")
 
     def depart_status(self, _node):
         self.depart_docinfo_item()
 
     def visit_version(self, node):
-        self.visit_docinfo_item(node, 'version')
+        self.visit_docinfo_item(node, "version")
 
     def depart_version(self, _node):
         self.depart_docinfo_item()
@@ -327,8 +337,7 @@ class JSONTranslatorBase:
     def visit_field_body(self, node):
         if self.in_docinfo:
             self.push_output_collector([])
-            self.current_docinfo_field["value_stripped"] \
-                = self.attval(node.astext())
+            self.current_docinfo_field["value_stripped"] = self.attval(node.astext())
         else:
             super().visit_field_body(node)
 
@@ -342,7 +351,7 @@ class JSONTranslatorBase:
             super().depart_field_body(node)
 
     def visit_section(self, node):
-        if 'system-messages' in node["classes"]:
+        if "system-messages" in node["classes"]:
             pass
         elif self.split_this_level(self.section_level + 1):
             self.section_level += 1
@@ -351,8 +360,8 @@ class JSONTranslatorBase:
                 "title_stripped": None,
                 "subtitle": None,
                 "subtitle_stripped": None,
-                "ids": node.get('ids', []),
-                "classes": node.get('classes', []),
+                "ids": node.get("ids", []),
+                "classes": node.get("classes", []),
                 "subtitle_ids": [],
                 "subtitle_classes": [],
                 "toc_backref": None,
@@ -368,8 +377,7 @@ class JSONTranslatorBase:
                 else:
                     for i in sectobj["ids"]:
                         self.id_sections[i] = outerid
-            if self.section_stack and \
-                    self.section_stack[-1].get("sections") == []:
+            if self.section_stack and self.section_stack[-1].get("sections") == []:
                 # We are starting a subsection inside a section which doesn't
                 # already have any subsections, and so the current output
                 # collector is the outer section's "intro", which needs to be
@@ -387,7 +395,7 @@ class JSONTranslatorBase:
             super().visit_section(node)
 
     def depart_section(self, node):
-        if 'system-messages' in node["classes"]:
+        if "system-messages" in node["classes"]:
             pass
         elif self.split_this_level():
             self.section_level -= 1
@@ -396,7 +404,7 @@ class JSONTranslatorBase:
                 # Section's body/intro is "open" (is the current output
                 # collector) and needs to be closed (popped)
                 self.pop_output_collector()
-            for field in ('title', 'subtitle', 'body', 'intro'):
+            for field in ("title", "subtitle", "body", "intro"):
                 if sectobj.get(field) is not None:
                     sectobj[field] = joinstrs(sectobj[field])
             if self.section_stack:
@@ -416,15 +424,15 @@ class JSONTranslatorBase:
             else:
                 sectobj = self.sections[-1]
             sectobj["trailing_transition"] = {
-                "ids": node.get('ids', []),
-                "classes": node.get('classes', []),
+                "ids": node.get("ids", []),
+                "classes": node.get("classes", []),
             }
             try:
                 sectid = sectobj["ids"][0]
             except IndexError:
                 pass
             else:
-                for d in node.get('ids', []):
+                for d in node.get("ids", []):
                     self.id_sections[d] = sectid
             raise nodes.SkipNode
         else:
@@ -436,25 +444,28 @@ class JSONTranslatorBase:
             self.push_output_collector(self.title)
             self.title_stripped = self.attval(node.astext())
         elif isinstance(node.parent, nodes.topic) and any(
-            kls in node.parent["classes"] for kls in ('abstract', 'dedication')
+            kls in node.parent["classes"] for kls in ("abstract", "dedication")
         ):
             raise nodes.SkipNode
-        elif isinstance(node.parent, nodes.section) \
-                and 'system-messages' in node.parent["classes"]:
+        elif (
+            isinstance(node.parent, nodes.section)
+            and "system-messages" in node.parent["classes"]
+        ):
             raise nodes.SkipNode
         elif isinstance(node.parent, nodes.section) and self.split_this_level():
             sectobj = self.section_stack[-1]
             sectobj["title"] = []
             self.push_output_collector(sectobj["title"])
             sectobj["title_stripped"] = self.attval(
-                ''.join(
+                "".join(
                     n.astext()
                     for n in node.children
-                    if not (isinstance(n, nodes.generated)
-                            and 'sectnum' in n['classes'])
+                    if not (
+                        isinstance(n, nodes.generated) and "sectnum" in n["classes"]
+                    )
                 )
             )
-            sectobj["toc_backref"] = node.get('refid', None)
+            sectobj["toc_backref"] = node.get("refid", None)
         else:
             super().visit_title(node)
 
@@ -471,15 +482,15 @@ class JSONTranslatorBase:
             self.subtitle = []
             self.push_output_collector(self.subtitle)
             self.subtitle_stripped = self.attval(node.astext())
-            self.subtitle_ids = node.get('ids', [])
-            self.subtitle_classes = node.get('classes', [])
+            self.subtitle_ids = node.get("ids", [])
+            self.subtitle_classes = node.get("classes", [])
         elif isinstance(node.parent, nodes.section) and self.split_this_level():
             sectobj = self.section_stack[-1]
             sectobj["subtitle"] = []
             self.push_output_collector(sectobj["subtitle"])
             sectobj["subtitle_stripped"] = self.attval(node.astext())
-            sectobj["subtitle_ids"] = node.get('ids', [])
-            sectobj["subtitle_classes"] = node.get('classes', [])
+            sectobj["subtitle_ids"] = node.get("ids", [])
+            sectobj["subtitle_classes"] = node.get("classes", [])
         else:
             super().visit_subtitle(node)
 
@@ -492,29 +503,30 @@ class JSONTranslatorBase:
             super().depart_subtitle(node)
 
     def visit_topic(self, node):
-        if 'abstract' in node['classes']:
+        if "abstract" in node["classes"]:
             self.abstract = []
             self.push_output_collector(self.abstract)
-        elif 'dedication' in node['classes']:
+        elif "dedication" in node["classes"]:
             self.dedication = []
             self.push_output_collector(self.dedication)
         else:
             super().visit_topic(node)
 
     def depart_topic(self, node):
-        if 'abstract' in node['classes']:
+        if "abstract" in node["classes"]:
             self.pop_output_collector()
-        elif 'dedication' in node['classes']:
+        elif "dedication" in node["classes"]:
             self.pop_output_collector()
         else:
             super().depart_topic(node)
 
     def visit_generated(self, node):
-        if 'sectnum' in node['classes'] and \
-                isinstance(node.parent, nodes.title) and \
-                self.split_this_level():
-            self.section_stack[-1]["number"] \
-                = self.encode(node.astext().rstrip('\xA0'))
+        if (
+            "sectnum" in node["classes"]
+            and isinstance(node.parent, nodes.title)
+            and self.split_this_level()
+        ):
+            self.section_stack[-1]["number"] = self.encode(node.astext().rstrip("\xA0"))
             raise nodes.SkipNode
         else:
             super().visit_generated(node)
@@ -524,14 +536,16 @@ class JSONTranslatorBase:
 
     def depart_system_message(self, node):
         body = self.pop_output_collector()
-        self.system_messages.append({
-            "level": node["level"],
-            "type": node["type"],
-            "source": self.encode(node["source"]),
-            "line": node.get("line", None),
-            "body": joinstrs(body),
-            "ids": node.get("ids", []),
-            "backrefs": node.get("backrefs", []),
-        })
+        self.system_messages.append(
+            {
+                "level": node["level"],
+                "type": node["type"],
+                "source": self.encode(node["source"]),
+                "line": node.get("line", None),
+                "body": joinstrs(body),
+                "ids": node.get("ids", []),
+                "backrefs": node.get("backrefs", []),
+            }
+        )
 
     ### visit_meta() — HTML writers must explicitly define this

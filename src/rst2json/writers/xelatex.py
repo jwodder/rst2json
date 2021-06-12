@@ -1,16 +1,20 @@
-from   docutils         import nodes
-from   docutils.writers import xetex
-from   ._json_base      import JSONTranslatorBase, JSONWriterBase, joinnl
+from docutils import nodes
+from docutils.writers import xetex
+from ._json_base import JSONTranslatorBase, JSONWriterBase, joinnl
+
 
 class Writer(JSONWriterBase, xetex.Writer):
-    format_name = 'xelatex'
+    format_name = "xelatex"
 
-    json_fields = dict(JSONWriterBase.json_fields, latex={
-        "language": ("language_name", None),
-        "requirements": ("requirements", joinnl),
-        "fallbacks": ("fallbacks", joinnl),
-        "pdfsetup": ("pdfsetup", joinnl),
-    })
+    json_fields = dict(
+        JSONWriterBase.json_fields,
+        latex={
+            "language": ("language_name", None),
+            "requirements": ("requirements", joinnl),
+            "fallbacks": ("fallbacks", joinnl),
+            "pdfsetup": ("pdfsetup", joinnl),
+        },
+    )
 
     def __init__(self):
         super().__init__()
@@ -18,7 +22,7 @@ class Writer(JSONWriterBase, xetex.Writer):
 
 
 class XeLaTeXJSONTranslator(JSONTranslatorBase, xetex.XeLaTeXTranslator):
-    out_varname = 'out'
+    out_varname = "out"
 
     def __init__(self, document, **kwargs):
         super().__init__(document, **kwargs)
@@ -40,8 +44,8 @@ class XeLaTeXJSONTranslator(JSONTranslatorBase, xetex.XeLaTeXTranslator):
     def visit_title(self, node):
         super().visit_title(node)
         if isinstance(node.parent, nodes.document):
-            self.context.append('')
-            self.pdfinfo.append('  pdftitle={%s},' % self.encode(node.astext()))
+            self.context.append("")
+            self.pdfinfo.append("  pdftitle={%s}," % self.encode(node.astext()))
 
     def visit_section(self, node):
         super().visit_section(node)
@@ -58,18 +62,18 @@ class XeLaTeXJSONTranslator(JSONTranslatorBase, xetex.XeLaTeXTranslator):
 
     def append_hypertargets(self, node):
         super().append_hypertargets(node)
-        self.add_ids_to_section(node.get('ids', []))
+        self.add_ids_to_section(node.get("ids", []))
 
     def ids_to_labels(self, node, set_anchor=True):
-        self.add_ids_to_section(node.get('ids', []))
+        self.add_ids_to_section(node.get("ids", []))
         return super().ids_to_labels(node, set_anchor)
 
     def visit_footnote(self, node):
         super().visit_footnote(node)
         if self.docutils_footnotes:
-            self.add_ids_to_section(node['ids'][:1])
+            self.add_ids_to_section(node["ids"][:1])
 
     def visit_footnote_reference(self, node):
         super().visit_footnote_reference(node)
-        if self.settings.footnote_references != 'brackets':
-            self.add_ids_to_section(node['ids'][:1])
+        if self.settings.footnote_references != "brackets":
+            self.add_ids_to_section(node["ids"][:1])
