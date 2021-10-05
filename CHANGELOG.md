@@ -1,3 +1,7 @@
+v0.5.0 (in development)
+-----------------------
+- Support Python 3.10
+
 v0.4.0 (2021-06-06)
 -------------------
 - Added an `rst2json.core.get_docutils_config_files()` function for fetching

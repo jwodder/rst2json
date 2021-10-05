@@ -26,7 +26,7 @@ application for splitting sections into separate files, can be found in
 Visit <https://github.com/jwodder/rst2json> for more information.
 """
 
-__version__ = "0.4.0"
+__version__ = "0.5.0.dev1"
 __author__ = "John Thorvald Wodder II"
 __author_email__ = "rst2json@varonathe.org"
 __license__ = "MIT"
