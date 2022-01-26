@@ -1,5 +1,5 @@
-v0.5.0 (in development)
------------------------
+v0.5.0 (2022-01-26)
+-------------------
 - Support Python 3.10
 - Update for Docutils 0.18.1, which is now the minimum required version
 
