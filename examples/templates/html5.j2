@@ -1,7 +1,7 @@
 <!--
     This is a Jinja2 template that can be applied to the output from `rst2json
     --format=html5` to produce an HTML5 document that is as close to the output
-    from `rst2html5.py --link-stylesheet` (as of Docutils 0.17) as is
+    from `rst2html5.py --link-stylesheet` (as of Docutils 0.18.1) as is
     reasonably possible.
 -->
 
@@ -9,8 +9,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{meta.language|escape}}" lang="{{meta.language|escape}}">
 <head>
 <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="generator" content="{{meta.generator|escape}}" />
 <title>{% if meta.title %}{{meta.title|safe}}{% elif content.title_stripped %}{{content.title_stripped|safe}}{% else %}{{meta.source.rstrip("/").split("/")[-1]|safe}}{% endif %}</title>
+{{html.meta_tags|safe}}
 {% for item in content.docinfo %}
 {% if item.type == 'author' %}
 <meta name="{{item.type|escape}}" content="{{item.value_stripped|safe}}" />
@@ -24,7 +26,6 @@
 <meta name="dcterms.date" content="{{item.value_stripped|safe}}" />
 {% endif %}
 {% endfor %}
-{{html.meta_tags|safe}}
 {% if 'name="dcterms.' in html.meta_tags or content.docinfo|selectattr("type", "in", ['copyright', 'date'])|list %}
 <link rel="schema.dcterms" href="http://purl.org/dc/terms/"/>
 {% endif %}
@@ -54,7 +55,7 @@
 {% else %}
 {% set cls = item.type %}
 {% endif %}
-<dt class="{{cls|escape}}">{{item.name}}</dt>
+<dt class="{{cls|escape}}">{{item.name}}<span class="colon">:</span></dt>
 <dd class="{{cls|escape}}">{% if item.type == 'author' %}
 <p>{{item.value|safe}}</p>{% elif item.type == 'authors' %}
 {% for a in item.value %}
@@ -69,13 +70,13 @@
 </dl>
 {% endif %}
 {% if content.dedication %}
-<div class="dedication topic">
+<div class="topic dedication" role="doc-dedication">
 <p class="topic-title">Dedication</p>
 {{content.dedication|safe}}
 </div>
 {% endif %}
 {% if content.abstract %}
-<div class="abstract topic">
+<div class="topic abstract" role="doc-abstract">
 <p class="topic-title">Abstract</p>
 {{content.abstract|safe}}
 </div>
@@ -85,7 +86,7 @@
 <section class="system-messages">
 <h2>Docutils System Messages</h2>
 {% for msg in system_messages %}
-<div class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
+<aside class="system-message"{% if msg.ids %} id="{{msg.ids[0]|escape}}"{% endif %}>{% for i in msg.ids[1:] %}<span id="{{i|escape}}"></span>{% endfor %}
 
 <p class="system-message-title">System Message: {{msg.type|escape}}/{{msg.level}} (<span class="docutils literal">{{msg.source|safe}}</span>{% if msg.line %}, line {{msg.line}}{% endif %}){% if msg.backrefs %}; 
     {% if msg.backrefs|length == 1 %}
@@ -101,7 +102,7 @@
     {% endif %}
 </p>
 {{msg.body|safe}}
-</div>
+</aside>
 {% endfor %}
 </section>
 {% endif %}
