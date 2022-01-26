@@ -54,6 +54,9 @@ def test_rst2json(capsys, monkeypatch, fmt, input_path, json_path, conf_path):
     main(args)
     stdout, _ = capsys.readouterr()
     output = json.loads(stdout)
+    # if output != expected:
+    #     with json_path.with_stem(json_path.stem + "_new").open("w") as fp:
+    #         json.dump(output, fp)
     assert output == expected
 
 

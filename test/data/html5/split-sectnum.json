@@ -35,7 +35,9 @@
                 "title_stripped": "Section 1",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-1"],
+                "ids": [
+                    "section-1"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],
@@ -51,7 +53,9 @@
                 "title_stripped": "Section 2",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-2"],
+                "ids": [
+                    "section-2"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],
@@ -66,7 +70,9 @@
                         "title_stripped": "Section 2.1",
                         "subtitle": null,
                         "subtitle_stripped": null,
-                        "ids": ["section-2-1"],
+                        "ids": [
+                            "section-2-1"
+                        ],
                         "classes": [],
                         "subtitle_ids": [],
                         "subtitle_classes": [],
@@ -74,14 +80,16 @@
                         "number": "[6.1]",
                         "depth": 2,
                         "trailing_transition": null,
-                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<section id=\"section-2-1-1\">\n<h4><span class=\"sectnum\">[6.1.1]</span> Section 2.1.1</h4>\n<p>Beware the Jabberwock, my son!</p>\n</section>"
+                        "body": "<p id=\"bar\">All mimsy were the borogoves, and the mome raths outgrabe.</p>\n<section id=\"section-2-1-1\">\n<h4><span class=\"sectnum\">[6.1.1] </span>Section 2.1.1</h4>\n<p>Beware the Jabberwock, my son!</p>\n</section>"
                     },
                     {
                         "title": "Section 2.2",
                         "title_stripped": "Section 2.2",
                         "subtitle": null,
                         "subtitle_stripped": null,
-                        "ids": ["section-2-2"],
+                        "ids": [
+                            "section-2-2"
+                        ],
                         "classes": [],
                         "subtitle_ids": [],
                         "subtitle_classes": [],
@@ -98,7 +106,9 @@
                 "title_stripped": "Section 3",
                 "subtitle": null,
                 "subtitle_stripped": null,
-                "ids": ["section-3"],
+                "ids": [
+                    "section-3"
+                ],
                 "classes": [],
                 "subtitle_ids": [],
                 "subtitle_classes": [],

@@ -12,7 +12,7 @@
     "latex": {
         "language": "english",
         "requirements": "\\usepackage{ifthen}",
-        "fallbacks": "% admonition (specially marked topic)\n\\providecommand{\\DUadmonition}[2][class-arg]{%\n  % try \\DUadmonition#1{#2}:\n  \\ifcsname DUadmonition#1\\endcsname%\n    \\csname DUadmonition#1\\endcsname{#2}%\n  \\else\n    \\begin{center}\n      \\fbox{\\parbox{0.9\\linewidth}{#2}}\n    \\end{center}\n  \\fi\n}\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[2][class-arg]{%\n  % call \\DUtitle#1{#2} if it exists:\n  \\ifcsname DUtitle#1\\endcsname%\n    \\csname DUtitle#1\\endcsname{#2}%\n  \\else\n    \\smallskip\\noindent\\textbf{#2}\\smallskip%\n  \\fi\n}",
+        "fallbacks": "% class handling for environments (block-level elements)\n% \\begin{DUclass}{spam} tries \\DUCLASSspam and\n% \\end{DUclass}{spam} tries \\endDUCLASSspam\n\\ifx\\DUclass\\undefined % poor man's \"provideenvironment\"\n \\newenvironment{DUclass}[1]%\n  {% \"#1\" does not work in end-part of environment.\n   \\def\\DocutilsClassFunctionName{DUCLASS#1}\n     \\csname \\DocutilsClassFunctionName \\endcsname}%\n  {\\csname end\\DocutilsClassFunctionName \\endcsname}%\n\\fi\n\n% admonition environment (specially marked topic)\n\\ifx\\DUadmonition\\undefined % poor man's \"provideenvironment\"\n \\newbox{\\DUadmonitionbox}\n \\newenvironment{DUadmonition}%\n  {\\begin{center}\n     \\begin{lrbox}{\\DUadmonitionbox}\n       \\begin{minipage}{0.9\\linewidth}\n  }%\n  {    \\end{minipage}\n     \\end{lrbox}\n     \\fbox{\\usebox{\\DUadmonitionbox}}\n   \\end{center}\n  }\n\\fi\n\n% title for topics, admonitions, unsupported section levels, and sidebar\n\\providecommand*{\\DUtitle}[1]{%\n  \\smallskip\\noindent\\textbf{#1}\\smallskip}",
         "pdfsetup": "% hyperlinks:\n\\ifthenelse{\\isundefined{\\hypersetup}}{\n  \\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue]{hyperref}\n  \\usepackage{bookmark}\n  \\urlstyle{same} % normal text font (alternatives: tt, rm, sf)\n}{}"
     },
     "content": {
@@ -30,7 +30,7 @@
         "docinfo": [],
         "dedication": null,
         "abstract": null,
-        "body": "This is written in reStructuredText.\n\nThis is written in \\LaTeX.\n\n\\DUadmonition[note]{\n\\DUtitle[note]{Note}\n\n\\texttt{html} and \\texttt{latex} are the only \\texttt{.. raw::} formats that the built-in\nHTML and LaTeX/XeTeX writers support, respectively.\n}"
+        "body": "This is written in reStructuredText.\n\nThis is written in \\LaTeX.\n\n\\begin{DUclass}{note}\n\\begin{DUadmonition}\n\\DUtitle{Note}\n\n\\texttt{html} and \\texttt{latex} are the only \\texttt{.. raw::} formats that the built-in\nHTML and LaTeX/XeTeX writers support, respectively.\n\\end{DUadmonition}\n\\end{DUclass}"
     },
     "system_messages": []
 }

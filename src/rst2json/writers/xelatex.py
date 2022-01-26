@@ -64,9 +64,9 @@ class XeLaTeXJSONTranslator(JSONTranslatorBase, xetex.XeLaTeXTranslator):
         super().append_hypertargets(node)
         self.add_ids_to_section(node.get("ids", []))
 
-    def ids_to_labels(self, node, set_anchor=True):
+    def ids_to_labels(self, node, set_anchor=True, **kwargs):
         self.add_ids_to_section(node.get("ids", []))
-        return super().ids_to_labels(node, set_anchor)
+        return super().ids_to_labels(node, set_anchor=set_anchor, **kwargs)
 
     def visit_footnote(self, node):
         super().visit_footnote(node)

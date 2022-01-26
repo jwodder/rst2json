@@ -24,7 +24,7 @@ OUTPUT = {
     "content": {
         "abstract": None,
         "authors": [],
-        "body": '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Oops, here comes an <a href="#id1"><span class="problematic" id="id2">*</span></a>error!</p>',
+        "body": '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Oops, here comes an <a href="#system-message-1"><span class="problematic" id="problematic-1">*</span></a>error!</p>',
         "dedication": None,
         "docinfo": [],
         "document_classes": [],
@@ -51,9 +51,9 @@ OUTPUT = {
     },
     "system_messages": [
         {
-            "backrefs": ["id2"],
+            "backrefs": ["problematic-1"],
             "body": "Inline emphasis start-string without end-string.",
-            "ids": ["id1"],
+            "ids": ["system-message-1"],
             "level": 2,
             "line": 11,
             "source": "input.rst",
@@ -66,7 +66,7 @@ OUTPUT_NO_DOC_TITLE = {
     "content": {
         "abstract": None,
         "authors": [],
-        "body": '<div class="section" id="a-document">\n<h1>A Document</h1>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Oops, here comes an <a href="#id1"><span class="problematic" id="id2">*</span></a>error!</p>\n</div>',
+        "body": '<div class="section" id="a-document">\n<h1>A Document</h1>\n<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.</p>\n<p>Oops, here comes an <a href="#system-message-1"><span class="problematic" id="problematic-1">*</span></a>error!</p>\n</div>',
         "dedication": None,
         "docinfo": [],
         "document_classes": [],
@@ -93,9 +93,9 @@ OUTPUT_NO_DOC_TITLE = {
     },
     "system_messages": [
         {
-            "backrefs": ["id2"],
+            "backrefs": ["problematic-1"],
             "body": "Inline emphasis start-string without end-string.",
-            "ids": ["id1"],
+            "ids": ["system-message-1"],
             "level": 2,
             "line": 11,
             "source": "input.rst",
@@ -108,7 +108,7 @@ OUTPUT_LATEX = {
     "content": {
         "abstract": None,
         "authors": [],
-        "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.\n\nOops, here comes an %\n\\raisebox{1em}{\\hypertarget{id2}{}}\\hyperlink{id1}{\\textbf{\\color{red}*}}error!",
+        "body": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor\nincididunt ut labore et dolore magna aliqua.  Ut enim ad minim veniam, quis\nnostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu\nfugiat nulla pariatur.  Excepteur sint occaecat cupidatat non proident, sunt in\nculpa qui officia deserunt mollit anim id est laborum.\n\nOops, here comes an %\n\\raisebox{1em}{\\hypertarget{problematic-1}{}}\\hyperlink{system-message-1}{\\textbf{\\color{red}*}}error!",
         "dedication": None,
         "docinfo": [],
         "document_classes": [],
@@ -140,9 +140,9 @@ OUTPUT_LATEX = {
     },
     "system_messages": [
         {
-            "backrefs": ["id2"],
+            "backrefs": ["problematic-1"],
             "body": "Inline emphasis start-string without end-string.",
-            "ids": ["id1"],
+            "ids": ["system-message-1"],
             "level": 2,
             "line": 11,
             "source": "input.rst",

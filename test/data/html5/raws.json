@@ -28,7 +28,7 @@
         "docinfo": [],
         "dedication": null,
         "abstract": null,
-        "body": "<p>This is written in reStructuredText.</p>\n<p>This is written in <strong>HTML</strong>.</p><div class=\"admonition note\">\n<p class=\"admonition-title\">Note</p>\n<p><span class=\"docutils literal\">html</span> and <span class=\"docutils literal\">latex</span> are the only <span class=\"docutils literal\">.. raw::</span> formats that the built-in\nHTML and LaTeX/XeTeX writers support, respectively.</p>\n</div>"
+        "body": "<p>This is written in reStructuredText.</p>\n<p>This is written in <strong>HTML</strong>.</p><aside class=\"admonition note\">\n<p class=\"admonition-title\">Note</p>\n<p><span class=\"docutils literal\">html</span> and <span class=\"docutils literal\">latex</span> are the only <span class=\"docutils literal\">.. raw::</span> formats that the built-in\nHTML and LaTeX/XeTeX writers support, respectively.</p>\n</aside>"
     },
     "system_messages": []
 }

@@ -17,7 +17,7 @@ class MoveEmbeddedSystemMessages(Transform):
 
     def apply(self):
         messages = []
-        for node in tuple(self.document.traverse(nodes.system_message)):
+        for node in tuple(self.document.findall(nodes.system_message)):
             node.parent.remove(node)
             node.parent = None
             if node not in self.document.transform_messages:

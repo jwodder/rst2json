@@ -54,7 +54,7 @@
         ],
         "dedication": null,
         "abstract": null,
-        "body": "<div class=\"admonition attention\">\n<p class=\"admonition-title\">¡Atención!</p>\n<p>The rendered topic should say &quot;¡Atención!&quot;</p>\n</div>"
+        "body": "<aside class=\"admonition attention\">\n<p class=\"admonition-title\">¡Atención!</p>\n<p>The rendered topic should say &quot;¡Atención!&quot;</p>\n</aside>"
     },
     "system_messages": []
 }
