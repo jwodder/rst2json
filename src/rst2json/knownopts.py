@@ -85,7 +85,7 @@ class KnownOptionParser:
     def parse(self, argv):
         """
         Parse a sequence of command-line arguments — *excluding* the program
-        name — and return a `dict` of known options encoutered paired with a
+        name — and return a `dict` of known options encountered paired with a
         list of all remaining options.  For each known option encountered, an
         entry is added to the `dict` where the key is the field name and the
         value is the option argument (or `True` for flags).
