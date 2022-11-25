@@ -20,7 +20,11 @@ versioned_meta_strings = {
 
 
 def rst2json(
-    source, format="html", options=None, config_files=None, destination_path=None
+    source,
+    format="html",  # noqa: A002
+    options=None,
+    config_files=None,
+    destination_path=None,
 ):
     """
     Render reStructuredText in a given markup format and split the parts into a
