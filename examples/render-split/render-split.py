@@ -56,7 +56,7 @@ def main(
     rst_input,
     intro_template,
     section_template,
-    format,
+    format,  # noqa: A002
     config,
 ):
     if format.lower() not in ("html", "html4", "html5"):
@@ -98,13 +98,13 @@ def prepare_contexts(data, intro_name, section_fmt):
         sect["ids"][0]: fname for sect, fname in zip(sections, section_filenames)
     }
     href_map = {}
-    for id, sectid in id_sections.items():
+    for id, sectid in id_sections.items():  # noqa: A001
         if sectid == "$intro":
             href_map[f"#{id}"] = f"{intro_name}#{id}"
         else:
             href_map[f"#{id}"] = f"{sectid2file[sectid]}#{id}"
-    for (sect, fname) in zip(sections, section_filenames):
-        for id in sect["ids"]:
+    for sect, fname in zip(sections, section_filenames):
+        for id in sect["ids"]:  # noqa: A001
             href_map[f"#{id}"] = fname
     intro = rewrite_hrefs(intro, href_map)
     intro_context = deepcopy(data)
