@@ -4,8 +4,8 @@
           state but is no longer being actively developed; support/maintenance
           will be provided as time allows.
 
-.. image:: https://github.com/jwodder/rst2json/workflows/Test/badge.svg?branch=master
-    :target: https://github.com/jwodder/rst2json/actions?workflow=Test
+.. image:: https://github.com/jwodder/rst2json/actions/workflows/test.yml/badge.svg
+    :target: https://github.com/jwodder/rst2json/actions/workflows/test.yml
     :alt: CI Status
 
 .. image:: https://codecov.io/gh/jwodder/rst2json/branch/master/graph/badge.svg
